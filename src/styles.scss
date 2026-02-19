@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use 'styles/themes/tokens';
+@use 'styles/themes/light';
+@use 'styles/themes/dark';
+
+// Typography and density are theme-neutral — applied once globally.
+html {
+  height: 100%;
+
+  @include mat.theme((
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--cc-surface);
+  color: var(--cc-on-surface);
+  font: var(--mat-sys-body-medium);
+}

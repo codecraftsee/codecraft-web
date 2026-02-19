@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+// Light palette — placeholder values, to be finalised during design phase.
+// Swap mat.$azure-palette for the brand palette when colours are confirmed.
+
+:root.light-theme {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$violet-palette,
+      theme-type: light,
+    ),
+  ));
+
+  color-scheme: light;
+
+  // Semantic site tokens mapped to M3 system tokens.
+  --cc-primary:         var(--mat-sys-primary);
+  --cc-on-primary:      var(--mat-sys-on-primary);
+  --cc-surface:         var(--mat-sys-surface);
+  --cc-on-surface:      var(--mat-sys-on-surface);
+  --cc-surface-variant: var(--mat-sys-surface-variant);
+  --cc-outline:         var(--mat-sys-outline);
+  --cc-error:           var(--mat-sys-error);
+}

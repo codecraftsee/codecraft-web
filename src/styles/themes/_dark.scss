@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+// Dark palette — placeholder values, to be finalised during design phase.
+// Swap mat.$violet-palette for the brand palette when colours are confirmed.
+
+:root.dark-theme {
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$azure-palette,
+      theme-type: dark,
+    ),
+  ));
+
+  color-scheme: dark;
+
+  // Semantic site tokens mapped to M3 system tokens.
+  --cc-primary:         var(--mat-sys-primary);
+  --cc-on-primary:      var(--mat-sys-on-primary);
+  --cc-surface:         var(--mat-sys-surface);
+  --cc-on-surface:      var(--mat-sys-on-surface);
+  --cc-surface-variant: var(--mat-sys-surface-variant);
+  --cc-outline:         var(--mat-sys-outline);
+  --cc-error:           var(--mat-sys-error);
+}
