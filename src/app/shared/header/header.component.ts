@@ -1,14 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from '../../core/theme.service';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'cc-header',
-  imports: [RouterLink, RouterLinkActive, ThemeToggleComponent],
+  imports: [RouterLink, RouterLinkActive, NgOptimizedImage, ThemeToggleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="site-header">
-      <a class="wordmark" routerLink="/">CodeCraft</a>
+      <a class="logo-link" routerLink="/" aria-label="CodeCraft home">
+        <img
+          ngSrc="codecraft.svg"
+          alt="CodeCraft"
+          width="985"
+          height="369"
+          priority
+          class="logo"
+          [class.logo--dark]="themeService.activeTheme() === 'dark'"
+        />
+      </a>
 
       <nav class="nav" aria-label="Main navigation">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
@@ -34,13 +46,20 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       border-bottom: 1px solid var(--cc-outline);
     }
 
-    .wordmark {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--cc-primary);
-      text-decoration: none;
-      letter-spacing: -0.02em;
+    .logo-link {
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo--dark {
+      filter: invert(1);
     }
 
     .nav {
@@ -83,4 +102,6 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
     }
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  protected readonly themeService = inject(ThemeService);
+}
