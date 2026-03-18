@@ -20,8 +20,20 @@ describe('HeroSectionComponent', () => {
     expect(h1.textContent.trim().length).toBeGreaterThan(0);
   });
 
-  it('CTA links to /contact', () => {
-    const cta = fixture.nativeElement.querySelector('a[ng-reflect-router-link], a[routerLink]');
+  it('headline contains an accent-underlined keyword', () => {
+    const accent = fixture.nativeElement.querySelector('.hero__accent');
+    expect(accent).toBeTruthy();
+  });
+
+  it('primary CTA links to /contact', () => {
+    const cta = fixture.nativeElement.querySelector('.hero__cta--primary');
     expect(cta).toBeTruthy();
+    expect(cta.textContent.trim()).toBe("Let's talk");
+  });
+
+  it('secondary CTA links to /services', () => {
+    const cta = fixture.nativeElement.querySelector('.hero__cta--secondary');
+    expect(cta).toBeTruthy();
+    expect(cta.textContent.trim()).toBe('Our services');
   });
 });

@@ -19,7 +19,12 @@
       "Bash(git -C /c/Users/Miodrag/development/codecraft-web status)",
       "Bash(git -C /c/Users/Miodrag/development/codecraft-web diff)",
       "Bash(git -C /c/Users/Miodrag/development/codecraft-web diff --cached)",
-      "Bash(git -C /c/Users/Miodrag/development/codecraft-web log --oneline -5)"
+      "Bash(git -C /c/Users/Miodrag/development/codecraft-web log --oneline -5)",
+      "Bash(gh run list:*)",
+      "Bash(git fetch:*)",
+      "WebFetch(domain:www.chaseai.io)",
+      "WebFetch(domain:angular.dev)",
+      "Bash(taskkill:*)"
     ]
   }
 }
