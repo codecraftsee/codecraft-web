@@ -34,14 +34,17 @@ import { MatButtonModule } from '@angular/material/button';
 
     .cta__heading {
       margin: 0;
-      font: var(--mat-sys-display-small);
+      font-family: var(--cc-font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400;
       color: var(--cc-on-primary);
     }
 
     .cta__button {
       font-size: 1rem;
       padding: 0 2rem;
-      height: 52px;
+      min-height: 48px;
+      border-radius: 0.75rem;
     }
   `,
 })
