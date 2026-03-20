@@ -14,6 +14,18 @@
 // --cc-accent           Accent / CTA colour
 // --cc-on-accent        Text / icons on accent surfaces
 //
+// Glass tokens:
+// --cc-glass-bg         Semi-transparent glass panel background
+// --cc-glass-border     Glass panel border colour with alpha
+// --cc-glass-blur       Backdrop blur radius for glass panels
+// --cc-glass-shadow     Box shadow for glass panels
+//
+// Backdrop tokens:
+// --cc-backdrop-start   Background gradient start colour
+// --cc-backdrop-mid     Background gradient middle colour
+// --cc-backdrop-end     Background gradient end colour
+// --cc-backdrop-accent  Background gradient accent colour
+//
 // Typography tokens:
 // --cc-font-sans        Primary sans-serif font stack (Inter)
 // --cc-font-serif       Accent serif font stack (Instrument Serif)

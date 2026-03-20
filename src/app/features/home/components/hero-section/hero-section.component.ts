@@ -32,9 +32,9 @@ import { MatButtonModule } from '@angular/material/button';
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100dvh;
-      padding: 6rem 2rem 4rem;
-      background-color: var(--cc-surface);
+      min-height: 80dvh;
+      padding: 4rem 2rem;
+      background: transparent;
     }
 
     .hero__content {
