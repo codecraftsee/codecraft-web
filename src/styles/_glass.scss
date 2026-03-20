@@ -1,0 +1,12 @@
+@mixin glass-panel {
+  background: var(--cc-glass-bg);
+  border: 1px solid var(--cc-glass-border);
+  border-radius: 16px;
+  box-shadow: var(--cc-glass-shadow);
+  backdrop-filter: blur(var(--cc-glass-blur));
+
+  @supports not (backdrop-filter: blur(1px)) {
+    background: var(--cc-surface);
+    opacity: 0.95;
+  }
+}

@@ -23,6 +23,18 @@
   --cc-accent:          #6C3CE1;
   --cc-on-accent:       #FFFFFF;
 
+  // Glass tokens
+  --cc-glass-bg:      rgba(255, 255, 255, 0.6);
+  --cc-glass-border:  rgba(255, 255, 255, 0.3);
+  --cc-glass-blur:    16px;
+  --cc-glass-shadow:  0 8px 32px rgba(0, 0, 0, 0.08);
+
+  // Backdrop tokens
+  --cc-backdrop-start:  #e8e0ff;
+  --cc-backdrop-mid:    #f0e6ff;
+  --cc-backdrop-end:    #dce8ff;
+  --cc-backdrop-accent: #c4b5fd;
+
   // Typography tokens
   --cc-font-sans:  'Inter', system-ui, sans-serif;
   --cc-font-serif: 'Instrument Serif', Georgia, serif;
