@@ -65,8 +65,8 @@ import { RouterLink } from '@angular/router';
   `,
   styles: `
     .services {
-      padding: 6rem 2rem;
-      background-color: var(--cc-surface-dim);
+      padding: 4rem 2rem;
+      background: transparent;
     }
 
     .services__inner {
@@ -94,12 +94,13 @@ import { RouterLink } from '@angular/router';
       flex-direction: column;
       gap: 1rem;
       padding: 2rem;
-      background-color: var(--cc-surface);
-      border: 1px solid var(--cc-outline);
+      background: var(--cc-glass-bg);
+      border: 1px solid var(--cc-glass-border);
       border-radius: 12px;
       text-decoration: none;
       color: var(--cc-on-surface);
-      transition: border-color 0.15s;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.15s, transform 0.15s;
     }
 
     .service-card:hover {

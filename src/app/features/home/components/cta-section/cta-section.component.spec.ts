@@ -21,7 +21,7 @@ describe('CtaSectionComponent', () => {
   });
 
   it('CTA button links to /contact', () => {
-    const btn = fixture.nativeElement.querySelector('a[ng-reflect-router-link], a[routerLink]');
+    const btn = fixture.nativeElement.querySelector('.cta__button');
     expect(btn).toBeTruthy();
     expect(btn.getAttribute('href')).toBe('/contact');
   });

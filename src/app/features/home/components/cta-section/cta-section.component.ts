@@ -18,8 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
   `,
   styles: `
     .cta {
-      padding: 6rem 2rem;
-      background-color: var(--cc-primary);
+      padding: 4rem 2rem;
+      background: transparent;
     }
 
     .cta__inner {
