@@ -59,6 +59,18 @@ function levelColor(level: number): string {
   }
 }
 
+function levelGradientColors(level: number): { from: string; to: string } {
+  switch (level) {
+    case 6: return { from: '#F59E0B', to: '#FBBF24' };
+    case 5: return { from: '#EC4899', to: '#F472B6' };
+    case 4: return { from: '#10B981', to: '#34D399' };
+    case 3: return { from: '#3B82F6', to: '#60A5FA' };
+    case 2: return { from: '#8B5CF6', to: '#A78BFA' };
+    case 1: return { from: '#06B6D4', to: '#22D3EE' };
+    default: return { from: '#9CA3AF', to: '#D1D5DB' };
+  }
+}
+
 function skillBadge(proficiency: number): string {
   if (proficiency >= 90) return 'expert';
   if (proficiency >= 80) return 'advanced';
@@ -94,7 +106,7 @@ function badgeBg(proficiency: number): string {
           <h1 class="crafters__heading">Code Crafters</h1>
           <p class="crafters__subtitle">The people who build what ships.</p>
 
-          <svg class="orbit__svg" viewBox="0 0 400 400" role="img" aria-label="Team orbital diagram">
+          <svg class="hive__svg" viewBox="0 0 500 440" role="img" aria-label="Team honeycomb diagram">
             <defs>
               <radialGradient id="sun-grad" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.9" />
@@ -102,8 +114,8 @@ function badgeBg(proficiency: number): string {
               </radialGradient>
               @for (member of members; track member.name; let i = $index) {
                 <linearGradient [attr.id]="'leaf-grad-' + i" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" [attr.stop-color]="member.colors.from" />
-                  <stop offset="100%" [attr.stop-color]="member.colors.to" />
+                  <stop offset="0%" [attr.stop-color]="getLevelGradientColors(member.skills).from" />
+                  <stop offset="100%" [attr.stop-color]="getLevelGradientColors(member.skills).to" />
                 </linearGradient>
                 <clipPath [attr.id]="'leaf-clip-' + i">
                   <circle [attr.cx]="leafPositions[i].cx" [attr.cy]="leafPositions[i].cy" r="36" />
@@ -111,13 +123,24 @@ function badgeBg(proficiency: number): string {
               }
             </defs>
 
-            <!-- orbit rings -->
-            <circle class="orbit__ring" cx="200" cy="200" r="100" />
-            <circle class="orbit__ring" cx="200" cy="200" r="155" />
+            <!-- connecting lines -->
+            @for (pos of leafPositions; track $index; let i = $index) {
+              <line class="hive__link"
+                x1="250" y1="220"
+                [attr.x2]="pos.cx" [attr.y2]="pos.cy"
+                [style.animation-delay]="(0.15 + i * 0.05) + 's'" />
+            }
 
-            <!-- center sun -->
-            <circle class="orbit__center" cx="200" cy="200" r="40" fill="url(#sun-grad)" />
-            <text x="200" y="207" text-anchor="middle" class="orbit__center-text">CC</text>
+            <!-- hex cells behind each member -->
+            @for (pos of leafPositions; track $index; let i = $index) {
+              <polygon class="hive__cell"
+                [attr.points]="hexPoints(pos.cx, pos.cy)"
+                [style.animation-delay]="(0.2 + i * 0.08) + 's'" />
+            }
+
+            <!-- center hex -->
+            <polygon class="hive__center" [attr.points]="hexPoints(250, 220)" fill="url(#sun-grad)" />
+            <text x="250" y="227" text-anchor="middle" class="hive__center-text">CC</text>
 
             <!-- member nodes -->
             @for (member of members; track member.name; let i = $index) {
@@ -163,13 +186,13 @@ function badgeBg(proficiency: number): string {
 
           @if (selectedMemberData(); as member) {
             <div class="detail-panel">
-              <div class="detail-panel__gradient-bar" [style.background]="member.gradient.border"></div>
+              <div class="detail-panel__gradient-bar" [style.background]="getLevelColor(member.skills)"></div>
               <div class="detail-panel__level" [style.background]="getLevelColor(member.skills)">
                 <span class="detail-panel__level-num">{{ getLevel(member.skills).level }}</span>
                 <span class="detail-panel__level-label">{{ getLevel(member.skills).label }}</span>
               </div>
               <div class="detail-panel__header">
-                <div class="detail-panel__avatar" [style.background]="member.gradient.avatar">
+                <div class="detail-panel__avatar" [style.background]="getLevelColor(member.skills)">
                   @if (member.image) {
                     <img [src]="member.image" [alt]="member.name" class="detail-panel__avatar-img" />
                   } @else {
@@ -220,14 +243,15 @@ function badgeBg(proficiency: number): string {
     .crafters__heading { margin:0; font-family:var(--cc-font-serif); font-size:clamp(2rem,5vw,3rem); font-weight:400; color:var(--cc-on-surface); }
     .crafters__subtitle { margin:.5rem 0 0; font-family:var(--cc-font-sans); font-size:.9375rem; font-style:italic; color:var(--cc-on-surface); opacity:.5; }
 
-    /* SVG Orbit */
-    .orbit__svg { display:block; width:100%; max-width:400px; margin:2rem auto 0; overflow:visible; }
-    .orbit__ring { fill:none; stroke:var(--cc-outline,#d1d5db); stroke-width:1; stroke-dasharray:6 4; opacity:0; animation:orbit-ring .6s ease-out forwards; }
-    .orbit__center { filter:drop-shadow(0 2px 8px rgba(124,58,237,.3)); }
-    .orbit__center-text { fill:#fff; font-family:var(--cc-font-serif); font-size:1.25rem; font-weight:700; pointer-events:none; }
+    /* SVG Hive */
+    .hive__svg { display:block; width:100%; max-width:500px; margin:2rem auto 0; overflow:visible; }
+    .hive__link { stroke:var(--cc-outline,#d1d5db); stroke-width:1; stroke-dasharray:4 3; opacity:0; animation:hive-link .4s ease-out forwards; }
+    .hive__cell { fill:none; stroke:var(--cc-outline,#d1d5db); stroke-width:1; opacity:0; transform-origin:center; animation:hive-cell .4s ease-out forwards; }
+    .hive__center { filter:drop-shadow(0 2px 8px rgba(124,58,237,.3)); }
+    .hive__center-text { fill:#fff; font-family:var(--cc-font-serif); font-size:1.25rem; font-weight:700; pointer-events:none; }
 
     /* Nodes */
-    .leaf { cursor:pointer; opacity:0; transform-origin:center; animation:orbit-in .4s ease-out forwards; outline:none; }
+    .leaf { cursor:pointer; opacity:0; transform-origin:center; animation:hive-in .4s ease-out forwards; outline:none; }
     .leaf:focus-visible { outline:3px solid var(--cc-accent,#7C3AED); outline-offset:3px; }
     .leaf--selected circle { stroke:#fff; stroke-width:3; filter:drop-shadow(0 2px 8px rgba(0,0,0,.25)); }
     .leaf__initials { fill:#fff; font-family:var(--cc-font-serif); font-size:1.375rem; font-weight:700; pointer-events:none; }
@@ -262,12 +286,14 @@ function badgeBg(proficiency: number): string {
     .skill__percent { font-size:.6875rem; opacity:.5; margin-top:.125rem; font-weight:600; }
 
     /* Animations */
-    @keyframes orbit-ring { from { opacity:0; } to { opacity:.5; } }
-    @keyframes orbit-in { from { opacity:0; transform:scale(.5); } to { opacity:1; transform:scale(1); } }
+    @keyframes hive-link { from { opacity:0; } to { opacity:.3; } }
+    @keyframes hive-cell { from { opacity:0; transform:scale(.8); } to { opacity:.5; transform:scale(1); } }
+    @keyframes hive-in { from { opacity:0; transform:scale(.5); } to { opacity:1; transform:scale(1); } }
     @keyframes panel-in { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
 
     @media (prefers-reduced-motion:reduce) {
-      .orbit__ring { animation:none; opacity:.5; }
+      .hive__link { animation:none; opacity:.3; }
+      .hive__cell { animation:none; opacity:.5; }
       .leaf { animation:none; opacity:1; }
       .detail-panel { animation:none; }
       .skill__fill { transition:none; }
@@ -290,14 +316,13 @@ export class TeamComponent {
   });
 
   readonly leafPositions: LeafPosition[] = [
-    // Inner orbit (r=100): CEO, CTO — diagonal placement
-    { cx: 271, cy: 129 },
-    { cx: 129, cy: 271 },
-    // Outer orbit (r=155): CFO, VP Eng, VP Product, VP Ops — cardinal directions
-    { cx: 355, cy: 200 },
-    { cx: 200, cy: 355 },
-    { cx: 45, cy: 200 },
-    { cx: 200, cy: 45 },
+    // Honeycomb: 6 positions at 60° intervals around center (250,220), spacing 120
+    { cx: 310, cy: 116 },  // CEO — top right
+    { cx: 190, cy: 116 },  // CTO — top left
+    { cx: 130, cy: 220 },  // CFO — middle left
+    { cx: 190, cy: 324 },  // VP Eng — bottom left
+    { cx: 310, cy: 324 },  // VP Product — bottom right
+    { cx: 370, cy: 220 },  // VP Ops — middle right
   ];
 
   readonly members: TeamMember[] = [
@@ -386,6 +411,15 @@ export class TeamComponent {
     },
   ];
 
+  hexPoints(cx: number, cy: number, r = 50): string {
+    return [0, 1, 2, 3, 4, 5]
+      .map(i => {
+        const angle = (i * 60) * Math.PI / 180;
+        return `${cx + r * Math.cos(angle)},${cy - r * Math.sin(angle)}`;
+      })
+      .join(' ');
+  }
+
   selectMember(index: number): void {
     this.selectedMember.update(current => current === index ? null : index);
   }
@@ -408,5 +442,9 @@ export class TeamComponent {
 
   getLevelColor(skills: Skill[]): string {
     return levelColor(memberLevel(skills).level);
+  }
+
+  getLevelGradientColors(skills: Skill[]): { from: string; to: string } {
+    return levelGradientColors(memberLevel(skills).level);
   }
 }
