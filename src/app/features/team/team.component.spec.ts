@@ -28,55 +28,6 @@ describe('TeamComponent', () => {
     expect(heading.textContent.trim()).toBe('Code Crafters');
   });
 
-  it('renders 6 member cards', () => {
-    const cards = fixture.nativeElement.querySelectorAll('.member-card');
-    expect(cards.length).toBe(6);
-  });
-
-  it('each card has number, name, role, bio, and tags', () => {
-    const cards = fixture.nativeElement.querySelectorAll('.member-card');
-    cards.forEach((card: HTMLElement) => {
-      expect(card.querySelector('.member-card__number')).toBeTruthy();
-      expect(card.querySelector('.member-card__name')).toBeTruthy();
-      expect(card.querySelector('.member-card__role')).toBeTruthy();
-      expect(card.querySelector('.member-card__bio')).toBeTruthy();
-      expect(card.querySelector('.member-card__tags')).toBeTruthy();
-    });
-  });
-
-  it('number text matches formatted index 01–06', () => {
-    const numbers = fixture.nativeElement.querySelectorAll('.member-card__number');
-    const texts = Array.from(numbers).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(texts).toEqual(['01', '02', '03', '04', '05', '06']);
-  });
-
-  it('displays correct member names', () => {
-    const names = fixture.nativeElement.querySelectorAll('.member-card__name');
-    const nameTexts = Array.from(names).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(nameTexts).toEqual(component.members.map(m => m.name));
-  });
-
-  it('displays correct member titles', () => {
-    const roles = fixture.nativeElement.querySelectorAll('.member-card__role');
-    const roleTexts = Array.from(roles).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(roleTexts).toEqual(component.members.map(m => m.title));
-  });
-
-  it('gradient bar has inline gradient style', () => {
-    const bars = fixture.nativeElement.querySelectorAll('.member-card__gradient-bar');
-    bars.forEach((bar: HTMLElement) => {
-      const style = bar.getAttribute('style') || '';
-      expect(style).toContain('linear-gradient');
-    });
-  });
-
-  it('avatar shows initials for members without image', () => {
-    const initials = fixture.nativeElement.querySelectorAll('.member-card__initials');
-    expect(initials.length).toBe(component.members.filter(m => !m.image).length);
-    const texts = Array.from(initials).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(texts).toEqual(component.members.filter(m => !m.image).map(m => m.initials));
-  });
-
   it('includes the chapter header', () => {
     expect(fixture.nativeElement.querySelector('cc-chapter-header')).toBeTruthy();
   });
@@ -87,65 +38,82 @@ describe('TeamComponent', () => {
     expect(fixture.nativeElement.querySelector('.page__content')).toBeTruthy();
   });
 
-  it('activeIndex signal defaults to null', () => {
-    expect(component.activeIndex()).toBeNull();
+  it('renders SVG orbit with correct viewBox', () => {
+    const svg = fixture.nativeElement.querySelector('.orbit__svg');
+    expect(svg).toBeTruthy();
+    expect(svg.getAttribute('viewBox')).toBe('0 0 400 400');
   });
 
-  it('activate sets activeIndex and deactivate clears it', () => {
-    component.activate(2);
-    expect(component.activeIndex()).toBe(2);
-    component.deactivate();
-    expect(component.activeIndex()).toBeNull();
+  it('renders 2 orbit rings', () => {
+    const rings = fixture.nativeElement.querySelectorAll('.orbit__ring');
+    expect(rings.length).toBe(2);
   });
 
-  it('cards display bio text', () => {
-    const bios = fixture.nativeElement.querySelectorAll('.member-card__bio');
-    const bioTexts = Array.from(bios).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(bioTexts).toEqual(component.members.map(m => m.bio));
+  it('renders the center element', () => {
+    const center = fixture.nativeElement.querySelector('.orbit__center');
+    expect(center).toBeTruthy();
   });
 
-  it('cards display tags', () => {
-    const cards = fixture.nativeElement.querySelectorAll('.member-card');
-    cards.forEach((card: HTMLElement, i: number) => {
-      const tags = card.querySelectorAll('.tag');
-      const tagTexts = Array.from(tags).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-      expect(tagTexts).toEqual(component.members[i].tags);
+  it('renders 6 leaf elements with aria-labels', () => {
+    const leaves = fixture.nativeElement.querySelectorAll('.leaf');
+    expect(leaves.length).toBe(6);
+    leaves.forEach((leaf: Element, i: number) => {
+      const label = leaf.getAttribute('aria-label');
+      expect(label).toContain(component.members[i].name);
+      expect(label).toContain(component.members[i].title);
     });
   });
 
-  it('each card has a Show Skills button', () => {
-    const buttons = fixture.nativeElement.querySelectorAll('.skills-toggle');
-    expect(buttons.length).toBe(6);
-    buttons.forEach((btn: HTMLButtonElement) => {
-      expect(btn.textContent).toContain('Show Skills');
+  it('leaves have circles with initials text or images', () => {
+    const leaves = fixture.nativeElement.querySelectorAll('.leaf');
+    leaves.forEach((leaf: Element, i: number) => {
+      if (component.members[i].image) {
+        expect(leaf.querySelector('image')).toBeTruthy();
+        expect(leaf.querySelector('.leaf__initials')).toBeNull();
+      } else {
+        expect(leaf.querySelector('circle')).toBeTruthy();
+        expect(leaf.querySelector('.leaf__initials')?.textContent?.trim()).toBe(component.members[i].initials);
+      }
     });
   });
 
-  it('skills section is hidden by default', () => {
-    expect(fixture.nativeElement.querySelector('.skill')).toBeNull();
+  it('selectedMember defaults to null — no detail panel', () => {
+    expect(component.selectedMember()).toBeNull();
+    expect(fixture.nativeElement.querySelector('.detail-panel')).toBeNull();
   });
 
-  it('toggleSkills expands skills for a member', () => {
-    component.toggleSkills(0);
+  it('selectMember(0) renders detail panel with correct member data', () => {
+    component.selectMember(0);
     fixture.detectChanges();
 
-    const skills = fixture.nativeElement.querySelectorAll('.skill');
+    const panel = fixture.nativeElement.querySelector('.detail-panel');
+    expect(panel).toBeTruthy();
+
+    const name = panel.querySelector('.detail-panel__name');
+    expect(name.textContent.trim()).toBe(component.members[0].name);
+
+    const role = panel.querySelector('.detail-panel__role');
+    expect(role.textContent.trim()).toBe(component.members[0].title);
+  });
+
+  it('panel shows bio, tags, and skills', () => {
+    component.selectMember(0);
+    fixture.detectChanges();
+
+    const panel = fixture.nativeElement.querySelector('.detail-panel');
+    const bio = panel.querySelector('.detail-panel__bio');
+    expect(bio.textContent.trim()).toBe(component.members[0].bio);
+
+    const tags = panel.querySelectorAll('.tag');
+    const tagTexts = Array.from(tags).map((el: unknown) => (el as HTMLElement).textContent?.trim());
+    expect(tagTexts).toEqual(component.members[0].tags);
+
+    const skills = panel.querySelectorAll('.skill');
     expect(skills.length).toBe(component.members[0].skills.length);
   });
 
-  it('expanded skills show name, badge, bar, and percentage', () => {
-    component.toggleSkills(0);
-    fixture.detectChanges();
-
-    const firstSkill = fixture.nativeElement.querySelector('.skill');
-    expect(firstSkill.querySelector('.skill__name')).toBeTruthy();
-    expect(firstSkill.querySelector('.skill__badge')).toBeTruthy();
-    expect(firstSkill.querySelector('.skill__bar')).toBeTruthy();
-    expect(firstSkill.querySelector('.skill__percent')).toBeTruthy();
-  });
-
-  it('skill badge shows correct proficiency level', () => {
-    component.toggleSkills(0);
+  it('skill badges show correct level text', () => {
+    component.selectMember(0);
     fixture.detectChanges();
 
     const badges = fixture.nativeElement.querySelectorAll('.skill__badge');
@@ -153,30 +121,33 @@ describe('TeamComponent', () => {
     expect((badges[0] as HTMLElement).textContent?.trim()).toBe('expert');
   });
 
-  it('skill bar width matches proficiency', () => {
-    component.toggleSkills(0);
+  it('skill bar widths match proficiency', () => {
+    component.selectMember(0);
     fixture.detectChanges();
 
     const fills = fixture.nativeElement.querySelectorAll('.skill__fill');
     expect((fills[0] as HTMLElement).style.width).toBe('95%');
   });
 
-  it('toggleSkills collapses when called again with same index', () => {
-    component.toggleSkills(0);
+  it('selectMember(0) twice collapses panel', () => {
+    component.selectMember(0);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.skill')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.detail-panel')).toBeTruthy();
 
-    component.toggleSkills(0);
+    component.selectMember(0);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.skill')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.detail-panel')).toBeNull();
   });
 
-  it('toggle button text changes when expanded', () => {
-    component.toggleSkills(0);
+  it('selectMember(0) then selectMember(2) swaps to member 2', () => {
+    component.selectMember(0);
     fixture.detectChanges();
 
-    const button = fixture.nativeElement.querySelector('.skills-toggle');
-    expect(button.textContent).toContain('Hide Skills');
+    component.selectMember(2);
+    fixture.detectChanges();
+
+    const name = fixture.nativeElement.querySelector('.detail-panel__name');
+    expect(name.textContent.trim()).toBe(component.members[2].name);
   });
 
   it('getSkillBadge returns correct levels', () => {
@@ -196,7 +167,7 @@ describe('TeamComponent', () => {
     });
   });
 
-  it('member with image renders img element', () => {
+  it('member with image renders image element in SVG', () => {
     const imgFixture = TestBed.createComponent(TeamComponent);
     const imgComponent = imgFixture.componentInstance;
     (imgComponent as unknown as { members: unknown[] }).members = [
@@ -205,11 +176,54 @@ describe('TeamComponent', () => {
     ];
     imgFixture.detectChanges();
 
-    const img = imgFixture.nativeElement.querySelector('.member-card__avatar-img');
-    expect(img).toBeTruthy();
-    expect(img.getAttribute('src')).toBe('https://example.com/photo.jpg');
+    const leaf = imgFixture.nativeElement.querySelector('.leaf');
+    const image = leaf.querySelector('image');
+    expect(image).toBeTruthy();
+    expect(image.getAttribute('href')).toBe('https://example.com/photo.jpg');
 
-    const firstCard = imgFixture.nativeElement.querySelector('.member-card');
-    expect(firstCard.querySelector('.member-card__initials')).toBeNull();
+    // Should not render circle for image member
+    expect(leaf.querySelector('circle')).toBeNull();
+  });
+
+  it('SVG has role="img" and aria-label', () => {
+    const svg = fixture.nativeElement.querySelector('.orbit__svg');
+    expect(svg.getAttribute('role')).toBe('img');
+    expect(svg.getAttribute('aria-label')).toBe('Team orbital diagram');
+  });
+
+  it('detail panel shows level badge in top corner', () => {
+    component.selectMember(0);
+    fixture.detectChanges();
+
+    const level = fixture.nativeElement.querySelector('.detail-panel__level');
+    expect(level).toBeTruthy();
+    const num = level.querySelector('.detail-panel__level-num');
+    const label = level.querySelector('.detail-panel__level-label');
+    // Victoria's avg: (95+92+88+90)/4 = 91.25 → level 4 expert
+    expect(num.textContent.trim()).toBe('4');
+    expect(label.textContent.trim()).toBe('expert');
+  });
+
+  it('getLevel returns correct levels based on average proficiency', () => {
+    expect(component.getLevel([{ name: 'a', proficiency: 97, category: 'technical' }])).toEqual({ level: 6, label: 'guru' });
+    expect(component.getLevel([{ name: 'a', proficiency: 94, category: 'technical' }])).toEqual({ level: 5, label: 'master' });
+    expect(component.getLevel([{ name: 'a', proficiency: 92, category: 'technical' }])).toEqual({ level: 4, label: 'expert' });
+    expect(component.getLevel([{ name: 'a', proficiency: 90, category: 'technical' }])).toEqual({ level: 3, label: 'advanced' });
+    expect(component.getLevel([{ name: 'a', proficiency: 70, category: 'technical' }])).toEqual({ level: 2, label: 'medium' });
+    expect(component.getLevel([{ name: 'a', proficiency: 60, category: 'technical' }])).toEqual({ level: 1, label: 'beginner' });
+    expect(component.getLevel([{ name: 'a', proficiency: 50, category: 'technical' }])).toEqual({ level: 0, label: 'novice' });
+  });
+
+  it('skill bars have progressbar role with aria attributes', () => {
+    component.selectMember(0);
+    fixture.detectChanges();
+
+    const bars = fixture.nativeElement.querySelectorAll('.skill__bar');
+    bars.forEach((bar: Element) => {
+      expect(bar.getAttribute('role')).toBe('progressbar');
+      expect(bar.getAttribute('aria-valuemin')).toBe('0');
+      expect(bar.getAttribute('aria-valuemax')).toBe('100');
+      expect(bar.getAttribute('aria-valuenow')).toBeTruthy();
+    });
   });
 });
