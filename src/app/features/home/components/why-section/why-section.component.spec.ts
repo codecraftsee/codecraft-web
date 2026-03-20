@@ -39,7 +39,7 @@ describe('WhySectionComponent', () => {
   it('links to correct routes', () => {
     const links = fixture.nativeElement.querySelectorAll('.toc__link');
     expect(links[0].getAttribute('href')).toBe('/');
-    expect(links[1].getAttribute('href')).toBe('/about');
+    expect(links[1].getAttribute('href')).toBe('/team');
     expect(links[2].getAttribute('href')).toBe('/services');
     expect(links[3].getAttribute('href')).toBe('/contact');
   });

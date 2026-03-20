@@ -30,7 +30,8 @@
       "WebFetch(domain:www.behance.net)",
       "WebSearch",
       "WebFetch(domain:blog.icons8.com)",
-      "WebFetch(domain:www.domestika.org)"
+      "WebFetch(domain:www.domestika.org)",
+      "Bash(gh pr:*)"
     ]
   }
 }
