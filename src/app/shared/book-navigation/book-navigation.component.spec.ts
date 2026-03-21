@@ -38,7 +38,7 @@ describe('BookNavigationComponent', () => {
   it('should display chapter titles', () => {
     const titles = fixture.nativeElement.querySelectorAll('.chapter__title');
     const texts = Array.from(titles).map((el: unknown) => (el as HTMLElement).textContent?.trim());
-    expect(texts).toEqual(['Home', 'About', 'Services', 'Contact']);
+    expect(texts).toEqual(['Home', 'Code Crafters', 'Services', 'Contact']);
   });
 
   it('should have a nav element with aria-label', () => {
