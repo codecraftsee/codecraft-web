@@ -13,6 +13,7 @@ interface TeamMember {
   name: string;
   title: string;
   initials: string;
+  thought: string;
   bio: string;
   tags: string[];
   skills: Skill[];
@@ -106,12 +107,21 @@ function badgeBg(proficiency: number): string {
           <h1 class="crafters__heading">Code Crafters</h1>
           <p class="crafters__subtitle">The people who build what ships.</p>
 
-          <svg class="hive__svg" viewBox="0 0 500 440" role="img" aria-label="Team honeycomb diagram">
+          <svg class="starmap__svg" viewBox="0 0 520 460" role="img" aria-label="Team constellation diagram">
             <defs>
               <radialGradient id="sun-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.9" />
-                <stop offset="100%" stop-color="#EC4899" stop-opacity="0.7" />
+                <stop offset="0%" stop-color="#FBBF24" stop-opacity="1" />
+                <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#F97316" stop-opacity="0.7" />
               </radialGradient>
+              <filter id="star-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+              <filter id="core-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
               @for (member of members; track member.name; let i = $index) {
                 <linearGradient [attr.id]="'leaf-grad-' + i" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" [attr.stop-color]="getLevelGradientColors(member.skills).from" />
@@ -123,24 +133,25 @@ function badgeBg(proficiency: number): string {
               }
             </defs>
 
-            <!-- connecting lines -->
-            @for (pos of leafPositions; track $index; let i = $index) {
-              <line class="hive__link"
-                x1="250" y1="220"
-                [attr.x2]="pos.cx" [attr.y2]="pos.cy"
-                [style.animation-delay]="(0.15 + i * 0.05) + 's'" />
+            <!-- background stars -->
+            @for (star of backgroundStars; track $index; let i = $index) {
+              <circle class="starfield__dot"
+                [attr.cx]="star.cx" [attr.cy]="star.cy" [attr.r]="star.r"
+                [style.opacity]="star.opacity"
+                [style.animation-delay]="(i * 0.04) + 's'" />
             }
 
-            <!-- hex cells behind each member -->
-            @for (pos of leafPositions; track $index; let i = $index) {
-              <polygon class="hive__cell"
-                [attr.points]="hexPoints(pos.cx, pos.cy)"
-                [style.animation-delay]="(0.2 + i * 0.08) + 's'" />
+            <!-- constellation lines -->
+            @for (edge of constellationEdges; track $index; let i = $index) {
+              <line class="starmap__line"
+                [attr.x1]="edge.x1" [attr.y1]="edge.y1"
+                [attr.x2]="edge.x2" [attr.y2]="edge.y2"
+                [style.animation-delay]="(0.4 + i * 0.06) + 's'" />
             }
 
-            <!-- center hex -->
-            <polygon class="hive__center" [attr.points]="hexPoints(250, 220)" fill="url(#sun-grad)" />
-            <text x="250" y="227" text-anchor="middle" class="hive__center-text">CC</text>
+            <!-- center star -->
+            <circle class="starmap__core" cx="260" cy="230" r="38" fill="url(#sun-grad)" filter="url(#core-glow)" />
+            <image x="230" y="219" width="60" height="22" href="images/codecraft.svg" class="starmap__core-logo" />
 
             <!-- member nodes -->
             @for (member of members; track member.name; let i = $index) {
@@ -153,7 +164,8 @@ function badgeBg(proficiency: number): string {
                 (click)="selectMember(i)"
                 (keydown.enter)="selectMember(i)"
                 (keydown.space)="selectMember(i); $event.preventDefault()"
-                [style.animation-delay]="(0.3 + i * 0.1) + 's'"
+                [style.animation-delay]="(0.5 + i * 0.1) + 's'"
+                filter="url(#star-glow)"
               >
                 @if (member.image) {
                   <image
@@ -181,6 +193,16 @@ function badgeBg(proficiency: number): string {
                   >{{ member.initials }}</text>
                 }
               </a>
+              <g class="thought-bubble" [style.animation-delay]="(0.8 + i * 0.1) + 's'">
+                <rect class="thought-bubble__bg"
+                  [attr.x]="leafPositions[i].cx - 60"
+                  [attr.y]="leafPositions[i].cy + bubbleOffsets[i] - 12"
+                  width="120" height="24" rx="6" />
+                <text class="thought-bubble__text"
+                  [attr.x]="leafPositions[i].cx"
+                  [attr.y]="leafPositions[i].cy + bubbleOffsets[i] + 4"
+                  text-anchor="middle">{{ member.thought }}</text>
+              </g>
             }
           </svg>
 
@@ -243,20 +265,27 @@ function badgeBg(proficiency: number): string {
     .crafters__heading { margin:0; font-family:var(--cc-font-serif); font-size:clamp(2rem,5vw,3rem); font-weight:400; color:var(--cc-on-surface); }
     .crafters__subtitle { margin:.5rem 0 0; font-family:var(--cc-font-sans); font-size:.9375rem; font-style:italic; color:var(--cc-on-surface); opacity:.5; }
 
-    /* SVG Hive */
-    .hive__svg { display:block; width:100%; max-width:500px; margin:2rem auto 0; overflow:visible; }
-    .hive__link { stroke:var(--cc-outline,#d1d5db); stroke-width:1; stroke-dasharray:4 3; opacity:0; animation:hive-link .4s ease-out forwards; }
-    .hive__cell { fill:none; stroke:var(--cc-outline,#d1d5db); stroke-width:1; opacity:0; transform-origin:center; animation:hive-cell .4s ease-out forwards; }
-    .hive__center { filter:drop-shadow(0 2px 8px rgba(124,58,237,.3)); }
-    .hive__center-text { fill:#fff; font-family:var(--cc-font-serif); font-size:1.25rem; font-weight:700; pointer-events:none; }
+    /* SVG Starmap */
+    .starmap__svg { display:block; width:100%; max-width:520px; margin:2rem auto 0; overflow:visible; }
+    .starfield__dot { fill:var(--cc-outline,#d1d5db); opacity:0; animation:star-twinkle .6s ease-out forwards; }
+    .starmap__line { stroke:var(--cc-outline,#d1d5db); stroke-width:1; opacity:0; animation:line-draw .5s ease-out forwards; }
+    .starmap__core { opacity:0; transform-origin:260px 230px; animation:core-in .5s ease-out .3s forwards; }
+    .starmap__core-logo { pointer-events:none; }
+    :host-context(.dark-theme) .starmap__line { stroke:rgba(180,154,255,.25); }
+    :host-context(.dark-theme) .starfield__dot { fill:rgba(255,255,255,.2); }
 
     /* Nodes */
-    .leaf { cursor:pointer; opacity:0; transform-origin:center; animation:hive-in .4s ease-out forwards; outline:none; }
+    .leaf { cursor:pointer; opacity:0; transform-origin:center; animation:star-in .4s ease-out forwards; outline:none; }
     .leaf:focus-visible { outline:3px solid var(--cc-accent,#7C3AED); outline-offset:3px; }
     .leaf--selected circle { stroke:#fff; stroke-width:3; filter:drop-shadow(0 2px 8px rgba(0,0,0,.25)); }
     .leaf__initials { fill:#fff; font-family:var(--cc-font-serif); font-size:1.375rem; font-weight:700; pointer-events:none; }
 
     :host-context(.dark-theme) .leaf--selected circle { stroke:rgba(255,255,255,.6); }
+
+    /* Thought Bubbles */
+    .thought-bubble { opacity:0; animation:bubble-in .4s ease-out forwards; }
+    .thought-bubble__bg { fill:var(--cc-page-bg,rgba(255,255,255,.9)); stroke:var(--cc-outline,#d1d5db); stroke-width:0.5; }
+    .thought-bubble__text { fill:var(--cc-on-surface,#333); font-family:var(--cc-font-sans); font-size:.5rem; font-style:italic; opacity:.7; pointer-events:none; }
 
     /* Detail Panel */
     .detail-panel { position:relative; margin-top:2rem; padding:2rem; border:.5px solid var(--cc-outline); border-radius:16px; background:var(--cc-page-bg,#fff); text-align:left; overflow:hidden; animation:panel-in .3s ease-out; }
@@ -286,16 +315,20 @@ function badgeBg(proficiency: number): string {
     .skill__percent { font-size:.6875rem; opacity:.5; margin-top:.125rem; font-weight:600; }
 
     /* Animations */
-    @keyframes hive-link { from { opacity:0; } to { opacity:.3; } }
-    @keyframes hive-cell { from { opacity:0; transform:scale(.8); } to { opacity:.5; transform:scale(1); } }
-    @keyframes hive-in { from { opacity:0; transform:scale(.5); } to { opacity:1; transform:scale(1); } }
+    @keyframes star-twinkle { from { opacity:0; } to { opacity:var(--star-opacity,.3); } }
+    @keyframes line-draw { from { opacity:0; } to { opacity:.25; } }
+    @keyframes core-in { from { opacity:0; transform:scale(.5); } to { opacity:1; transform:scale(1); } }
+    @keyframes star-in { from { opacity:0; transform:scale(.3); } to { opacity:1; transform:scale(1); } }
     @keyframes panel-in { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes bubble-in { from { opacity:0; } to { opacity:1; } }
 
     @media (prefers-reduced-motion:reduce) {
-      .hive__link { animation:none; opacity:.3; }
-      .hive__cell { animation:none; opacity:.5; }
+      .starfield__dot { animation:none; }
+      .starmap__line { animation:none; opacity:.25; }
+      .starmap__core { animation:none; opacity:1; }
       .leaf { animation:none; opacity:1; }
       .detail-panel { animation:none; }
+      .thought-bubble { animation:none; opacity:1; }
       .skill__fill { transition:none; }
     }
 
@@ -316,18 +349,57 @@ export class TeamComponent {
   });
 
   readonly leafPositions: LeafPosition[] = [
-    // Honeycomb: 6 positions at 60° intervals around center (250,220), spacing 120
-    { cx: 310, cy: 116 },  // CEO — top right
-    { cx: 190, cy: 116 },  // CTO — top left
-    { cx: 130, cy: 220 },  // CFO — middle left
-    { cx: 190, cy: 324 },  // VP Eng — bottom left
-    { cx: 310, cy: 324 },  // VP Product — bottom right
-    { cx: 370, cy: 220 },  // VP Ops — middle right
+    // Constellation: organic asymmetric star-map positions
+    { cx: 310, cy: 88 },   // CEO — upper right, "north star"
+    { cx: 155, cy: 130 },  // CTO — upper left
+    { cx: 80, cy: 268 },   // CFO — left mid-low
+    { cx: 215, cy: 370 },  // VP Eng — bottom center-left
+    { cx: 385, cy: 345 },  // VP Product — bottom right
+    { cx: 430, cy: 195 },  // VP Ops — right upper-mid
+  ];
+
+  // Bubble Y offset per member: positive = below avatar, negative = above
+  readonly bubbleOffsets: number[] = [
+    50,   // CEO (cy=88) — below
+    50,   // CTO (cy=130) — below
+    -55,  // CFO (cy=268) — above
+    -55,  // VP Eng (cy=370) — above
+    -55,  // VP Product (cy=345) — above
+    -55,  // VP Ops (cy=195) — above
+  ];
+
+  readonly constellationEdges: { x1: number; y1: number; x2: number; y2: number }[] = [
+    // Outer ring
+    { x1: 310, y1: 88, x2: 155, y2: 130 },    // CEO — CTO
+    { x1: 155, y1: 130, x2: 80, y2: 268 },     // CTO — CFO
+    { x1: 80, y1: 268, x2: 215, y2: 370 },     // CFO — VP Eng
+    { x1: 215, y1: 370, x2: 385, y2: 345 },    // VP Eng — VP Product
+    { x1: 385, y1: 345, x2: 430, y2: 195 },    // VP Product — VP Ops
+    { x1: 430, y1: 195, x2: 310, y2: 88 },     // VP Ops — CEO
+    // Spokes to center
+    { x1: 260, y1: 230, x2: 310, y2: 88 },     // CC — CEO
+    { x1: 260, y1: 230, x2: 155, y2: 130 },    // CC — CTO
+    { x1: 260, y1: 230, x2: 215, y2: 370 },    // CC — VP Eng
+  ];
+
+  readonly backgroundStars: { cx: number; cy: number; r: number; opacity: number }[] = [
+    { cx: 42, cy: 55, r: 0.8, opacity: 0.2 }, { cx: 478, cy: 32, r: 1.2, opacity: 0.3 },
+    { cx: 18, cy: 180, r: 0.6, opacity: 0.15 }, { cx: 495, cy: 140, r: 1, opacity: 0.25 },
+    { cx: 60, cy: 410, r: 0.8, opacity: 0.2 }, { cx: 450, cy: 420, r: 0.6, opacity: 0.18 },
+    { cx: 120, cy: 40, r: 1, opacity: 0.22 }, { cx: 380, cy: 55, r: 0.7, opacity: 0.2 },
+    { cx: 240, cy: 25, r: 0.9, opacity: 0.25 }, { cx: 30, cy: 320, r: 0.7, opacity: 0.18 },
+    { cx: 500, cy: 280, r: 1.1, opacity: 0.28 }, { cx: 170, cy: 440, r: 0.6, opacity: 0.15 },
+    { cx: 350, cy: 440, r: 0.8, opacity: 0.2 }, { cx: 90, cy: 140, r: 0.5, opacity: 0.12 },
+    { cx: 470, cy: 370, r: 0.9, opacity: 0.22 }, { cx: 260, cy: 450, r: 0.7, opacity: 0.16 },
+    { cx: 15, cy: 70, r: 1, opacity: 0.2 }, { cx: 510, cy: 90, r: 0.6, opacity: 0.18 },
+    { cx: 140, cy: 295, r: 0.5, opacity: 0.14 }, { cx: 420, cy: 110, r: 0.8, opacity: 0.22 },
+    { cx: 55, cy: 440, r: 0.7, opacity: 0.16 }, { cx: 330, cy: 15, r: 1.1, opacity: 0.25 },
+    { cx: 195, cy: 55, r: 0.6, opacity: 0.18 }, { cx: 480, cy: 240, r: 0.5, opacity: 0.14 },
   ];
 
   readonly members: TeamMember[] = [
     {
-      name: 'Victoria Hartwell', title: 'Chief Executive Officer', initials: 'V',
+      name: 'Miodrag Pavkovic', title: 'Chief Executive Officer', initials: 'M', thought: 'Vision drives innovation.',
       bio: 'Strategic business leader with expertise in digital transformation and market innovation',
       tags: ['Leadership', 'Strategy', 'Vision'],
       gradient: { number: 'linear-gradient(135deg, #7C3AED, #EC4899)', avatar: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)', border: 'linear-gradient(90deg, #7C3AED, #EC4899)' },
@@ -341,7 +413,7 @@ export class TeamComponent {
       ],
     },
     {
-      name: 'David Nakamura', title: 'Chief Technology Officer', initials: 'D',
+      name: 'Dejan Blanarik', title: 'Chief Technology Officer', initials: 'D', thought: 'Architecture is destiny.',
       bio: 'Technology visionary architecting scalable systems and driving innovation',
       tags: ['Technology', 'Architecture', 'Innovation'],
       gradient: { number: 'linear-gradient(135deg, #14B8A6, #2DD4BF)', avatar: 'linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%)', border: 'linear-gradient(90deg, #14B8A6, #2DD4BF)' },
@@ -355,11 +427,12 @@ export class TeamComponent {
       ],
     },
     {
-      name: 'Catherine Bennett', title: 'Chief Financial Officer', initials: 'C',
+      name: 'Marija Seder', title: 'Chief Financial Officer', initials: 'M', thought: 'Numbers tell the story.',
       bio: 'Financial strategist ensuring sustainable growth and fiscal responsibility',
       tags: ['Finance', 'Planning', 'Governance'],
       gradient: { number: 'linear-gradient(135deg, #F59E0B, #FBBF24)', avatar: 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)', border: 'linear-gradient(90deg, #F59E0B, #FBBF24)' },
       colors: { from: '#F59E0B', to: '#FBBF24' },
+      image: 'images/marija.jpg',
       skills: [
         { name: 'Financial Planning', proficiency: 96, category: 'domain' },
         { name: 'Risk Management', proficiency: 92, category: 'domain' },
@@ -368,7 +441,7 @@ export class TeamComponent {
       ],
     },
     {
-      name: 'Alexander Mueller', title: 'Vice President of Engineering', initials: 'A',
+      name: 'Alexander Mueller', title: 'Vice President of Engineering', initials: 'A', thought: 'Quality is non-negotiable.',
       bio: 'Engineering leader building high-performance teams and delivering enterprise solutions',
       tags: ['Engineering', 'Leadership', 'Quality'],
       gradient: { number: 'linear-gradient(135deg, #EC4899, #F472B6)', avatar: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', border: 'linear-gradient(90deg, #EC4899, #F472B6)' },
@@ -382,7 +455,7 @@ export class TeamComponent {
       ],
     },
     {
-      name: 'Jessica Park', title: 'Vice President of Product', initials: 'J',
+      name: 'Jessica Park', title: 'Vice President of Product', initials: 'J', thought: 'Users come first.',
       bio: 'Product strategist translating market needs into innovative solutions',
       tags: ['Product', 'Market', 'Innovation'],
       gradient: { number: 'linear-gradient(135deg, #06B6D4, #22D3EE)', avatar: 'linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%)', border: 'linear-gradient(90deg, #06B6D4, #22D3EE)' },
@@ -396,7 +469,7 @@ export class TeamComponent {
       ],
     },
     {
-      name: "Michael O'Brien", title: 'Vice President of Operations', initials: 'M',
+      name: "Michael O'Brien", title: 'Vice President of Operations', initials: 'M', thought: 'Process enables freedom.',
       bio: 'Operations expert streamlining processes and driving organizational excellence',
       tags: ['Operations', 'Service', 'Excellence'],
       gradient: { number: 'linear-gradient(135deg, #10B981, #34D399)', avatar: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)', border: 'linear-gradient(90deg, #10B981, #34D399)' },
@@ -410,15 +483,6 @@ export class TeamComponent {
       ],
     },
   ];
-
-  hexPoints(cx: number, cy: number, r = 50): string {
-    return [0, 1, 2, 3, 4, 5]
-      .map(i => {
-        const angle = (i * 60) * Math.PI / 180;
-        return `${cx + r * Math.cos(angle)},${cy - r * Math.sin(angle)}`;
-      })
-      .join(' ');
-  }
 
   selectMember(index: number): void {
     this.selectedMember.update(current => current === index ? null : index);

@@ -38,19 +38,19 @@ describe('TeamComponent', () => {
     expect(fixture.nativeElement.querySelector('.page__content')).toBeTruthy();
   });
 
-  it('renders SVG hive with correct viewBox', () => {
-    const svg = fixture.nativeElement.querySelector('.hive__svg');
+  it('renders SVG starmap with correct viewBox', () => {
+    const svg = fixture.nativeElement.querySelector('.starmap__svg');
     expect(svg).toBeTruthy();
-    expect(svg.getAttribute('viewBox')).toBe('0 0 500 440');
+    expect(svg.getAttribute('viewBox')).toBe('0 0 520 460');
   });
 
-  it('renders 6 hex cells', () => {
-    const cells = fixture.nativeElement.querySelectorAll('.hive__cell');
-    expect(cells.length).toBe(6);
+  it('renders 9 constellation lines', () => {
+    const lines = fixture.nativeElement.querySelectorAll('.starmap__line');
+    expect(lines.length).toBe(9);
   });
 
   it('renders the center element', () => {
-    const center = fixture.nativeElement.querySelector('.hive__center');
+    const center = fixture.nativeElement.querySelector('.starmap__core');
     expect(center).toBeTruthy();
   });
 
@@ -186,9 +186,9 @@ describe('TeamComponent', () => {
   });
 
   it('SVG has role="img" and aria-label', () => {
-    const svg = fixture.nativeElement.querySelector('.hive__svg');
+    const svg = fixture.nativeElement.querySelector('.starmap__svg');
     expect(svg.getAttribute('role')).toBe('img');
-    expect(svg.getAttribute('aria-label')).toBe('Team honeycomb diagram');
+    expect(svg.getAttribute('aria-label')).toBe('Team constellation diagram');
   });
 
   it('detail panel shows level badge in top corner', () => {
