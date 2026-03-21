@@ -6,4 +6,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/home/home.component').then(m => m.HomeComponent),
   },
+  {
+    path: 'team',
+    loadComponent: () =>
+      import('./features/team/team.component').then(m => m.TeamComponent),
+  },
 ];

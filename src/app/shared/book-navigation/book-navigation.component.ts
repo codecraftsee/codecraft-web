@@ -215,7 +215,7 @@ interface Chapter {
 export class BookNavigationComponent {
   readonly chapters: Chapter[] = [
     { numeral: 'I', title: 'Home', route: '/', exact: true },
-    { numeral: 'II', title: 'About', route: '/about', exact: false },
+    { numeral: 'II', title: 'Code Crafters', route: '/team', exact: false },
     { numeral: 'III', title: 'Services', route: '/services', exact: false },
     { numeral: 'IV', title: 'Contact', route: '/contact', exact: false },
   ];

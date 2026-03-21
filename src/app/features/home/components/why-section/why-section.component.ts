@@ -24,11 +24,11 @@ import { RouterLink } from '@angular/router';
           </li>
 
           <li class="toc__entry">
-            <a class="toc__link" routerLink="/about">
+            <a class="toc__link" routerLink="/team">
               <span class="toc__body">
                 <span class="toc__chapter-label">Chapter II</span>
-                <span class="toc__title">About</span>
-                <span class="toc__desc">The people behind the code</span>
+                <span class="toc__title">Code Crafters</span>
+                <span class="toc__desc">Meet the team</span>
               </span>
               <span class="toc__leader" aria-hidden="true"></span>
               <span class="toc__number" aria-hidden="true">02</span>
