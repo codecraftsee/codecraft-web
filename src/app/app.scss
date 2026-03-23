@@ -1,11 +1,10 @@
 :host {
-  display: flex;
+  display: block;
   min-height: 100dvh;
 }
 
 .content-area {
-  flex: 1;
   position: relative;
   z-index: 1;
-  overflow-y: auto;
+  min-height: 100dvh;
 }
