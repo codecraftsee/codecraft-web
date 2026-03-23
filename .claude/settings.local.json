@@ -32,7 +32,8 @@
       "WebFetch(domain:blog.icons8.com)",
       "WebFetch(domain:www.domestika.org)",
       "Bash(gh pr:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git stash:*)"
     ]
   }
 }
