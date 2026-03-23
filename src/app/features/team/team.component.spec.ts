@@ -18,17 +18,17 @@ describe('TeamComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders the page header with title and subtitle', () => {
-    const title = fixture.nativeElement.querySelector('.page-header h1');
+  it('renders the hero with title and subtitle', () => {
+    const title = fixture.nativeElement.querySelector('.hero__title');
     expect(title.textContent.trim()).toBe('Meet Our Team');
 
-    const subtitle = fixture.nativeElement.querySelector('.page-header p');
+    const subtitle = fixture.nativeElement.querySelector('.hero__subtitle');
     expect(subtitle.textContent).toContain('Talented leaders');
   });
 
-  it('renders 6 team member cards', () => {
+  it('renders 4 team member cards', () => {
     const cards = fixture.nativeElement.querySelectorAll('.team-member');
-    expect(cards.length).toBe(6);
+    expect(cards.length).toBe(4);
   });
 
   it('each card displays member name, role, and bio', () => {

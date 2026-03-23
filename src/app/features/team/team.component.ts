@@ -21,10 +21,10 @@ interface TeamMember {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
-      <div class="page-header">
-        <h1>Meet Our Team</h1>
-        <p>Talented leaders, engineers, and strategists working together to bring your vision to life.</p>
-      </div>
+      <section class="hero">
+        <h1 class="hero__title">Meet Our Team</h1>
+        <p class="hero__subtitle">Talented leaders, engineers, and strategists working together to bring your vision to life.</p>
+      </section>
 
       <div class="team-grid" role="list">
         @for (member of members; track member.name; let i = $index) {
@@ -74,25 +74,26 @@ interface TeamMember {
 
     .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
 
-    /* Page Header */
-    .page-header {
-      padding: 4rem 0 2rem;
-      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-    }
-    .page-header h1 {
-      font-size: 42px;
+    /* Hero */
+    .hero { padding: 6rem 0 2rem; text-align: center; }
+    .hero__title {
+      display: inline-block;
+      font-size: 48px;
       font-weight: 800;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
+      margin: 0 0 1rem;
+      padding: 0.05em 0;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #00d4ff, #0099ff, #ff00ff);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 0 0 0.5rem;
     }
-    .page-header p {
-      font-size: 16px;
+    .hero__subtitle {
+      font-size: 18px;
       color: #a5b4fc;
       max-width: 600px;
-      margin: 0;
+      margin: 0 auto;
+      line-height: 1.7;
     }
 
     /* Team Grid */
@@ -238,15 +239,12 @@ interface TeamMember {
       background: #ffffff;
       color: #1a1a2e;
     }
-    :host-context(.light-theme) .page-header {
-      border-bottom-color: rgba(0, 0, 0, 0.08);
-    }
-    :host-context(.light-theme) .page-header h1 {
-      background: linear-gradient(135deg, #0099cc, #0066cc);
+    :host-context(.light-theme) .hero__title {
+      background: linear-gradient(135deg, #0099cc, #0066cc, #cc00cc);
       -webkit-background-clip: text;
       background-clip: text;
     }
-    :host-context(.light-theme) .page-header p {
+    :host-context(.light-theme) .hero__subtitle {
       color: #64748b;
     }
     :host-context(.light-theme) .team-member {
@@ -308,7 +306,8 @@ interface TeamMember {
     /* Responsive */
     @media (max-width: 768px) {
       .team-grid { grid-template-columns: 1fr; }
-      .page-header h1 { font-size: 32px; }
+      .hero__title { font-size: 32px; }
+      .hero__subtitle { font-size: 16px; }
       .member-image { height: 250px; }
       .member-emoji { font-size: 60px; }
     }
@@ -318,15 +317,15 @@ export class TeamComponent {
   readonly members: TeamMember[] = [
     {
       name: 'Miodrag Pavkovic',
-      title: 'Chief Executive Officer',
-      bio: 'Strategic business leader with expertise in digital transformation and market innovation.',
-      tags: ['Leadership', 'Strategy', 'Vision'],
+      title: 'CEO & Full-Stack Software Engineer',
+      bio: 'Strategic business leader and frontend specialist driving digital transformation with hands-on engineering expertise.',
+      tags: ['Leadership', 'Frontend', 'Full-Stack'],
       emoji: '👨‍💼',
       image: 'images/mio.jpg',
       social: [
         { icon: '🔗', label: 'Website', url: '#' },
         { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miodrag-pavkovi%C4%87-4351129/' },
       ],
     },
     {
@@ -339,56 +338,33 @@ export class TeamComponent {
       social: [
         { icon: '🔗', label: 'Website', url: '#' },
         { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/dejan-blanarik/' },
       ],
     },
     {
       name: 'Marija Seder',
-      title: 'Chief Financial Officer',
-      bio: 'Financial strategist ensuring sustainable growth and fiscal responsibility.',
-      tags: ['Finance', 'Planning', 'Governance'],
+      title: 'UX/UI Designer',
+      bio: 'Creative problem solver focused on user-centered design and modern aesthetics.',
+      tags: ['UX Research', 'UI Design', 'Figma'],
       emoji: '👩‍💼',
-      image: 'images/marija.jpg',
+      image: 'images/marijas.png',
       social: [
         { icon: '🔗', label: 'Website', url: '#' },
         { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/marija-seder/' },
       ],
     },
     {
-      name: 'Alexander Mueller',
-      title: 'Vice President of Engineering',
-      bio: 'Engineering leader building high-performance teams and delivering enterprise solutions.',
-      tags: ['Engineering', 'Leadership', 'Quality'],
+      name: 'Miroslav Pavkovic',
+      title: 'Chief Executive Officer & Software Engineer',
+      bio: 'Backend software engineer and team lead driving technical excellence and business growth.',
+      tags: ['Backend', 'Team Lead', 'Leadership'],
       emoji: '👨‍💻',
+      image: 'images/miroslav.jpg',
       social: [
         { icon: '🔗', label: 'Website', url: '#' },
         { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
-      ],
-    },
-    {
-      name: 'Jessica Park',
-      title: 'Vice President of Product',
-      bio: 'Product strategist translating market needs into innovative solutions.',
-      tags: ['Product', 'Market', 'Innovation'],
-      emoji: '👩‍💻',
-      social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
-      ],
-    },
-    {
-      name: "Michael O'Brien",
-      title: 'Vice President of Operations',
-      bio: 'Operations expert streamlining processes and driving organizational excellence.',
-      tags: ['Operations', 'Service', 'Excellence'],
-      emoji: '👨‍💼',
-      social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
-        { icon: '💼', label: 'LinkedIn', url: '#' },
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miroslav-pavkovic-a0248283/' },
       ],
     },
   ];
