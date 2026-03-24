@@ -297,21 +297,21 @@ export class ServicesComponent {
   readonly services: ServiceOffering[] = [
     {
       number: '01',
-      title: 'Marketplaces',
-      description: 'Developing scalable, feature-rich online marketplaces to connect users and drive transactions seamlessly.',
-      tags: ['E-commerce', 'Multi-vendor', 'Payments', 'Scalability'],
-    },
-    {
-      number: '02',
       title: 'Web Applications',
       description: 'Creating dynamic, high-performing web applications tailored to solve complex problems and engage users effectively.',
       tags: ['SPA', 'Real-time', 'Enterprise', 'Cloud-native'],
     },
     {
-      number: '03',
+      number: '02',
       title: 'Websites',
       description: 'Building responsive, visually engaging websites that communicate your brand and convert visitors into customers.',
       tags: ['Responsive', 'SEO', 'CMS', 'Performance'],
+    },
+    {
+      number: '03',
+      title: 'AngularJS Migration',
+      description: 'Modernising legacy AngularJS applications by migrating them to Angular — preserving business logic while unlocking performance, maintainability, and long-term support.',
+      tags: ['AngularJS → Angular', 'Legacy Modernisation', 'TypeScript', 'Incremental Migration'],
     },
   ];
 }
