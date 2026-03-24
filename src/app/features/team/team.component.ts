@@ -14,6 +14,7 @@ interface TeamMember {
   tags: string[];
   emoji: string;
   image?: string;
+  cvUrl?: string;
   social: SocialLink[];
 }
 
@@ -51,6 +52,11 @@ interface TeamMember {
                 @for (link of member.social; track link.label) {
                   <a class="social-link" [href]="link.url" [attr.aria-label]="link.label" target="_blank" rel="noopener noreferrer">
                     {{ link.icon }}
+                  </a>
+                }
+                @if (member.cvUrl) {
+                  <a class="cv-link" [href]="member.cvUrl" download aria-label="Download CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                   </a>
                 }
               </div>
@@ -294,6 +300,35 @@ interface TeamMember {
     :host-context(.light-theme) .member-social {
       border-top-color: rgba(0, 0, 0, 0.08);
     }
+    .cv-link {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 8px;
+      color: #00d4ff;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .cv-link:hover {
+      background: rgba(0, 212, 255, 0.2);
+      border-color: rgba(0, 212, 255, 0.4);
+      transform: translateY(-4px);
+    }
+
+    :host-context(.light-theme) .cv-link {
+      background: rgba(0, 153, 255, 0.08);
+      border-color: rgba(0, 153, 255, 0.15);
+      color: #0077cc;
+    }
+    :host-context(.light-theme) .cv-link:hover {
+      background: rgba(0, 153, 255, 0.15);
+      border-color: rgba(0, 153, 255, 0.3);
+    }
+
     :host-context(.light-theme) .social-link {
       background: rgba(0, 153, 255, 0.08);
       border-color: rgba(0, 153, 255, 0.15);
@@ -306,6 +341,76 @@ interface TeamMember {
     :host-context(.light-theme) .footer {
       border-top-color: rgba(0, 0, 0, 0.08);
       color: #94a3b8;
+    }
+
+    :host-context(.sable-theme) {
+      background: #1C1917;
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .hero__title {
+      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    :host-context(.sable-theme) .hero__subtitle {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .team-member {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      border-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .team-member:hover {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    }
+    :host-context(.sable-theme) .member-image {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.12));
+    }
+    :host-context(.sable-theme) .member-image::after {
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.06), transparent);
+    }
+    :host-context(.sable-theme) .member-name {
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .member-quote {
+      color: rgba(212, 184, 150, 0.7);
+    }
+    :host-context(.sable-theme) .member-role {
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .member-bio {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .skill-tag {
+      background: rgba(217, 119, 6, 0.1);
+      color: #F59E0B;
+      border-color: rgba(217, 119, 6, 0.2);
+    }
+    :host-context(.sable-theme) .member-social {
+      border-top-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .cv-link {
+      background: rgba(217, 119, 6, 0.1);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .cv-link:hover {
+      background: rgba(217, 119, 6, 0.2);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    :host-context(.sable-theme) .social-link {
+      background: rgba(217, 119, 6, 0.1);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .social-link:hover {
+      background: rgba(217, 119, 6, 0.2);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    :host-context(.sable-theme) .footer {
+      border-top-color: rgba(217, 119, 6, 0.12);
+      color: #A07850;
     }
 
     /* Animations */
@@ -346,6 +451,7 @@ export class TeamComponent {
       name: 'Dejan Blanarik',
       title: 'Chief Technology Officer & Software Engineer',
       quote: 'Clean code is the best documentation.',
+      cvUrl: 'cv/Dejan-Blanarik-CV.pdf',
       bio: 'Technology visionary architecting scalable systems and driving innovation.',
       tags: ['Technology', 'Architecture', 'Innovation', 'Frontend'],
       emoji: '👨‍💻',
@@ -368,7 +474,7 @@ export class TeamComponent {
     },
     {
       name: 'Miroslav Pavkovic',
-      title: 'Chief Executive Officer & Software Engineer',
+      title: 'CEO & Software Engineer',
       quote: 'Reliability is a feature.',
       bio: 'Backend software engineer and team lead driving technical excellence and business growth.',
       tags: ['Backend', 'Team Lead', 'Leadership'],

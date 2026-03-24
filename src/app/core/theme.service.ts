@@ -1,6 +1,6 @@
 import { effect, Injectable, signal } from '@angular/core';
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'sable';
 
 const STORAGE_KEY = 'cc-theme';
 
@@ -13,17 +13,22 @@ export class ThemeService {
       const theme = this.activeTheme();
       document.documentElement.classList.toggle('light-theme', theme === 'light');
       document.documentElement.classList.toggle('dark-theme', theme === 'dark');
+      document.documentElement.classList.toggle('sable-theme', theme === 'sable');
       localStorage.setItem(STORAGE_KEY, theme);
     });
   }
 
   toggle(): void {
-    this.activeTheme.update(t => (t === 'light' ? 'dark' : 'light'));
+    this.activeTheme.update(t => {
+      if (t === 'light') return 'dark';
+      if (t === 'dark') return 'sable';
+      return 'light';
+    });
   }
 
   private getInitialTheme(): Theme {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') return stored;
+    if (stored === 'light' || stored === 'dark' || stored === 'sable') return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 }
