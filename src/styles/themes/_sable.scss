@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+:root.sable-theme {
+  @include mat.theme((
+    color: (
+      primary: mat.$orange-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: dark,
+    ),
+  ));
+
+  color-scheme: dark;
+
+  // Brand colour tokens
+  --cc-primary:         #D97706;
+  --cc-on-primary:      #1C1917;
+  --cc-surface:         #1C1917;
+  --cc-on-surface:      #F5F0E8;
+  --cc-surface-variant: #292524;
+  --cc-surface-dim:     #0F0E0B;
+  --cc-outline:         #3C3633;
+  --cc-error:           var(--mat-sys-error);
+  --cc-accent:          #F59E0B;
+  --cc-on-accent:       #1C1917;
+
+  // Glass tokens
+  --cc-glass-bg:      rgba(28, 25, 23, 0.65);
+  --cc-glass-border:  rgba(217, 119, 6, 0.18);
+  --cc-glass-blur:    20px;
+  --cc-glass-shadow:  0 8px 32px rgba(0, 0, 0, 0.45);
+
+  // Backdrop tokens
+  --cc-backdrop-start:  #3B1F00;
+  --cc-backdrop-mid:    #1C1410;
+  --cc-backdrop-end:    #140F09;
+  --cc-backdrop-accent: #D97706;
+
+  // Typography tokens
+  --cc-font-sans:  'Inter', system-ui, sans-serif;
+  --cc-font-serif: 'Instrument Serif', Georgia, serif;
+}

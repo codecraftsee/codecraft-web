@@ -255,6 +255,50 @@ interface ServiceOffering {
       background: rgba(0, 0, 0, 0.03);
     }
 
+    :host-context(.sable-theme) {
+      background: #1C1917;
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .timeline::before {
+      background: linear-gradient(180deg, #F59E0B, #D97706);
+      opacity: 0.2;
+    }
+    :host-context(.sable-theme) .timeline__dot {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+    }
+    :host-context(.sable-theme) .hero__title {
+      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    :host-context(.sable-theme) .hero__subtitle {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .card {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      border-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .card:hover {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    :host-context(.sable-theme) .card::before {
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.06), transparent);
+    }
+    :host-context(.sable-theme) .card__title {
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .card__desc {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .card__tag {
+      border-color: rgba(217, 119, 6, 0.15);
+      color: #D4B896;
+      background: rgba(217, 119, 6, 0.06);
+    }
+
     /* Animations */
     @keyframes card-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 

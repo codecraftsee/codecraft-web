@@ -556,6 +556,75 @@ import { ContactService } from './contact.service';
     :host-context(.light-theme) .fallback__link { color: #64748b; }
     :host-context(.light-theme) .fallback__link:hover { color: #0077cc; }
 
+    :host-context(.sable-theme) {
+      background: #1C1917;
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .hero__title {
+      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    :host-context(.sable-theme) .hero__subtitle { color: #D4B896; }
+    :host-context(.sable-theme) .badge {
+      background: rgba(217, 119, 6, 0.08);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .progress__dot {
+      border-color: rgba(217, 119, 6, 0.2);
+      background: rgba(217, 119, 6, 0.04);
+      color: #A07850;
+    }
+    :host-context(.sable-theme) .progress__step--active .progress__dot {
+      border-color: #F59E0B;
+      background: rgba(245, 158, 11, 0.1);
+      color: #F59E0B;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+    }
+    :host-context(.sable-theme) .progress__step--done .progress__dot {
+      border-color: #D97706;
+      background: #D97706;
+      color: #1C1917;
+    }
+    :host-context(.sable-theme) .progress__line { background: rgba(217, 119, 6, 0.15); }
+    :host-context(.sable-theme) .progress__line--done { background: rgba(245, 158, 11, 0.45); }
+    :host-context(.sable-theme) .progress__label { color: #A07850; }
+    :host-context(.sable-theme) .form-card {
+      background: rgba(217, 119, 6, 0.04);
+      border-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .form-card__title { color: #F5F0E8; }
+    :host-context(.sable-theme) .field__label { color: #D4B896; }
+    :host-context(.sable-theme) .field__required { color: #F59E0B; }
+    :host-context(.sable-theme) .field__input {
+      background: rgba(28, 25, 23, 0.6);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .field__input:focus {
+      border-color: rgba(245, 158, 11, 0.5);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    }
+    :host-context(.sable-theme) .field__input option { background: #1C1917; color: #F5F0E8; }
+    :host-context(.sable-theme) .btn--ghost {
+      color: #D4B896;
+      border-color: rgba(217, 119, 6, 0.2);
+    }
+    :host-context(.sable-theme) .btn--ghost:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .success__title {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    :host-context(.sable-theme) .success__text { color: #D4B896; }
+    :host-context(.sable-theme) .fallback { color: #A07850; }
+    :host-context(.sable-theme) .fallback__link { color: #D4B896; }
+    :host-context(.sable-theme) .fallback__link:hover { color: #F59E0B; }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .btn, .field__input, .progress__dot, .progress__line { transition: none; }

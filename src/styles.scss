@@ -2,6 +2,7 @@
 @use 'styles/themes/tokens';
 @use 'styles/themes/light';
 @use 'styles/themes/dark';
+@use 'styles/themes/sable';
 
 // Typography and density are theme-neutral — applied once globally.
 html {

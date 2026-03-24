@@ -6,10 +6,10 @@ import { ThemeService } from '../../core/theme.service';
 describe('ThemeToggleComponent', () => {
   let fixture: ComponentFixture<ThemeToggleComponent>;
   let toggleSpy: ReturnType<typeof vi.fn>;
-  let activeThemeSignal: ReturnType<typeof signal<'light' | 'dark'>>;
+  let activeThemeSignal: ReturnType<typeof signal<'light' | 'dark' | 'sable'>>;
 
-  const setupComponent = (theme: 'light' | 'dark') => {
-    activeThemeSignal = signal<'light' | 'dark'>(theme);
+  const setupComponent = (theme: 'light' | 'dark' | 'sable') => {
+    activeThemeSignal = signal<'light' | 'dark' | 'sable'>(theme);
     toggleSpy = vi.fn();
 
     TestBed.configureTestingModule({
@@ -29,8 +29,8 @@ describe('ThemeToggleComponent', () => {
   describe('when theme is light', () => {
     beforeEach(() => setupComponent('light'));
 
-    it('renders the moon icon', () => {
-      const svg = fixture.nativeElement.querySelector('[data-testid="moon-icon"]');
+    it('renders the sun icon', () => {
+      const svg = fixture.nativeElement.querySelector('[data-testid="sun-icon"]');
       expect(svg).toBeTruthy();
     });
 
@@ -43,8 +43,22 @@ describe('ThemeToggleComponent', () => {
   describe('when theme is dark', () => {
     beforeEach(() => setupComponent('dark'));
 
-    it('renders the sun icon', () => {
-      const svg = fixture.nativeElement.querySelector('[data-testid="sun-icon"]');
+    it('renders the moon icon', () => {
+      const svg = fixture.nativeElement.querySelector('[data-testid="moon-icon"]');
+      expect(svg).toBeTruthy();
+    });
+
+    it('sets aria-label to switch to Sable mode', () => {
+      const button = fixture.nativeElement.querySelector('button');
+      expect(button.getAttribute('aria-label')).toBe('Switch to Sable mode');
+    });
+  });
+
+  describe('when theme is sable', () => {
+    beforeEach(() => setupComponent('sable'));
+
+    it('renders the flame icon', () => {
+      const svg = fixture.nativeElement.querySelector('[data-testid="flame-icon"]');
       expect(svg).toBeTruthy();
     });
 
