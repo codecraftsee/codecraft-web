@@ -9,6 +9,7 @@ interface SocialLink {
 interface TeamMember {
   name: string;
   title: string;
+  quote: string;
   bio: string;
   tags: string[];
   emoji: string;
@@ -38,6 +39,7 @@ interface TeamMember {
             </div>
             <div class="member-info">
               <h2 class="member-name">{{ member.name }}</h2>
+              <p class="member-quote">"{{ member.quote }}"</p>
               <p class="member-role">{{ member.title }}</p>
               <p class="member-bio">{{ member.bio }}</p>
               <div class="member-skills" aria-label="Skills">
@@ -112,6 +114,8 @@ interface TeamMember {
       overflow: hidden;
       transition: all 0.4s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
       opacity: 0;
       transform: translateY(20px);
       animation: card-in 0.5s ease-out forwards;
@@ -159,13 +163,21 @@ interface TeamMember {
     }
 
     /* Info Section */
-    .member-info { padding: 2rem; }
+    .member-info { padding: 2rem; display: flex; flex-direction: column; flex: 1; }
+    .member-social { margin-top: auto; }
 
     .member-name {
       font-size: 20px;
       font-weight: 700;
       margin: 0 0 0.5rem;
       color: #fff;
+    }
+    .member-quote {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(165, 180, 252, 0.6);
+      margin: 0 0 0.5rem;
+      line-height: 1.4;
     }
     .member-role {
       font-size: 13px;
@@ -265,6 +277,9 @@ interface TeamMember {
     :host-context(.light-theme) .member-name {
       color: #1a1a2e;
     }
+    :host-context(.light-theme) .member-quote {
+      color: rgba(100, 116, 139, 0.7);
+    }
     :host-context(.light-theme) .member-role {
       color: #0077cc;
     }
@@ -318,52 +333,48 @@ export class TeamComponent {
     {
       name: 'Miodrag Pavkovic',
       title: 'CEO & Full-Stack Software Engineer',
+      quote: 'Ship fast. Think long-term.',
       bio: 'Strategic business leader and frontend specialist driving digital transformation with hands-on engineering expertise.',
       tags: ['Leadership', 'Frontend', 'Full-Stack'],
       emoji: '👨‍💼',
       image: 'images/mio.jpg',
       social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miodrag-pavkovi%C4%87-4351129/' },
       ],
     },
     {
       name: 'Dejan Blanarik',
-      title: 'Chief Technology Officer',
+      title: 'Chief Technology Officer & Software Engineer',
+      quote: 'Clean code is the best documentation.',
       bio: 'Technology visionary architecting scalable systems and driving innovation.',
-      tags: ['Technology', 'Architecture', 'Innovation'],
+      tags: ['Technology', 'Architecture', 'Innovation', 'Frontend'],
       emoji: '👨‍💻',
       image: 'images/dejan.jpg',
       social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/dejan-blanarik/' },
       ],
     },
     {
       name: 'Marija Seder',
       title: 'UX/UI Designer',
+      quote: 'Design is how it works, not just how it looks.',
       bio: 'Creative problem solver focused on user-centered design and modern aesthetics.',
       tags: ['UX Research', 'UI Design', 'Figma'],
       emoji: '👩‍💼',
       image: 'images/marijas.png',
       social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/marija-seder/' },
       ],
     },
     {
       name: 'Miroslav Pavkovic',
       title: 'Chief Executive Officer & Software Engineer',
+      quote: 'Reliability is a feature.',
       bio: 'Backend software engineer and team lead driving technical excellence and business growth.',
       tags: ['Backend', 'Team Lead', 'Leadership'],
       emoji: '👨‍💻',
       image: 'images/miroslav.jpg',
       social: [
-        { icon: '🔗', label: 'Website', url: '#' },
-        { icon: '𝕏', label: 'X / Twitter', url: '#' },
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miroslav-pavkovic-a0248283/' },
       ],
     },
