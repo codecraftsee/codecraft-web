@@ -343,6 +343,76 @@ interface TeamMember {
       color: #94a3b8;
     }
 
+    :host-context(.sable-theme) {
+      background: #1C1917;
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .hero__title {
+      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    :host-context(.sable-theme) .hero__subtitle {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .team-member {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      border-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .team-member:hover {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    }
+    :host-context(.sable-theme) .member-image {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.12));
+    }
+    :host-context(.sable-theme) .member-image::after {
+      background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.06), transparent);
+    }
+    :host-context(.sable-theme) .member-name {
+      color: #F5F0E8;
+    }
+    :host-context(.sable-theme) .member-quote {
+      color: rgba(212, 184, 150, 0.7);
+    }
+    :host-context(.sable-theme) .member-role {
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .member-bio {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .skill-tag {
+      background: rgba(217, 119, 6, 0.1);
+      color: #F59E0B;
+      border-color: rgba(217, 119, 6, 0.2);
+    }
+    :host-context(.sable-theme) .member-social {
+      border-top-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .cv-link {
+      background: rgba(217, 119, 6, 0.1);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .cv-link:hover {
+      background: rgba(217, 119, 6, 0.2);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    :host-context(.sable-theme) .social-link {
+      background: rgba(217, 119, 6, 0.1);
+      border-color: rgba(217, 119, 6, 0.2);
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .social-link:hover {
+      background: rgba(217, 119, 6, 0.2);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    :host-context(.sable-theme) .footer {
+      border-top-color: rgba(217, 119, 6, 0.12);
+      color: #A07850;
+    }
+
     /* Animations */
     @keyframes card-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 

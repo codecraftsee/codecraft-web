@@ -13,7 +13,7 @@
   <script>
     (function () {
       var stored = localStorage.getItem('cc-theme');
-      var theme = stored === 'dark' || stored === 'light'
+      var theme = stored === 'dark' || stored === 'light' || stored === 'sable'
         ? stored
         : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.className = theme + '-theme';
