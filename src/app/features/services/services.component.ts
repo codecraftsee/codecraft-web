@@ -347,15 +347,27 @@ export class ServicesComponent {
     },
     {
       number: '02',
-      title: 'Websites',
-      description: 'Building responsive, visually engaging websites that communicate your brand and convert visitors into customers.',
-      tags: ['Responsive', 'SEO', 'CMS', 'Performance'],
-    },
-    {
-      number: '03',
       title: 'AngularJS Migration',
       description: 'Modernising legacy AngularJS applications by migrating them to Angular — preserving business logic while unlocking performance, maintainability, and long-term support.',
       tags: ['AngularJS → Angular', 'Legacy Modernisation', 'TypeScript', 'Incremental Migration'],
+    },
+    {
+      number: '03',
+      title: 'Performance Engineering',
+      description: 'We discover, audit, and fix performance bottlenecks across your stack — from slow load times and laggy UIs to inefficient APIs and database queries. We find what is hurting you before we fix it.',
+      tags: ['Profiling', 'Core Web Vitals', 'Bundle Optimisation', 'DB Tuning', 'Caching'],
+    },
+    {
+      number: '04',
+      title: 'On-Demand Engineering',
+      description: 'Need someone to jump in fast? We embed into your team or work solo to squash critical bugs, unblock sprints, and help you hit your deadline — without disrupting your workflow.',
+      tags: ['Urgent Support', 'Bug Fixing', 'Sprint Help', 'Staff Augmentation'],
+    },
+    {
+      number: '05',
+      title: 'Websites',
+      description: 'Building responsive, visually engaging websites that communicate your brand and convert visitors into customers.',
+      tags: ['Responsive', 'SEO', 'CMS', 'Performance'],
     },
   ];
 }
