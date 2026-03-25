@@ -10,7 +10,7 @@ const RECIPIENT_EMAIL = 'hello@codecraftsolutions.rs';
 export class ContactService {
   private readonly http = inject(HttpClient);
 
-  submit(data: Record<string, unknown>) {
+  submit(data: Record<string, unknown>): ReturnType<typeof this.http.post> {
     return this.http.post('https://api.web3forms.com/submit', {
       access_key: WEB3FORMS_ACCESS_KEY,
       to: RECIPIENT_EMAIL,
