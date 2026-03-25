@@ -365,6 +365,12 @@ export class ServicesComponent {
     },
     {
       number: '05',
+      title: 'Mobile Development',
+      description: 'Building high-quality native mobile applications for iOS and Android — crafted for performance, reliability, and a seamless user experience on every device.',
+      tags: ['iOS Native', 'Android Native', 'Swift', 'Kotlin'],
+    },
+    {
+      number: '06',
       title: 'Websites',
       description: 'Building responsive, visually engaging websites that communicate your brand and convert visitors into customers.',
       tags: ['Responsive', 'SEO', 'CMS', 'Performance'],
