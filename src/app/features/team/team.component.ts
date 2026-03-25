@@ -473,6 +473,17 @@ export class TeamComponent {
       ],
     },
     {
+      name: 'Predrag Karic',
+      title: 'Mobile Software Engineer',
+      quote: 'Great apps live in your pocket, not just your browser.',
+      bio: 'Mobile engineer specializing in native iOS and Android development, crafting seamless cross-platform experiences.',
+      tags: ['iOS', 'Android', 'Swift', 'Kotlin', 'Mobile'],
+      emoji: '📱',
+      social: [
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/predrag-karic-door8c/' },
+      ],
+    },
+    {
       name: 'Miroslav Pavkovic',
       title: 'CEO & Software Engineer',
       quote: 'Reliability is a feature.',
