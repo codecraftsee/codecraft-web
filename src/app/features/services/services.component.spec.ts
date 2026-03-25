@@ -45,7 +45,7 @@ describe('ServicesComponent', () => {
   it('displays correct service titles in order', () => {
     const titles = Array.from(el.querySelectorAll('.card__title'))
       .map(t => t.textContent?.trim());
-    expect(titles).toEqual(['Marketplaces', 'Web Applications', 'Websites']);
+    expect(titles).toEqual(['Web Applications', 'Websites', 'AngularJS Migration']);
   });
 
   it('displays correct service numbers', () => {

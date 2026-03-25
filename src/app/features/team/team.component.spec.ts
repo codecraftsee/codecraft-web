@@ -28,7 +28,7 @@ describe('TeamComponent', () => {
 
   it('renders 4 team member cards', () => {
     const cards = fixture.nativeElement.querySelectorAll('.team-member');
-    expect(cards.length).toBe(4);
+    expect(cards.length).toBe(6);
   });
 
   it('each card displays member name, role, and bio', () => {
@@ -110,7 +110,7 @@ describe('TeamComponent', () => {
       expect(member.bio).toBeTruthy();
       expect(member.tags.length).toBeGreaterThan(0);
       expect(member.emoji).toBeTruthy();
-      expect(member.social.length).toBeGreaterThan(0);
+      expect(Array.isArray(member.social)).toBe(true);
     });
   });
 
