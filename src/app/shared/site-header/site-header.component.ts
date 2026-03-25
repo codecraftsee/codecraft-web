@@ -110,6 +110,20 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       color: #ffffff;
     }
 
+    :host-context(.sable-theme) .header {
+      border-bottom-color: rgba(217, 119, 6, 0.12);
+    }
+    :host-context(.sable-theme) .nav__link {
+      color: #D4B896;
+    }
+    :host-context(.sable-theme) .nav__link:hover {
+      color: #F59E0B;
+    }
+    :host-context(.sable-theme) .nav__btn {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #1C1917;
+    }
+
     /* Mobile — icons only */
     @media (max-width: 640px) {
       .header { padding: 1.25rem 1.25rem; }
@@ -149,6 +163,15 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       :host-context(.light-theme) .nav__link:hover {
         background: rgba(0, 153, 255, 0.08);
         border-color: rgba(0, 153, 255, 0.2);
+      }
+
+      :host-context(.sable-theme) .nav__link {
+        background: rgba(217, 119, 6, 0.06);
+        border-color: rgba(217, 119, 6, 0.15);
+      }
+      :host-context(.sable-theme) .nav__link:hover {
+        background: rgba(245, 158, 11, 0.12);
+        border-color: rgba(245, 158, 11, 0.3);
       }
     }
   `,
