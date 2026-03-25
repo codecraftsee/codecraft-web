@@ -113,6 +113,9 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
     :host-context(.sable-theme) .header {
       border-bottom-color: rgba(217, 119, 6, 0.12);
     }
+    :host-context(.sable-theme) .logo__img {
+      filter: invert(1) sepia(0.8) saturate(3) hue-rotate(5deg);
+    }
     :host-context(.sable-theme) .nav__link {
       color: #D4B896;
     }
