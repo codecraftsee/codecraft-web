@@ -28,7 +28,7 @@ describe('ServicesComponent', () => {
 
   it('renders 4 service cards', () => {
     const cards = el.querySelectorAll('.card');
-    expect(cards.length).toBe(5);
+    expect(cards.length).toBe(6);
   });
 
   it('each card displays number, title, description, and tags', () => {
@@ -45,13 +45,13 @@ describe('ServicesComponent', () => {
   it('displays correct service titles in order', () => {
     const titles = Array.from(el.querySelectorAll('.card__title'))
       .map(t => t.textContent?.trim());
-    expect(titles).toEqual(['Web Applications', 'AngularJS Migration', 'Performance Engineering', 'On-Demand Engineering', 'Websites']);
+    expect(titles).toEqual(['Web Applications', 'AngularJS Migration', 'Performance Engineering', 'On-Demand Engineering', 'Mobile Development', 'Websites']);
   });
 
   it('displays correct service numbers', () => {
     const numbers = Array.from(el.querySelectorAll('.card__number'))
       .map(n => n.textContent?.trim());
-    expect(numbers).toEqual(['01', '02', '03', '04', '05']);
+    expect(numbers).toEqual(['01', '02', '03', '04', '05', '06']);
   });
 
   it('timeline has aria-label', () => {
@@ -61,6 +61,6 @@ describe('ServicesComponent', () => {
 
   it('renders a dot for each timeline item', () => {
     const dots = el.querySelectorAll('.timeline__dot');
-    expect(dots.length).toBe(5);
+    expect(dots.length).toBe(6);
   });
 });
