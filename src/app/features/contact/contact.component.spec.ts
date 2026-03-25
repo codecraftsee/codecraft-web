@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of, throwError } from 'rxjs';
+import { vi } from 'vitest';
 import { routes } from '../../app.routes';
 import { ContactComponent } from './contact.component';
 import { ContactService } from './contact.service';
 
 function createMockService(returnValue: ReturnType<typeof of> = of({})) {
-  return { submit: jasmine.createSpy('submit').and.returnValue(returnValue) };
+  return { submit: vi.fn().mockReturnValue(returnValue) };
 }
 
 describe('ContactComponent', () => {

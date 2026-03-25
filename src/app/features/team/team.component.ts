@@ -484,6 +484,17 @@ export class TeamComponent {
       ],
     },
     {
+      name: 'Darko Karpic',
+      title: 'Software Engineer',
+      quote: 'Good architecture is invisible — until it saves you.',
+      bio: 'Backend engineer with deep expertise in Java and Spring, building robust and scalable server-side systems.',
+      tags: ['Backend', 'Java', 'Spring'],
+      emoji: '🖥️',
+      social: [
+        { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/darko-karpic-731812175/' },
+      ],
+    },
+    {
       name: 'Miroslav Pavkovic',
       title: 'CEO & Software Engineer',
       quote: 'Reliability is a feature.',

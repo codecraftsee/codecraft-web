@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
 
 @Component({
@@ -83,10 +83,10 @@ import { ThemeService } from '../../core/theme.service';
 export class ThemeToggleComponent {
   protected readonly themeService = inject(ThemeService);
 
-  protected ariaLabel(): string {
+  protected readonly ariaLabel = computed(() => {
     const theme = this.themeService.activeTheme();
     if (theme === 'light') return 'Switch to dark mode';
     if (theme === 'dark') return 'Switch to Sable mode';
     return 'Switch to light mode';
-  }
+  });
 }
