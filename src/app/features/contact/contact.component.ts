@@ -607,6 +607,13 @@ import { ContactService } from './contact.service';
       box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
     }
     :host-context(.sable-theme) .field__input option { background: #1C1917; color: #F5F0E8; }
+    :host-context(.sable-theme) .btn--primary {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      color: #1C1917;
+    }
+    :host-context(.sable-theme) .btn--primary:hover {
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
+    }
     :host-context(.sable-theme) .btn--ghost {
       color: #D4B896;
       border-color: rgba(217, 119, 6, 0.2);
