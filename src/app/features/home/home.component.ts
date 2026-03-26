@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Chapter {
   number: string;
@@ -7,11 +8,12 @@ interface Chapter {
   description: string;
   meta: { icon: string; label: string }[];
   cta: string;
+  route: string;
 }
 
 @Component({
   selector: 'cc-home',
-  imports: [],
+  imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:scroll)': 'onScroll()',
@@ -30,7 +32,8 @@ interface Chapter {
       <!-- Chapters Grid -->
       <div class="chapters-grid" id="chapters" role="list" aria-label="Our process chapters">
         @for (chapter of chapters; track chapter.number; let i = $index) {
-          <article class="chapter-card" role="listitem" [style.--card-index]="i">
+          <article class="chapter-card" role="listitem" [style.--card-index]="i"
+            [routerLink]="chapter.route" tabindex="0">
             <div class="chapter-card__number">{{ chapter.number }}</div>
             <div class="chapter-card__label">{{ chapter.label }}</div>
             <h3 class="chapter-card__title">{{ chapter.title }}</h3>
@@ -331,6 +334,7 @@ export class HomeComponent {
       description: 'We dive deep into your vision, understanding your goals, market, and audience to craft the perfect digital solution.',
       meta: [{ icon: '\uD83D\uDCCA', label: 'Strategy' }, { icon: '\uD83D\uDCA1', label: 'Insights' }],
       cta: 'Explore',
+      route: '/services',
     },
     {
       number: '02',
@@ -339,6 +343,7 @@ export class HomeComponent {
       description: 'Our team creates stunning, user-centered designs that transform complex ideas into elegant, intuitive interfaces.',
       meta: [{ icon: '\uD83C\uDFA8', label: 'Creative' }, { icon: '\u2728', label: 'Modern' }],
       cta: 'Explore',
+      route: '/services',
     },
     {
       number: '03',
@@ -347,6 +352,7 @@ export class HomeComponent {
       description: 'We build robust, scalable solutions using cutting-edge technologies and best practices in code quality.',
       meta: [{ icon: '\uD83D\uDCBB', label: 'Tech' }, { icon: '\u26A1', label: 'Performance' }],
       cta: 'Explore',
+      route: '/services',
     },
     {
       number: '04',
@@ -355,6 +361,7 @@ export class HomeComponent {
       description: 'We test, refine, and optimize every detail to ensure your solution performs flawlessly across all platforms.',
       meta: [{ icon: '\uD83D\uDD27', label: 'Testing' }, { icon: '\uD83D\uDCC8', label: 'Results' }],
       cta: 'Explore',
+      route: '/services',
     },
     {
       number: '05',
@@ -363,6 +370,7 @@ export class HomeComponent {
       description: 'We deploy with confidence and provide ongoing support to keep your digital presence thriving and secure.',
       meta: [{ icon: '\uD83D\uDE80', label: 'Launch' }, { icon: '\uD83D\uDEE1\uFE0F', label: 'Support' }],
       cta: 'Explore',
+      route: '/services',
     },
     {
       number: '06',
@@ -371,6 +379,7 @@ export class HomeComponent {
       description: 'Ready to start your next chapter? Get in touch with our team to discuss your project and explore possibilities.',
       meta: [{ icon: '\uD83D\uDCAC', label: 'Chat' }, { icon: '\uD83D\uDCE7', label: 'Email' }],
       cta: 'Contact',
+      route: '/contact',
     },
   ];
 
