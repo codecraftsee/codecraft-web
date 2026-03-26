@@ -14,6 +14,7 @@ interface TeamMember {
   tags: string[];
   emoji: string;
   image?: string;
+  isAvatar?: boolean;
   cvUrl?: string;
   social: SocialLink[];
 }
@@ -33,7 +34,7 @@ interface TeamMember {
           <article class="team-member" role="listitem" [style.--card-index]="i">
             <div class="member-image" [attr.aria-hidden]="true">
               @if (member.image) {
-                <img [src]="member.image" [alt]="member.name" />
+                <img [src]="member.image" [alt]="member.name" [class.avatar-placeholder]="member.isAvatar" />
               } @else {
                 <span class="member-emoji">{{ member.emoji }}</span>
               }
@@ -250,6 +251,14 @@ interface TeamMember {
       text-align: center;
       color: #64748b;
       font-size: 13px;
+    }
+
+    /* Avatar placeholder theme filters */
+    :host-context(.light-theme) .avatar-placeholder {
+      filter: hue-rotate(10deg) saturate(1.2) brightness(0.85);
+    }
+    :host-context(.sable-theme) .avatar-placeholder {
+      filter: hue-rotate(200deg) saturate(1.8) brightness(1.05);
     }
 
     /* Light Theme Overrides */
@@ -479,6 +488,8 @@ export class TeamComponent {
       bio: 'Mobile engineer specializing in native iOS and Android development, crafting seamless cross-platform experiences.',
       tags: ['iOS', 'Android', 'Swift', 'Kotlin', 'Mobile'],
       emoji: '📱',
+      image: 'images/avatar-mobile-dev.svg',
+      isAvatar: true,
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/predrag-karic-door8c/' },
       ],
@@ -490,6 +501,8 @@ export class TeamComponent {
       bio: 'Backend engineer with deep expertise in Java and Spring, building robust and scalable server-side systems.',
       tags: ['Backend', 'Java', 'Spring'],
       emoji: '🖥️',
+      image: 'images/avatar-backend-dev.svg',
+      isAvatar: true,
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/darko-karpic-731812175/' },
       ],

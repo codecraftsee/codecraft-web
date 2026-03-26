@@ -1,30 +1,31 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
   selector: 'cc-site-header',
-  imports: [RouterLink, ThemeToggleComponent],
+  imports: [RouterLink, RouterLinkActive, ThemeToggleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="header">
       <a class="logo" routerLink="/" aria-label="CodeCraft Home">
-        <img src="images/codecraft.svg" alt="CodeCraft" class="logo__img" />
+        <img [src]="logoSrc()" alt="CodeCraft" class="logo__img" />
       </a>
       <nav class="nav" aria-label="Main navigation">
-        <a class="nav__link" routerLink="/" aria-label="Home">
+        <a class="nav__link" routerLink="/" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}" aria-label="Home">
           <svg class="nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span class="nav__label">Home</span>
         </a>
-        <a class="nav__link" routerLink="/services" aria-label="Services">
+        <a class="nav__link" routerLink="/services" routerLinkActive="nav__link--active" aria-label="Services">
           <svg class="nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
           <span class="nav__label">Services</span>
         </a>
-        <a class="nav__link" routerLink="/team" aria-label="Team">
+        <a class="nav__link" routerLink="/team" routerLinkActive="nav__link--active" aria-label="Team">
           <svg class="nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span class="nav__label">Team</span>
         </a>
-        <a class="nav__btn" routerLink="/contact" aria-label="Contact Us">
+        <a class="nav__btn" routerLink="/contact" routerLinkActive="nav__btn--active" aria-label="Contact Us">
           <svg class="nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           <span class="nav__label">Contact Us</span>
         </a>
@@ -69,6 +70,8 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       cursor: pointer;
     }
     .nav__link:hover { color: #00d4ff; }
+    .nav__link--active { color: #00d4ff; font-weight: 600; }
+    .nav__btn--active { box-shadow: 0 0 0 2px #00d4ff; }
 
     .nav__btn {
       display: flex;
@@ -105,6 +108,8 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
     :host-context(.light-theme) .nav__link:hover {
       color: #0077cc;
     }
+    :host-context(.light-theme) .nav__link--active { color: #0077cc; }
+    :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #0077cc; }
     :host-context(.light-theme) .nav__btn {
       background: linear-gradient(135deg, #0099ff, #0066cc);
       color: #ffffff;
@@ -114,7 +119,7 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
       border-bottom-color: rgba(217, 119, 6, 0.12);
     }
     :host-context(.sable-theme) .logo__img {
-      filter: invert(1) sepia(0.8) saturate(3) hue-rotate(5deg);
+      filter: none;
     }
     :host-context(.sable-theme) .nav__link {
       color: #D4B896;
@@ -122,6 +127,8 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
     :host-context(.sable-theme) .nav__link:hover {
       color: #F59E0B;
     }
+    :host-context(.sable-theme) .nav__link--active { color: #F59E0B; font-weight: 600; }
+    :host-context(.sable-theme) .nav__btn--active { box-shadow: 0 0 0 2px #F59E0B; }
     :host-context(.sable-theme) .nav__btn {
       background: linear-gradient(135deg, #F59E0B, #D97706);
       color: #1C1917;
@@ -179,4 +186,12 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
     }
   `,
 })
-export class SiteHeaderComponent {}
+export class SiteHeaderComponent {
+  private readonly themeService = inject(ThemeService);
+
+  readonly logoSrc = computed(() =>
+    this.themeService.activeTheme() === 'sable'
+      ? 'images/codecraft-sable.svg'
+      : 'images/codecraft.svg'
+  );
+}
