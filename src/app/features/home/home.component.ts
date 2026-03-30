@@ -239,6 +239,11 @@ interface Chapter {
     :host-context(.light-theme) .chapter-card::before {
       background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
     }
+    :host-context(.light-theme) .chapter-card__number {
+      background: linear-gradient(135deg, #0099cc, #0066cc);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     :host-context(.light-theme) .chapter-card__label {
       color: #94a3b8;
     }
@@ -282,6 +287,11 @@ interface Chapter {
     }
     :host-context(.sable-theme) .chapter-card::before {
       background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.06), transparent);
+    }
+    :host-context(.sable-theme) .chapter-card__number {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     :host-context(.sable-theme) .chapter-card__label {
       color: #A07850;
