@@ -7,6 +7,17 @@
   position: relative;
   z-index: 1;
   min-height: 100dvh;
-  background-image: radial-gradient(circle, var(--cc-backdrop-hex, #3B82F6) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--cc-backdrop-hex, #3B82F6) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 0%, transparent 100%);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: -1;
+  }
 }

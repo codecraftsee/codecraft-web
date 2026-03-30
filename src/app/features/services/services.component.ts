@@ -85,7 +85,7 @@ interface ServiceOffering {
       bottom: 0;
       width: 2px;
       background: linear-gradient(180deg, #10B981, #059669);
-      opacity: 0.2;
+      opacity: 0.6;
     }
 
     /* Timeline item — alternating wrapper */
@@ -165,7 +165,8 @@ interface ServiceOffering {
     /* Hover — odd shifts left, even shifts right */
     .card:hover {
       border-color: rgba(16, 185, 129, 0.3);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
     }
     .timeline__item:nth-child(odd) .card:hover {
@@ -217,7 +218,7 @@ interface ServiceOffering {
     }
     :host-context(.light-theme) .timeline::before {
       background: linear-gradient(180deg, #0099cc, #0066cc);
-      opacity: 0.15;
+      opacity: 0.6;
     }
     :host-context(.light-theme) .timeline__dot {
       background: linear-gradient(135deg, #0099cc, #0066cc);
@@ -232,12 +233,14 @@ interface ServiceOffering {
       color: #94a3b8;
     }
     :host-context(.light-theme) .card {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .card:hover {
       border-color: rgba(0, 119, 204, 0.3);
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .card::before {
@@ -249,10 +252,15 @@ interface ServiceOffering {
     :host-context(.light-theme) .card__desc {
       color: #94a3b8;
     }
+    :host-context(.light-theme) .card__number {
+      background: linear-gradient(135deg, #0099cc, #0066cc);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     :host-context(.light-theme) .card__tag {
-      border-color: rgba(0, 0, 0, 0.1);
-      color: #94a3b8;
-      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 119, 204, 0.15);
+      color: #0077cc;
+      background: rgba(0, 119, 204, 0.06);
     }
 
     :host-context(.sable-theme) {
@@ -260,7 +268,7 @@ interface ServiceOffering {
     }
     :host-context(.sable-theme) .timeline::before {
       background: linear-gradient(180deg, #F59E0B, #D97706);
-      opacity: 0.2;
+      opacity: 0.6;
     }
     :host-context(.sable-theme) .timeline__dot {
       background: linear-gradient(135deg, #F59E0B, #D97706);
@@ -275,12 +283,14 @@ interface ServiceOffering {
       color: #D4B896;
     }
     :host-context(.sable-theme) .card {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
       border-color: rgba(217, 119, 6, 0.12);
     }
     :host-context(.sable-theme) .card:hover {
       border-color: rgba(245, 158, 11, 0.35);
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     :host-context(.sable-theme) .card::before {
@@ -292,9 +302,14 @@ interface ServiceOffering {
     :host-context(.sable-theme) .card__desc {
       color: #D4B896;
     }
+    :host-context(.sable-theme) .card__number {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     :host-context(.sable-theme) .card__tag {
       border-color: rgba(217, 119, 6, 0.15);
-      color: #D4B896;
+      color: #F59E0B;
       background: rgba(217, 119, 6, 0.06);
     }
 

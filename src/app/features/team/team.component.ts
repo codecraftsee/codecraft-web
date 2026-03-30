@@ -131,7 +131,8 @@ interface TeamMember {
     }
     .team-member:hover {
       border-color: rgba(16, 185, 129, 0.3);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       transform: translateY(-12px);
       box-shadow: 0 25px 50px rgba(16, 185, 129, 0.15);
     }
@@ -275,12 +276,14 @@ interface TeamMember {
       color: #94a3b8;
     }
     :host-context(.light-theme) .team-member {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .team-member:hover {
       border-color: rgba(0, 119, 204, 0.3);
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     }
     :host-context(.light-theme) .member-image {
@@ -364,12 +367,14 @@ interface TeamMember {
       color: #D4B896;
     }
     :host-context(.sable-theme) .team-member {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
       border-color: rgba(217, 119, 6, 0.12);
     }
     :host-context(.sable-theme) .team-member:hover {
       border-color: rgba(245, 158, 11, 0.35);
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
     }
     :host-context(.sable-theme) .member-image {
