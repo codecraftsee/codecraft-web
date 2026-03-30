@@ -279,7 +279,7 @@ interface TeamMember {
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .team-member:hover {
-      border-color: rgba(5, 150, 105, 0.3);
+      border-color: rgba(0, 119, 204, 0.3);
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     }
@@ -302,9 +302,9 @@ interface TeamMember {
       color: #94a3b8;
     }
     :host-context(.light-theme) .skill-tag {
-      background: rgba(5, 150, 105, 0.08);
+      background: rgba(0, 119, 204, 0.08);
       color: #0077cc;
-      border-color: rgba(5, 150, 105, 0.15);
+      border-color: rgba(0, 119, 204, 0.15);
     }
     :host-context(.light-theme) .member-social {
       border-top-color: rgba(0, 0, 0, 0.08);
@@ -329,23 +329,23 @@ interface TeamMember {
     }
 
     :host-context(.light-theme) .cv-link {
-      background: rgba(5, 150, 105, 0.08);
-      border-color: rgba(5, 150, 105, 0.15);
+      background: rgba(0, 119, 204, 0.08);
+      border-color: rgba(0, 119, 204, 0.15);
       color: #0077cc;
     }
     :host-context(.light-theme) .cv-link:hover {
-      background: rgba(5, 150, 105, 0.15);
-      border-color: rgba(5, 150, 105, 0.3);
+      background: rgba(0, 119, 204, 0.15);
+      border-color: rgba(0, 119, 204, 0.3);
     }
 
     :host-context(.light-theme) .social-link {
-      background: rgba(5, 150, 105, 0.08);
-      border-color: rgba(5, 150, 105, 0.15);
+      background: rgba(0, 119, 204, 0.08);
+      border-color: rgba(0, 119, 204, 0.15);
       color: #0077cc;
     }
     :host-context(.light-theme) .social-link:hover {
-      background: rgba(5, 150, 105, 0.15);
-      border-color: rgba(5, 150, 105, 0.3);
+      background: rgba(0, 119, 204, 0.15);
+      border-color: rgba(0, 119, 204, 0.3);
     }
     :host-context(.light-theme) .footer {
       border-top-color: rgba(0, 0, 0, 0.08);

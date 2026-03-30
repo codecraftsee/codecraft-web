@@ -501,8 +501,8 @@ import { ContactService } from './contact.service';
     }
     :host-context(.light-theme) .hero__subtitle { color: #94a3b8; }
     :host-context(.light-theme) .badge {
-      background: rgba(5, 150, 105, 0.06);
-      border-color: rgba(5, 150, 105, 0.2);
+      background: rgba(0, 119, 204, 0.06);
+      border-color: rgba(0, 119, 204, 0.2);
       color: #0077cc;
     }
     :host-context(.light-theme) .progress__dot {
@@ -511,18 +511,18 @@ import { ContactService } from './contact.service';
       color: #94a3b8;
     }
     :host-context(.light-theme) .progress__step--active .progress__dot {
-      border-color: #059669;
-      background: rgba(5, 150, 105, 0.08);
+      border-color: #0077cc;
+      background: rgba(0, 119, 204, 0.08);
       color: #0077cc;
-      box-shadow: 0 0 16px rgba(5, 150, 105, 0.2);
+      box-shadow: 0 0 16px rgba(0, 119, 204, 0.2);
     }
     :host-context(.light-theme) .progress__step--done .progress__dot {
-      border-color: #059669;
-      background: #059669;
+      border-color: #0077cc;
+      background: #0077cc;
       color: #fff;
     }
     :host-context(.light-theme) .progress__line { background: rgba(0, 0, 0, 0.08); }
-    :host-context(.light-theme) .progress__line--done { background: rgba(5, 150, 105, 0.4); }
+    :host-context(.light-theme) .progress__line--done { background: rgba(0, 119, 204, 0.4); }
     :host-context(.light-theme) .progress__label { color: #94a3b8; }
     :host-context(.light-theme) .form-card {
       background: rgba(0, 0, 0, 0.02);
@@ -537,8 +537,8 @@ import { ContactService } from './contact.service';
       color: #1a1a2e;
     }
     :host-context(.light-theme) .field__input:focus {
-      border-color: rgba(5, 150, 105, 0.5);
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.08);
+      border-color: rgba(0, 119, 204, 0.5);
+      box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.08);
     }
     :host-context(.light-theme) .field__input option { background: #fff; color: #1a1a2e; }
     :host-context(.light-theme) .btn--ghost {
@@ -546,7 +546,7 @@ import { ContactService } from './contact.service';
       border-color: rgba(0, 0, 0, 0.12);
     }
     :host-context(.light-theme) .btn--ghost:hover {
-      border-color: rgba(5, 150, 105, 0.35);
+      border-color: rgba(0, 119, 204, 0.35);
       color: #0077cc;
     }
     :host-context(.light-theme) .success__title {

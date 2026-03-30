@@ -232,7 +232,7 @@ interface Chapter {
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .chapter-card:hover {
-      border-color: rgba(5, 150, 105, 0.3);
+      border-color: rgba(0, 119, 204, 0.3);
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }

@@ -111,7 +111,7 @@ import { ThemeService } from '../../core/theme.service';
     :host-context(.light-theme) .nav__link--active { color: #0077cc; }
     :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #0077cc; }
     :host-context(.light-theme) .nav__btn {
-      background: linear-gradient(135deg, #059669, #0066cc);
+      background: linear-gradient(135deg, #0099cc, #0066cc);
       color: #ffffff;
     }
 
@@ -171,8 +171,8 @@ import { ThemeService } from '../../core/theme.service';
         border-color: rgba(0, 0, 0, 0.1);
       }
       :host-context(.light-theme) .nav__link:hover {
-        background: rgba(5, 150, 105, 0.08);
-        border-color: rgba(5, 150, 105, 0.2);
+        background: rgba(0, 119, 204, 0.08);
+        border-color: rgba(0, 119, 204, 0.2);
       }
 
       :host-context(.sable-theme) .nav__link {

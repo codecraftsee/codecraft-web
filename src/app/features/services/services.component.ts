@@ -216,12 +216,12 @@ interface ServiceOffering {
       color: #1a1a2e;
     }
     :host-context(.light-theme) .timeline::before {
-      background: linear-gradient(180deg, #059669, #0066cc);
+      background: linear-gradient(180deg, #0099cc, #0066cc);
       opacity: 0.15;
     }
     :host-context(.light-theme) .timeline__dot {
-      background: linear-gradient(135deg, #059669, #0066cc);
-      box-shadow: 0 0 12px rgba(5, 150, 105, 0.3);
+      background: linear-gradient(135deg, #0099cc, #0066cc);
+      box-shadow: 0 0 12px rgba(0, 119, 204, 0.3);
     }
     :host-context(.light-theme) .hero__title {
       background: linear-gradient(135deg, #0099cc, #0066cc, #cc00cc);
@@ -236,7 +236,7 @@ interface ServiceOffering {
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .card:hover {
-      border-color: rgba(5, 150, 105, 0.3);
+      border-color: rgba(0, 119, 204, 0.3);
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
