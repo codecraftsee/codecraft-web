@@ -63,15 +63,15 @@ import { ThemeService } from '../../core/theme.service';
       gap: 0.4rem;
       font-size: 13px;
       text-decoration: none;
-      color: #a5b4fc;
+      color: #cbd5e1;
       transition: all 0.3s;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       cursor: pointer;
     }
-    .nav__link:hover { color: #00d4ff; }
-    .nav__link--active { color: #00d4ff; font-weight: 600; }
-    .nav__btn--active { box-shadow: 0 0 0 2px #00d4ff; }
+    .nav__link:hover { color: #10B981; }
+    .nav__link--active { color: #10B981; font-weight: 600; }
+    .nav__btn--active { box-shadow: 0 0 0 2px #10B981; }
 
     .nav__btn {
       display: flex;
@@ -85,14 +85,14 @@ import { ThemeService } from '../../core/theme.service';
       padding: 0.45rem 1.1rem;
       border-radius: 8px;
       border: none;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      color: #0f1419;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #1E1E2E;
       transition: all 0.3s;
     }
     .nav__btn:hover {
       opacity: 0.9;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.25);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
     }
 
     /* Light Theme */
@@ -103,7 +103,7 @@ import { ThemeService } from '../../core/theme.service';
       filter: none;
     }
     :host-context(.light-theme) .nav__link {
-      color: #64748b;
+      color: #94a3b8;
     }
     :host-context(.light-theme) .nav__link:hover {
       color: #0077cc;
@@ -111,7 +111,7 @@ import { ThemeService } from '../../core/theme.service';
     :host-context(.light-theme) .nav__link--active { color: #0077cc; }
     :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #0077cc; }
     :host-context(.light-theme) .nav__btn {
-      background: linear-gradient(135deg, #0099ff, #0066cc);
+      background: linear-gradient(135deg, #059669, #0066cc);
       color: #ffffff;
     }
 
@@ -149,12 +149,12 @@ import { ThemeService } from '../../core/theme.service';
         border-radius: 8px;
         padding: 0;
         letter-spacing: 0;
-        background: rgba(0, 212, 255, 0.06);
-        border: 1px solid rgba(0, 212, 255, 0.12);
+        background: rgba(16, 185, 129, 0.06);
+        border: 1px solid rgba(16, 185, 129, 0.12);
       }
       .nav__link:hover {
-        background: rgba(0, 212, 255, 0.12);
-        border-color: rgba(0, 212, 255, 0.3);
+        background: rgba(16, 185, 129, 0.12);
+        border-color: rgba(16, 185, 129, 0.3);
       }
 
       .nav__btn {
@@ -171,8 +171,8 @@ import { ThemeService } from '../../core/theme.service';
         border-color: rgba(0, 0, 0, 0.1);
       }
       :host-context(.light-theme) .nav__link:hover {
-        background: rgba(0, 153, 255, 0.08);
-        border-color: rgba(0, 153, 255, 0.2);
+        background: rgba(5, 150, 105, 0.08);
+        border-color: rgba(5, 150, 105, 0.2);
       }
 
       :host-context(.sable-theme) .nav__link {

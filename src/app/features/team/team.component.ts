@@ -74,8 +74,8 @@ interface TeamMember {
   styles: `
     :host {
       display: block;
-      background: #0f1419;
-      color: #e0e7ff;
+      background: #1E1E2E;
+      color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
       overflow-x: hidden;
@@ -92,14 +92,14 @@ interface TeamMember {
       margin: 0 0 1rem;
       padding: 0.05em 0;
       line-height: 1.2;
-      background: linear-gradient(135deg, #00d4ff, #0099ff, #ff00ff);
+      background: linear-gradient(135deg, #10B981, #059669, #34d399);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero__subtitle {
       font-size: 18px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.7;
@@ -115,8 +115,8 @@ interface TeamMember {
 
     /* Card */
     .team-member {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05));
-      border: 1px solid rgba(0, 212, 255, 0.1);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 12px;
       overflow: hidden;
       transition: all 0.4s ease;
@@ -129,17 +129,17 @@ interface TeamMember {
       animation-delay: calc(var(--card-index) * 0.1s);
     }
     .team-member:hover {
-      border-color: rgba(0, 212, 255, 0.3);
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+      border-color: rgba(16, 185, 129, 0.3);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       transform: translateY(-12px);
-      box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+      box-shadow: 0 25px 50px rgba(16, 185, 129, 0.15);
     }
 
     /* Image Area */
     .member-image {
       width: 100%;
       height: 300px;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -162,7 +162,7 @@ interface TeamMember {
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
       transition: left 0.6s;
     }
     .team-member:hover .member-image::after {
@@ -188,14 +188,14 @@ interface TeamMember {
     }
     .member-role {
       font-size: 13px;
-      color: #00d4ff;
+      color: #10B981;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin: 0 0 1rem;
     }
     .member-bio {
       font-size: 13px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       line-height: 1.6;
       margin: 0 0 1.5rem;
     }
@@ -209,11 +209,11 @@ interface TeamMember {
     }
     .skill-tag {
       font-size: 11px;
-      background: rgba(0, 212, 255, 0.1);
-      color: #00d4ff;
+      background: rgba(16, 185, 129, 0.1);
+      color: #10B981;
       padding: 0.4rem 0.8rem;
       border-radius: 20px;
-      border: 1px solid rgba(0, 212, 255, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.2);
     }
 
     /* Social Links */
@@ -221,7 +221,7 @@ interface TeamMember {
       display: flex;
       gap: 1rem;
       padding-top: 1.5rem;
-      border-top: 1px solid rgba(0, 212, 255, 0.1);
+      border-top: 1px solid rgba(16, 185, 129, 0.1);
     }
     .social-link {
       width: 36px;
@@ -229,17 +229,17 @@ interface TeamMember {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 212, 255, 0.1);
-      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
       border-radius: 8px;
-      color: #00d4ff;
+      color: #10B981;
       text-decoration: none;
       transition: all 0.3s;
       font-size: 16px;
     }
     .social-link:hover {
-      background: rgba(0, 212, 255, 0.2);
-      border-color: rgba(0, 212, 255, 0.4);
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
       transform: translateY(-4px);
     }
 
@@ -249,7 +249,7 @@ interface TeamMember {
       padding: 3rem 0;
       margin-top: 4rem;
       text-align: center;
-      color: #64748b;
+      color: #94a3b8;
       font-size: 13px;
     }
 
@@ -272,14 +272,14 @@ interface TeamMember {
       background-clip: text;
     }
     :host-context(.light-theme) .hero__subtitle {
-      color: #64748b;
+      color: #94a3b8;
     }
     :host-context(.light-theme) .team-member {
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .team-member:hover {
-      border-color: rgba(0, 153, 255, 0.3);
+      border-color: rgba(5, 150, 105, 0.3);
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     }
@@ -299,12 +299,12 @@ interface TeamMember {
       color: #0077cc;
     }
     :host-context(.light-theme) .member-bio {
-      color: #64748b;
+      color: #94a3b8;
     }
     :host-context(.light-theme) .skill-tag {
-      background: rgba(0, 153, 255, 0.08);
+      background: rgba(5, 150, 105, 0.08);
       color: #0077cc;
-      border-color: rgba(0, 153, 255, 0.15);
+      border-color: rgba(5, 150, 105, 0.15);
     }
     :host-context(.light-theme) .member-social {
       border-top-color: rgba(0, 0, 0, 0.08);
@@ -315,37 +315,37 @@ interface TeamMember {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 212, 255, 0.1);
-      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
       border-radius: 8px;
-      color: #00d4ff;
+      color: #10B981;
       text-decoration: none;
       transition: all 0.3s;
     }
     .cv-link:hover {
-      background: rgba(0, 212, 255, 0.2);
-      border-color: rgba(0, 212, 255, 0.4);
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
       transform: translateY(-4px);
     }
 
     :host-context(.light-theme) .cv-link {
-      background: rgba(0, 153, 255, 0.08);
-      border-color: rgba(0, 153, 255, 0.15);
+      background: rgba(5, 150, 105, 0.08);
+      border-color: rgba(5, 150, 105, 0.15);
       color: #0077cc;
     }
     :host-context(.light-theme) .cv-link:hover {
-      background: rgba(0, 153, 255, 0.15);
-      border-color: rgba(0, 153, 255, 0.3);
+      background: rgba(5, 150, 105, 0.15);
+      border-color: rgba(5, 150, 105, 0.3);
     }
 
     :host-context(.light-theme) .social-link {
-      background: rgba(0, 153, 255, 0.08);
-      border-color: rgba(0, 153, 255, 0.15);
+      background: rgba(5, 150, 105, 0.08);
+      border-color: rgba(5, 150, 105, 0.15);
       color: #0077cc;
     }
     :host-context(.light-theme) .social-link:hover {
-      background: rgba(0, 153, 255, 0.15);
-      border-color: rgba(0, 153, 255, 0.3);
+      background: rgba(5, 150, 105, 0.15);
+      border-color: rgba(5, 150, 105, 0.3);
     }
     :host-context(.light-theme) .footer {
       border-top-color: rgba(0, 0, 0, 0.08);
