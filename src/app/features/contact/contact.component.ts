@@ -206,8 +206,8 @@ import { ContactService } from './contact.service';
   styles: `
     :host {
       display: block;
-      background: #0f1419;
-      color: #e0e7ff;
+      background: transparent;
+      color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
     }
@@ -230,14 +230,14 @@ import { ContactService } from './contact.service';
       margin: 0 0 1rem;
       padding: 0.05em 0;
       line-height: 1.2;
-      background: linear-gradient(135deg, #00d4ff, #0099ff, #ff00ff);
+      background: linear-gradient(135deg, #10B981, #059669, #34d399);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero__subtitle {
       font-size: 17px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       line-height: 1.7;
       margin: 0 0 2rem;
     }
@@ -254,9 +254,9 @@ import { ContactService } from './contact.service';
       font-weight: 500;
       padding: 0.4rem 1rem;
       border-radius: 20px;
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      background: rgba(0, 212, 255, 0.06);
-      color: #00d4ff;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.06);
+      color: #10B981;
       letter-spacing: 0.02em;
     }
 
@@ -282,41 +282,42 @@ import { ContactService } from './contact.service';
       justify-content: center;
       font-size: 13px;
       font-weight: 700;
-      border: 2px solid rgba(0, 212, 255, 0.2);
-      background: rgba(0, 212, 255, 0.05);
-      color: #64748b;
+      border: 2px solid rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.05);
+      color: #94a3b8;
       transition: all 0.3s;
     }
     .progress__step--active .progress__dot {
-      border-color: #00d4ff;
-      background: rgba(0, 212, 255, 0.12);
-      color: #00d4ff;
-      box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
     }
     .progress__step--done .progress__dot {
-      border-color: #00d4ff;
-      background: #00d4ff;
-      color: #0f1419;
+      border-color: #10B981;
+      background: #10B981;
+      color: #1E1E2E;
     }
     .progress__line {
       width: 60px;
       height: 2px;
-      background: rgba(0, 212, 255, 0.15);
+      background: rgba(16, 185, 129, 0.15);
       transition: background 0.3s;
     }
     .progress__line--done {
-      background: rgba(0, 212, 255, 0.5);
+      background: rgba(16, 185, 129, 0.5);
     }
     .progress__label {
       font-size: 13px;
-      color: #64748b;
+      color: #94a3b8;
       margin: 0;
     }
 
     /* Form card */
     .form-card {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.04), rgba(0, 153, 255, 0.04));
-      border: 1px solid rgba(0, 212, 255, 0.1);
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(5, 150, 105, 0.04));
+      border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 16px;
       padding: 2.5rem;
     }
@@ -333,20 +334,20 @@ import { ContactService } from './contact.service';
       display: block;
       font-size: 13px;
       font-weight: 600;
-      color: #a5b4fc;
+      color: #cbd5e1;
       margin-bottom: 0.5rem;
       letter-spacing: 0.02em;
     }
-    .field__required { color: #00d4ff; margin-left: 2px; }
-    .field__optional { color: #64748b; font-weight: 400; }
+    .field__required { color: #10B981; margin-left: 2px; }
+    .field__optional { color: #94a3b8; font-weight: 400; }
     .field__input {
       width: 100%;
       box-sizing: border-box;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(0, 212, 255, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.15);
       border-radius: 8px;
       padding: 0.75rem 1rem;
-      color: #e0e7ff;
+      color: #F1F5F9;
       font-size: 14px;
       font-family: inherit;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -356,8 +357,8 @@ import { ContactService } from './contact.service';
     .field__input--textarea { resize: vertical; min-height: 120px; }
     .field__input:focus {
       outline: none;
-      border-color: rgba(0, 212, 255, 0.5);
-      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
     }
     .field__input[aria-invalid="true"] {
       border-color: rgba(255, 80, 100, 0.5);
@@ -365,7 +366,7 @@ import { ContactService } from './contact.service';
     .field__input[aria-invalid="true"]:focus {
       box-shadow: 0 0 0 3px rgba(255, 80, 100, 0.1);
     }
-    .field__input option { background: #1a2233; color: #e0e7ff; }
+    .field__input option { background: #1a2233; color: #F1F5F9; }
     .field__error {
       font-size: 12px;
       color: #f87171;
@@ -390,23 +391,31 @@ import { ContactService } from './contact.service';
       border: 1px solid transparent;
     }
     .btn--primary {
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      color: #0f1419;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #1E1E2E;
       border-color: transparent;
+    }
+    .btn--primary:active {
+      transform: scale(0.96);
+      opacity: 0.85;
     }
     .btn--primary:hover {
       opacity: 0.9;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.25);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
     }
     .btn--ghost {
       background: transparent;
-      color: #a5b4fc;
-      border-color: rgba(0, 212, 255, 0.15);
+      color: #cbd5e1;
+      border-color: rgba(16, 185, 129, 0.15);
+    }
+    .btn--ghost:active {
+      transform: scale(0.96);
+      opacity: 0.8;
     }
     .btn--ghost:hover {
-      border-color: rgba(0, 212, 255, 0.35);
-      color: #00d4ff;
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #10B981;
     }
 
     /* Success state */
@@ -418,8 +427,8 @@ import { ContactService } from './contact.service';
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      color: #0f1419;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #1E1E2E;
       font-size: 28px;
       font-weight: 800;
       display: flex;
@@ -433,7 +442,7 @@ import { ContactService } from './contact.service';
       margin: 0 0 1rem;
       padding: 0.05em 0;
       line-height: 1.2;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
+      background: linear-gradient(135deg, #10B981, #059669);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -441,7 +450,7 @@ import { ContactService } from './contact.service';
     }
     .success__text {
       font-size: 16px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       line-height: 1.7;
       margin: 0;
     }
@@ -471,19 +480,18 @@ import { ContactService } from './contact.service';
       text-align: center;
       margin-top: 2rem;
       font-size: 13px;
-      color: #64748b;
+      color: #94a3b8;
     }
     .fallback__link {
-      color: #a5b4fc;
+      color: #cbd5e1;
       text-decoration: underline;
       text-underline-offset: 3px;
       transition: color 0.2s;
     }
-    .fallback__link:hover { color: #00d4ff; }
+    .fallback__link:hover { color: #10B981; }
 
     /* Light theme */
     :host-context(.light-theme) {
-      background: #ffffff;
       color: #1a1a2e;
     }
     :host-context(.light-theme) .hero__title {
@@ -491,10 +499,10 @@ import { ContactService } from './contact.service';
       -webkit-background-clip: text;
       background-clip: text;
     }
-    :host-context(.light-theme) .hero__subtitle { color: #64748b; }
+    :host-context(.light-theme) .hero__subtitle { color: #94a3b8; }
     :host-context(.light-theme) .badge {
-      background: rgba(0, 153, 255, 0.06);
-      border-color: rgba(0, 153, 255, 0.2);
+      background: rgba(0, 119, 204, 0.06);
+      border-color: rgba(0, 119, 204, 0.2);
       color: #0077cc;
     }
     :host-context(.light-theme) .progress__dot {
@@ -503,25 +511,25 @@ import { ContactService } from './contact.service';
       color: #94a3b8;
     }
     :host-context(.light-theme) .progress__step--active .progress__dot {
-      border-color: #0099ff;
-      background: rgba(0, 153, 255, 0.08);
+      border-color: #0077cc;
+      background: rgba(0, 119, 204, 0.08);
       color: #0077cc;
-      box-shadow: 0 0 16px rgba(0, 153, 255, 0.2);
+      box-shadow: 0 0 16px rgba(0, 119, 204, 0.2);
     }
     :host-context(.light-theme) .progress__step--done .progress__dot {
-      border-color: #0099ff;
-      background: #0099ff;
+      border-color: #0077cc;
+      background: #0077cc;
       color: #fff;
     }
     :host-context(.light-theme) .progress__line { background: rgba(0, 0, 0, 0.08); }
-    :host-context(.light-theme) .progress__line--done { background: rgba(0, 153, 255, 0.4); }
+    :host-context(.light-theme) .progress__line--done { background: rgba(0, 119, 204, 0.4); }
     :host-context(.light-theme) .progress__label { color: #94a3b8; }
     :host-context(.light-theme) .form-card {
       background: rgba(0, 0, 0, 0.02);
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .form-card__title { color: #1a1a2e; }
-    :host-context(.light-theme) .field__label { color: #64748b; }
+    :host-context(.light-theme) .field__label { color: #94a3b8; }
     :host-context(.light-theme) .field__required { color: #0077cc; }
     :host-context(.light-theme) .field__input {
       background: #ffffff;
@@ -529,16 +537,16 @@ import { ContactService } from './contact.service';
       color: #1a1a2e;
     }
     :host-context(.light-theme) .field__input:focus {
-      border-color: rgba(0, 153, 255, 0.5);
-      box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.08);
+      border-color: rgba(0, 119, 204, 0.5);
+      box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.08);
     }
     :host-context(.light-theme) .field__input option { background: #fff; color: #1a1a2e; }
     :host-context(.light-theme) .btn--ghost {
-      color: #64748b;
+      color: #94a3b8;
       border-color: rgba(0, 0, 0, 0.12);
     }
     :host-context(.light-theme) .btn--ghost:hover {
-      border-color: rgba(0, 153, 255, 0.35);
+      border-color: rgba(0, 119, 204, 0.35);
       color: #0077cc;
     }
     :host-context(.light-theme) .success__title {
@@ -546,18 +554,17 @@ import { ContactService } from './contact.service';
       -webkit-background-clip: text;
       background-clip: text;
     }
-    :host-context(.light-theme) .success__text { color: #64748b; }
+    :host-context(.light-theme) .success__text { color: #94a3b8; }
     :host-context(.light-theme) .submit-error {
       color: #dc2626;
       background: rgba(220, 38, 38, 0.06);
       border-color: rgba(220, 38, 38, 0.15);
     }
     :host-context(.light-theme) .fallback { color: #94a3b8; }
-    :host-context(.light-theme) .fallback__link { color: #64748b; }
+    :host-context(.light-theme) .fallback__link { color: #94a3b8; }
     :host-context(.light-theme) .fallback__link:hover { color: #0077cc; }
 
     :host-context(.sable-theme) {
-      background: #1C1917;
       color: #F5F0E8;
     }
     :host-context(.sable-theme) .hero__title {

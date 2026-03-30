@@ -41,14 +41,14 @@ import { ThemeService } from '../../core/theme.service';
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       background: transparent;
-      color: #a5b4fc;
+      color: #cbd5e1;
       cursor: pointer;
       transition: all 0.3s ease;
     }
     button:hover {
-      color: #00d4ff;
-      border-color: rgba(0, 212, 255, 0.3);
-      background: rgba(0, 212, 255, 0.05);
+      color: #10B981;
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.05);
     }
     button:active {
       transform: scale(0.92);
@@ -61,7 +61,7 @@ import { ThemeService } from '../../core/theme.service';
 
     :host-context(.light-theme) button {
       border-color: rgba(0, 0, 0, 0.12);
-      color: #64748b;
+      color: #94a3b8;
     }
     :host-context(.light-theme) button:hover {
       color: #0077cc;
