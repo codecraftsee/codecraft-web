@@ -40,7 +40,7 @@ interface ServiceOffering {
   styles: `
     :host {
       display: block;
-      background: #1E1E2E;
+      background: transparent;
       color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
@@ -137,7 +137,8 @@ interface ServiceOffering {
 
     /* Card */
     .card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
       border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 12px;
       padding: 2.5rem;
@@ -212,7 +213,6 @@ interface ServiceOffering {
 
     /* Light Theme Overrides */
     :host-context(.light-theme) {
-      background: #ffffff;
       color: #1a1a2e;
     }
     :host-context(.light-theme) .timeline::before {
@@ -256,7 +256,6 @@ interface ServiceOffering {
     }
 
     :host-context(.sable-theme) {
-      background: #1C1917;
       color: #F5F0E8;
     }
     :host-context(.sable-theme) .timeline::before {

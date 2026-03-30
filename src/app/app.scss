@@ -7,4 +7,6 @@
   position: relative;
   z-index: 1;
   min-height: 100dvh;
+  background-image: radial-gradient(circle, var(--cc-backdrop-hex, #3B82F6) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
 }

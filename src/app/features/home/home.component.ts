@@ -57,7 +57,7 @@ interface Chapter {
   styles: `
     :host {
       display: block;
-      background: #1E1E2E;
+      background: transparent;
       color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
@@ -109,7 +109,8 @@ interface Chapter {
 
     /* Chapter Card */
     .chapter-card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
       border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 12px;
       padding: 2.5rem;
@@ -138,7 +139,8 @@ interface Chapter {
 
     .chapter-card:hover {
       border-color: rgba(16, 185, 129, 0.3);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       transform: translateY(-8px);
       box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
     }
@@ -216,7 +218,6 @@ interface Chapter {
 
     /* Light Theme Overrides */
     :host-context(.light-theme) {
-      background: #ffffff;
       color: #1a1a2e;
     }
 :host-context(.light-theme) .hero__title {
@@ -228,12 +229,14 @@ interface Chapter {
       color: #94a3b8;
     }
     :host-context(.light-theme) .chapter-card {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .chapter-card:hover {
       border-color: rgba(0, 119, 204, 0.3);
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .chapter-card::before {
@@ -265,7 +268,6 @@ interface Chapter {
     }
 
     :host-context(.sable-theme) {
-      background: #1C1917;
       color: #F5F0E8;
     }
     :host-context(.sable-theme) .hero__title {
@@ -277,12 +279,14 @@ interface Chapter {
       color: #D4B896;
     }
     :host-context(.sable-theme) .chapter-card {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
       border-color: rgba(217, 119, 6, 0.12);
     }
     :host-context(.sable-theme) .chapter-card:hover {
       border-color: rgba(245, 158, 11, 0.35);
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     :host-context(.sable-theme) .chapter-card::before {

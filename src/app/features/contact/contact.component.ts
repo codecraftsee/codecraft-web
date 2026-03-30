@@ -206,7 +206,7 @@ import { ContactService } from './contact.service';
   styles: `
     :host {
       display: block;
-      background: #1E1E2E;
+      background: transparent;
       color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
@@ -315,7 +315,8 @@ import { ContactService } from './contact.service';
 
     /* Form card */
     .form-card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(5, 150, 105, 0.04));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(5, 150, 105, 0.04));
       border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 16px;
       padding: 2.5rem;
@@ -491,7 +492,6 @@ import { ContactService } from './contact.service';
 
     /* Light theme */
     :host-context(.light-theme) {
-      background: #ffffff;
       color: #1a1a2e;
     }
     :host-context(.light-theme) .hero__title {
@@ -565,7 +565,6 @@ import { ContactService } from './contact.service';
     :host-context(.light-theme) .fallback__link:hover { color: #0077cc; }
 
     :host-context(.sable-theme) {
-      background: #1C1917;
       color: #F5F0E8;
     }
     :host-context(.sable-theme) .hero__title {
