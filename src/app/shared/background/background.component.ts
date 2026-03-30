@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <div class="blob blob--2" aria-hidden="true"></div>
       <div class="blob blob--3" aria-hidden="true"></div>
       <div class="blob blob--4" aria-hidden="true"></div>
+      <div class="hex-grid" aria-hidden="true"></div>
     </div>
   `,
   styles: `
@@ -83,6 +84,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     @keyframes drift4 {
       0% { transform: translate3d(0, 0, 0) scale(1); }
       100% { transform: translate3d(-6vw, 6vh, 0) scale(1.15); }
+    }
+
+    .hex-grid {
+      position: absolute;
+      inset: 0;
+      background-color: var(--cc-backdrop-hex, #10B981);
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104'%3E%3Cpolygon points='30,2 58,17 58,49 30,64 2,49 2,17' fill='none' stroke='white' stroke-width='1'/%3E%3Cpolygon points='30,68 58,83 58,102 30,102 2,102 2,83' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+      mask-size: 60px 104px;
+      mask-repeat: repeat;
+      opacity: 0.07;
+      pointer-events: none;
     }
 
     @media (prefers-reduced-motion: reduce) {
