@@ -40,8 +40,8 @@ interface ServiceOffering {
   styles: `
     :host {
       display: block;
-      background: #0f1419;
-      color: #e0e7ff;
+      background: transparent;
+      color: #F1F5F9;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       min-height: 100dvh;
       overflow-x: hidden;
@@ -58,14 +58,14 @@ interface ServiceOffering {
       margin: 0 0 1rem;
       padding: 0.05em 0;
       line-height: 1.2;
-      background: linear-gradient(135deg, #00d4ff, #0099ff, #ff00ff);
+      background: linear-gradient(135deg, #10B981, #059669, #34d399);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero__subtitle {
       font-size: 18px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.7;
@@ -84,8 +84,8 @@ interface ServiceOffering {
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, #00d4ff, #0099ff);
-      opacity: 0.2;
+      background: linear-gradient(180deg, #10B981, #059669);
+      opacity: 0.6;
     }
 
     /* Timeline item — alternating wrapper */
@@ -124,8 +124,8 @@ interface ServiceOffering {
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
-      box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+      background: linear-gradient(135deg, #10B981, #059669);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
       z-index: 2;
     }
     .timeline__item:nth-child(odd) .timeline__dot {
@@ -137,8 +137,9 @@ interface ServiceOffering {
 
     /* Card */
     .card {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05));
-      border: 1px solid rgba(0, 212, 255, 0.1);
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 12px;
       padding: 2.5rem;
       cursor: pointer;
@@ -156,16 +157,17 @@ interface ServiceOffering {
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
       transition: left 0.6s;
     }
     .card:hover::before { left: 100%; }
 
     /* Hover — odd shifts left, even shifts right */
     .card:hover {
-      border-color: rgba(0, 212, 255, 0.3);
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
-      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+      border-color: rgba(16, 185, 129, 0.3);
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
     }
     .timeline__item:nth-child(odd) .card:hover {
       transform: translateX(-8px);
@@ -180,7 +182,7 @@ interface ServiceOffering {
       font-weight: 800;
       line-height: 1.2;
       padding: 0.05em 0;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
+      background: linear-gradient(135deg, #10B981, #059669);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -196,7 +198,7 @@ interface ServiceOffering {
     }
     .card__desc {
       font-size: 14px;
-      color: #a5b4fc;
+      color: #cbd5e1;
       line-height: 1.6;
       margin: 0 0 1.5rem;
     }
@@ -205,23 +207,22 @@ interface ServiceOffering {
       font-size: 12px;
       padding: 0.3rem 0.75rem;
       border-radius: 20px;
-      border: 1px solid rgba(0, 212, 255, 0.15);
-      color: #64748b;
-      background: rgba(0, 212, 255, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      color: #94a3b8;
+      background: rgba(16, 185, 129, 0.05);
     }
 
     /* Light Theme Overrides */
     :host-context(.light-theme) {
-      background: #ffffff;
       color: #1a1a2e;
     }
     :host-context(.light-theme) .timeline::before {
-      background: linear-gradient(180deg, #0099ff, #0066cc);
-      opacity: 0.15;
+      background: linear-gradient(180deg, #0099cc, #0066cc);
+      opacity: 0.6;
     }
     :host-context(.light-theme) .timeline__dot {
-      background: linear-gradient(135deg, #0099ff, #0066cc);
-      box-shadow: 0 0 12px rgba(0, 153, 255, 0.3);
+      background: linear-gradient(135deg, #0099cc, #0066cc);
+      box-shadow: 0 0 12px rgba(0, 119, 204, 0.3);
     }
     :host-context(.light-theme) .hero__title {
       background: linear-gradient(135deg, #0099cc, #0066cc, #cc00cc);
@@ -229,15 +230,17 @@ interface ServiceOffering {
       background-clip: text;
     }
     :host-context(.light-theme) .hero__subtitle {
-      color: #64748b;
+      color: #94a3b8;
     }
     :host-context(.light-theme) .card {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .card:hover {
-      border-color: rgba(0, 153, 255, 0.3);
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
+      border-color: rgba(0, 119, 204, 0.3);
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .card::before {
@@ -247,21 +250,25 @@ interface ServiceOffering {
       color: #1a1a2e;
     }
     :host-context(.light-theme) .card__desc {
-      color: #64748b;
+      color: #94a3b8;
+    }
+    :host-context(.light-theme) .card__number {
+      background: linear-gradient(135deg, #0099cc, #0066cc);
+      -webkit-background-clip: text;
+      background-clip: text;
     }
     :host-context(.light-theme) .card__tag {
-      border-color: rgba(0, 0, 0, 0.1);
-      color: #94a3b8;
-      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 119, 204, 0.15);
+      color: #0077cc;
+      background: rgba(0, 119, 204, 0.06);
     }
 
     :host-context(.sable-theme) {
-      background: #1C1917;
       color: #F5F0E8;
     }
     :host-context(.sable-theme) .timeline::before {
       background: linear-gradient(180deg, #F59E0B, #D97706);
-      opacity: 0.2;
+      opacity: 0.6;
     }
     :host-context(.sable-theme) .timeline__dot {
       background: linear-gradient(135deg, #F59E0B, #D97706);
@@ -276,12 +283,14 @@ interface ServiceOffering {
       color: #D4B896;
     }
     :host-context(.sable-theme) .card {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(217, 119, 6, 0.03));
       border-color: rgba(217, 119, 6, 0.12);
     }
     :host-context(.sable-theme) .card:hover {
       border-color: rgba(245, 158, 11, 0.35);
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
+      background-color: var(--cc-surface);
+      background-image: linear-gradient(135deg, rgba(217, 119, 6, 0.08), rgba(217, 119, 6, 0.05));
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     :host-context(.sable-theme) .card::before {
@@ -293,9 +302,14 @@ interface ServiceOffering {
     :host-context(.sable-theme) .card__desc {
       color: #D4B896;
     }
+    :host-context(.sable-theme) .card__number {
+      background: linear-gradient(135deg, #F59E0B, #D97706);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     :host-context(.sable-theme) .card__tag {
       border-color: rgba(217, 119, 6, 0.15);
-      color: #D4B896;
+      color: #F59E0B;
       background: rgba(217, 119, 6, 0.06);
     }
 
