@@ -109,8 +109,8 @@ interface Chapter {
 
     /* Chapter Card */
     .chapter-card {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 153, 255, 0.05));
-      border: 1px solid rgba(0, 212, 255, 0.1);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05));
+      border: 1px solid rgba(16, 185, 129, 0.1);
       border-radius: 12px;
       padding: 2.5rem;
       cursor: pointer;
@@ -131,16 +131,16 @@ interface Chapter {
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
       transition: left 0.6s;
     }
     .chapter-card:hover::before { left: 100%; }
 
     .chapter-card:hover {
-      border-color: rgba(0, 212, 255, 0.3);
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+      border-color: rgba(16, 185, 129, 0.3);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
     }
 
     .chapter-card__number {
@@ -149,7 +149,7 @@ interface Chapter {
       font-weight: 800;
       line-height: 1.2;
       padding: 0.05em 0;
-      background: linear-gradient(135deg, #00d4ff, #0099ff);
+      background: linear-gradient(135deg, #10B981, #059669);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -192,7 +192,7 @@ interface Chapter {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: #00d4ff;
+      color: #10B981;
       font-weight: 600;
       font-size: 13px;
       transition: all 0.3s;
