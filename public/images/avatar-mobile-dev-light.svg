@@ -1,0 +1,44 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="transparent"/>
+
+  <!-- Subtle dot grid -->
+  <g opacity="0.05">
+    <circle cx="50" cy="50" r="1.5" fill="#F59E0B"/><circle cx="90" cy="50" r="1.5" fill="#F59E0B"/><circle cx="130" cy="50" r="1.5" fill="#F59E0B"/><circle cx="170" cy="50" r="1.5" fill="#F59E0B"/><circle cx="210" cy="50" r="1.5" fill="#F59E0B"/><circle cx="250" cy="50" r="1.5" fill="#F59E0B"/><circle cx="290" cy="50" r="1.5" fill="#F59E0B"/><circle cx="330" cy="50" r="1.5" fill="#F59E0B"/><circle cx="370" cy="50" r="1.5" fill="#F59E0B"/><circle cx="410" cy="50" r="1.5" fill="#F59E0B"/><circle cx="450" cy="50" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="90" r="1.5" fill="#F59E0B"/><circle cx="90" cy="90" r="1.5" fill="#F59E0B"/><circle cx="130" cy="90" r="1.5" fill="#F59E0B"/><circle cx="170" cy="90" r="1.5" fill="#F59E0B"/><circle cx="210" cy="90" r="1.5" fill="#F59E0B"/><circle cx="250" cy="90" r="1.5" fill="#F59E0B"/><circle cx="290" cy="90" r="1.5" fill="#F59E0B"/><circle cx="330" cy="90" r="1.5" fill="#F59E0B"/><circle cx="370" cy="90" r="1.5" fill="#F59E0B"/><circle cx="410" cy="90" r="1.5" fill="#F59E0B"/><circle cx="450" cy="90" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="410" r="1.5" fill="#F59E0B"/><circle cx="90" cy="410" r="1.5" fill="#F59E0B"/><circle cx="130" cy="410" r="1.5" fill="#F59E0B"/><circle cx="170" cy="410" r="1.5" fill="#F59E0B"/><circle cx="210" cy="410" r="1.5" fill="#F59E0B"/><circle cx="250" cy="410" r="1.5" fill="#F59E0B"/><circle cx="290" cy="410" r="1.5" fill="#F59E0B"/><circle cx="330" cy="410" r="1.5" fill="#F59E0B"/><circle cx="370" cy="410" r="1.5" fill="#F59E0B"/><circle cx="410" cy="410" r="1.5" fill="#F59E0B"/><circle cx="450" cy="410" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="450" r="1.5" fill="#F59E0B"/><circle cx="90" cy="450" r="1.5" fill="#F59E0B"/><circle cx="130" cy="450" r="1.5" fill="#F59E0B"/><circle cx="170" cy="450" r="1.5" fill="#F59E0B"/><circle cx="210" cy="450" r="1.5" fill="#F59E0B"/><circle cx="250" cy="450" r="1.5" fill="#F59E0B"/><circle cx="290" cy="450" r="1.5" fill="#F59E0B"/><circle cx="330" cy="450" r="1.5" fill="#F59E0B"/><circle cx="370" cy="450" r="1.5" fill="#F59E0B"/><circle cx="410" cy="450" r="1.5" fill="#F59E0B"/><circle cx="450" cy="450" r="1.5" fill="#F59E0B"/>
+  </g>
+
+  <!-- Main code editor shape -->
+  <g transform="translate(250,250)">
+    <!-- Outer bracket left -->
+    <path d="M-88,-130 L-88,130" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <!-- Outer bracket right -->
+    <path d="M88,-130 L88,130" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <!-- Top curve -->
+    <path d="M-88,-130 Q-88,-150 -68,-150 L68,-150 Q88,-150 88,-130" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.7"/>
+    <!-- Bottom curve -->
+    <path d="M-88,130 Q-88,150 -68,150 L68,150 Q88,150 88,130" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.7"/>
+
+    <!-- Inner fill glow -->
+    <rect x="-80" y="-140" width="160" height="280" rx="12" fill="#F59E0B" opacity="0.04"/>
+
+    <!-- Code lines -->
+    <line x1="-45" y1="-90" x2="50" y2="-90" stroke="#FCD34D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-45" y1="-55" x2="20" y2="-55" stroke="#FDE68A" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="-45" y1="-20" x2="65" y2="-20" stroke="#FCD34D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-45" y1="15" x2="35" y2="15" stroke="#D97706" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="-45" y1="50" x2="55" y2="50" stroke="#FCD34D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-45" y1="85" x2="25" y2="85" stroke="#FDE68A" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <line x1="-45" y1="120" x2="45" y2="120" stroke="#D97706" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Line number dots -->
+    <circle cx="-62" cy="-90" r="4.5" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="-62" cy="-55" r="4.5" fill="#FDE68A" opacity="0.8"/>
+    <circle cx="-62" cy="-20" r="4.5" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="-62" cy="15" r="4.5" fill="#D97706" opacity="0.8"/>
+    <circle cx="-62" cy="50" r="4.5" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="-62" cy="85" r="4.5" fill="#FDE68A" opacity="0.8"/>
+    <circle cx="-62" cy="120" r="4.5" fill="#D97706" opacity="0.7"/>
+  </g>
+</svg>

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ThemeService } from '../../core/theme.service';
 
 interface SocialLink {
   icon: string;
@@ -14,6 +15,8 @@ interface TeamMember {
   tags: string[];
   emoji: string;
   image?: string;
+  lightImage?: string;
+  sableImage?: string;
   isAvatar?: boolean;
   cvUrl?: string;
   social: SocialLink[];
@@ -34,7 +37,7 @@ interface TeamMember {
           <article class="team-member" role="listitem" [style.--card-index]="i">
             <div class="member-image" [attr.aria-hidden]="true">
               @if (member.image) {
-                <img [src]="member.image" [alt]="member.name" [class.avatar-placeholder]="member.isAvatar" />
+                <img [src]="resolveAvatar(member)" [alt]="member.name" [class.avatar-placeholder]="member.isAvatar" [class.avatar-themed]="member.isAvatar && resolveAvatar(member) !== member.image" />
               } @else {
                 <span class="member-emoji">{{ member.emoji }}</span>
               }
@@ -259,8 +262,14 @@ interface TeamMember {
     :host-context(.light-theme) .avatar-placeholder {
       filter: hue-rotate(10deg) saturate(1.2) brightness(0.85);
     }
+    :host-context(.light-theme) .avatar-themed {
+      filter: none;
+    }
     :host-context(.sable-theme) .avatar-placeholder {
       filter: hue-rotate(200deg) saturate(1.8) brightness(1.05);
+    }
+    :host-context(.sable-theme) .avatar-themed {
+      filter: none;
     }
 
     /* Light Theme Overrides */
@@ -268,7 +277,7 @@ interface TeamMember {
       color: #1a1a2e;
     }
     :host-context(.light-theme) .hero__title {
-      background: linear-gradient(135deg, #0099cc, #0066cc, #cc00cc);
+      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
       -webkit-background-clip: text;
       background-clip: text;
     }
@@ -281,7 +290,7 @@ interface TeamMember {
       border-color: rgba(0, 0, 0, 0.08);
     }
     :host-context(.light-theme) .team-member:hover {
-      border-color: rgba(0, 119, 204, 0.3);
+      border-color: rgba(245, 158, 11, 0.3);
       background-color: var(--cc-surface);
       background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
@@ -299,15 +308,15 @@ interface TeamMember {
       color: rgba(100, 116, 139, 0.7);
     }
     :host-context(.light-theme) .member-role {
-      color: #0077cc;
+      color: #F59E0B;
     }
     :host-context(.light-theme) .member-bio {
       color: #94a3b8;
     }
     :host-context(.light-theme) .skill-tag {
-      background: rgba(0, 119, 204, 0.08);
-      color: #0077cc;
-      border-color: rgba(0, 119, 204, 0.15);
+      background: rgba(245, 158, 11, 0.08);
+      color: #F59E0B;
+      border-color: rgba(245, 158, 11, 0.15);
     }
     :host-context(.light-theme) .member-social {
       border-top-color: rgba(0, 0, 0, 0.08);
@@ -332,23 +341,23 @@ interface TeamMember {
     }
 
     :host-context(.light-theme) .cv-link {
-      background: rgba(0, 119, 204, 0.08);
-      border-color: rgba(0, 119, 204, 0.15);
-      color: #0077cc;
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.15);
+      color: #F59E0B;
     }
     :host-context(.light-theme) .cv-link:hover {
-      background: rgba(0, 119, 204, 0.15);
-      border-color: rgba(0, 119, 204, 0.3);
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.3);
     }
 
     :host-context(.light-theme) .social-link {
-      background: rgba(0, 119, 204, 0.08);
-      border-color: rgba(0, 119, 204, 0.15);
-      color: #0077cc;
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.15);
+      color: #F59E0B;
     }
     :host-context(.light-theme) .social-link:hover {
-      background: rgba(0, 119, 204, 0.15);
-      border-color: rgba(0, 119, 204, 0.3);
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.3);
     }
     :host-context(.light-theme) .footer {
       border-top-color: rgba(0, 0, 0, 0.08);
@@ -447,6 +456,7 @@ interface TeamMember {
   `,
 })
 export class TeamComponent {
+  readonly theme = inject(ThemeService);
   readonly members: TeamMember[] = [
     {
       name: 'Miodrag Pavkovic',
@@ -493,6 +503,8 @@ export class TeamComponent {
       tags: ['iOS', 'Android', 'Swift', 'Kotlin', 'Mobile'],
       emoji: '📱',
       image: 'images/avatar-mobile-dev.svg',
+      lightImage: 'images/avatar-mobile-dev-light.svg',
+      sableImage: 'images/avatar-mobile-dev-sable.svg',
       isAvatar: true,
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/predrag-karic-door8c/' },
@@ -506,6 +518,8 @@ export class TeamComponent {
       tags: ['Backend', 'Java', 'Spring'],
       emoji: '🖥️',
       image: 'images/avatar-backend-dev.svg',
+      lightImage: 'images/avatar-backend-dev-light.svg',
+      sableImage: 'images/avatar-backend-dev-sable.svg',
       isAvatar: true,
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/darko-karpic-731812175/' },
@@ -524,4 +538,11 @@ export class TeamComponent {
       ],
     },
   ];
+
+  resolveAvatar(member: TeamMember): string | undefined {
+    const t = this.theme.activeTheme();
+    if (t === 'light' && member.lightImage) return member.lightImage;
+    if (t === 'sable' && member.sableImage) return member.sableImage;
+    return member.image;
+  }
 }

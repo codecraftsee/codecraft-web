@@ -1,31 +1,64 @@
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="glow3" cx="50%" cy="50%" r="30%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
   </defs>
-  <rect width="200" height="200" fill="transparent"/>
-  <circle cx="100" cy="100" r="50" fill="url(#glow3)"/>
-  <!-- Circuit lines -->
-  <g stroke="#00d4ff" stroke-width="1.5" opacity="0.5" fill="none">
-    <path d="M100 50 L100 30 L40 30"/>
-    <path d="M150 100 L170 100 L170 40"/>
-    <path d="M100 150 L100 170 L160 170"/>
-    <path d="M50 100 L30 100 L30 160"/>
-    <path d="M130 70 L160 40"/>
-    <path d="M70 130 L40 160"/>
+
+  <rect width="500" height="500" fill="transparent"/>
+
+  <!-- Subtle dot grid -->
+  <g opacity="0.05">
+    <circle cx="50" cy="50" r="1.5" fill="#10B981"/><circle cx="90" cy="50" r="1.5" fill="#10B981"/><circle cx="130" cy="50" r="1.5" fill="#10B981"/><circle cx="170" cy="50" r="1.5" fill="#10B981"/><circle cx="210" cy="50" r="1.5" fill="#10B981"/><circle cx="250" cy="50" r="1.5" fill="#10B981"/><circle cx="290" cy="50" r="1.5" fill="#10B981"/><circle cx="330" cy="50" r="1.5" fill="#10B981"/><circle cx="370" cy="50" r="1.5" fill="#10B981"/><circle cx="410" cy="50" r="1.5" fill="#10B981"/><circle cx="450" cy="50" r="1.5" fill="#10B981"/>
+    <circle cx="50" cy="90" r="1.5" fill="#10B981"/><circle cx="90" cy="90" r="1.5" fill="#10B981"/><circle cx="130" cy="90" r="1.5" fill="#10B981"/><circle cx="170" cy="90" r="1.5" fill="#10B981"/><circle cx="210" cy="90" r="1.5" fill="#10B981"/><circle cx="250" cy="90" r="1.5" fill="#10B981"/><circle cx="290" cy="90" r="1.5" fill="#10B981"/><circle cx="330" cy="90" r="1.5" fill="#10B981"/><circle cx="370" cy="90" r="1.5" fill="#10B981"/><circle cx="410" cy="90" r="1.5" fill="#10B981"/><circle cx="450" cy="90" r="1.5" fill="#10B981"/>
+    <circle cx="50" cy="410" r="1.5" fill="#10B981"/><circle cx="90" cy="410" r="1.5" fill="#10B981"/><circle cx="130" cy="410" r="1.5" fill="#10B981"/><circle cx="170" cy="410" r="1.5" fill="#10B981"/><circle cx="210" cy="410" r="1.5" fill="#10B981"/><circle cx="250" cy="410" r="1.5" fill="#10B981"/><circle cx="290" cy="410" r="1.5" fill="#10B981"/><circle cx="330" cy="410" r="1.5" fill="#10B981"/><circle cx="370" cy="410" r="1.5" fill="#10B981"/><circle cx="410" cy="410" r="1.5" fill="#10B981"/><circle cx="450" cy="410" r="1.5" fill="#10B981"/>
+    <circle cx="50" cy="450" r="1.5" fill="#10B981"/><circle cx="90" cy="450" r="1.5" fill="#10B981"/><circle cx="130" cy="450" r="1.5" fill="#10B981"/><circle cx="170" cy="450" r="1.5" fill="#10B981"/><circle cx="210" cy="450" r="1.5" fill="#10B981"/><circle cx="250" cy="450" r="1.5" fill="#10B981"/><circle cx="290" cy="450" r="1.5" fill="#10B981"/><circle cx="330" cy="450" r="1.5" fill="#10B981"/><circle cx="370" cy="450" r="1.5" fill="#10B981"/><circle cx="410" cy="450" r="1.5" fill="#10B981"/><circle cx="450" cy="450" r="1.5" fill="#10B981"/>
   </g>
-  <!-- Circuit nodes -->
-  <g fill="#00d4ff" opacity="0.6">
-    <circle cx="40" cy="30" r="3"/>
-    <circle cx="170" cy="40" r="3"/>
-    <circle cx="160" cy="170" r="3"/>
-    <circle cx="30" cy="160" r="3"/>
-    <circle cx="160" cy="40" r="3"/>
-    <circle cx="40" cy="160" r="3"/>
+
+  <!-- Main hex badge shape -->
+  <g transform="translate(250,250)">
+    <!-- Outer hexagon -->
+    <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="none" stroke="#10B981" stroke-width="2.5" opacity="0.5"/>
+
+    <!-- Inner structure lines -->
+    <line x1="0" y1="-150" x2="0" y2="150" stroke="#10B981" stroke-width="1" opacity="0.15"/>
+    <line x1="-130" y1="-75" x2="130" y2="75" stroke="#10B981" stroke-width="1" opacity="0.15"/>
+    <line x1="130" y1="-75" x2="-130" y2="75" stroke="#10B981" stroke-width="1" opacity="0.15"/>
+
+    <!-- Middle hexagon -->
+    <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="#10B981" fill-opacity="0.06" stroke="#34D399" stroke-width="2" opacity="0.4"/>
+
+    <!-- Inner circle with code symbol -->
+    <circle cx="0" cy="0" r="48" fill="#10B981" fill-opacity="0.1" stroke="#6EE7B7" stroke-width="2" opacity="0.5"/>
+
+    <!-- Code tag symbol inside -->
+    <text x="-24" y="10" font-family="monospace" font-size="48" font-weight="700" fill="#6EE7B7" opacity="0.9">&lt;/&gt;</text>
+
+    <!-- Vertex dots on outer hex -->
+    <circle cx="0" cy="-150" r="5" fill="#10B981" opacity="0.6"/>
+    <circle cx="130" cy="-75" r="5" fill="#10B981" opacity="0.6"/>
+    <circle cx="130" cy="75" r="5" fill="#10B981" opacity="0.6"/>
+    <circle cx="0" cy="150" r="5" fill="#10B981" opacity="0.6"/>
+    <circle cx="-130" cy="75" r="5" fill="#10B981" opacity="0.6"/>
+    <circle cx="-130" cy="-75" r="5" fill="#10B981" opacity="0.6"/>
+
+    <!-- Vertex dots on middle hex -->
+    <circle cx="0" cy="-90" r="3.5" fill="#34D399" opacity="0.5"/>
+    <circle cx="78" cy="-45" r="3.5" fill="#34D399" opacity="0.5"/>
+    <circle cx="78" cy="45" r="3.5" fill="#34D399" opacity="0.5"/>
+    <circle cx="0" cy="90" r="3.5" fill="#34D399" opacity="0.5"/>
+    <circle cx="-78" cy="45" r="3.5" fill="#34D399" opacity="0.5"/>
+    <circle cx="-78" cy="-45" r="3.5" fill="#34D399" opacity="0.5"/>
+
+    <!-- Connecting lines from inner to outer vertices -->
+    <line x1="0" y1="-90" x2="0" y2="-150" stroke="#34D399" stroke-width="1" opacity="0.25"/>
+    <line x1="78" y1="-45" x2="130" y2="-75" stroke="#34D399" stroke-width="1" opacity="0.25"/>
+    <line x1="78" y1="45" x2="130" y2="75" stroke="#34D399" stroke-width="1" opacity="0.25"/>
+    <line x1="0" y1="90" x2="0" y2="150" stroke="#34D399" stroke-width="1" opacity="0.25"/>
+    <line x1="-78" y1="45" x2="-130" y2="75" stroke="#34D399" stroke-width="1" opacity="0.25"/>
+    <line x1="-78" y1="-45" x2="-130" y2="-75" stroke="#34D399" stroke-width="1" opacity="0.25"/>
   </g>
-  <!-- Center person icon -->
-  <circle cx="100" cy="82" r="18" fill="none" stroke="#00d4ff" stroke-width="2"/>
-  <path d="M72 130 C72 108 128 108 128 130" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+
+
 </svg>

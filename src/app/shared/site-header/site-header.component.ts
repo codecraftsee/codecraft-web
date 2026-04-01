@@ -106,12 +106,12 @@ import { ThemeService } from '../../core/theme.service';
       color: #94a3b8;
     }
     :host-context(.light-theme) .nav__link:hover {
-      color: #0077cc;
+      color: #F59E0B;
     }
-    :host-context(.light-theme) .nav__link--active { color: #0077cc; }
-    :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #0077cc; }
+    :host-context(.light-theme) .nav__link--active { color: #F59E0B; }
+    :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #F59E0B; }
     :host-context(.light-theme) .nav__btn {
-      background: linear-gradient(135deg, #0099cc, #0066cc);
+      background: linear-gradient(135deg, #F59E0B, #D97706);
       color: #ffffff;
     }
 
@@ -171,8 +171,8 @@ import { ThemeService } from '../../core/theme.service';
         border-color: rgba(0, 0, 0, 0.1);
       }
       :host-context(.light-theme) .nav__link:hover {
-        background: rgba(0, 119, 204, 0.08);
-        border-color: rgba(0, 119, 204, 0.2);
+        background: rgba(245, 158, 11, 0.08);
+        border-color: rgba(245, 158, 11, 0.2);
       }
 
       :host-context(.sable-theme) .nav__link {
