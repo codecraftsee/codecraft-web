@@ -19,16 +19,85 @@
     z-index: -1;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, var(--cc-backdrop-hex, #3B82F6) 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
-    mask-image: radial-gradient(circle 200px at var(--mx, -999px) var(--my, -999px), black 0%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle 200px at var(--mx, -999px) var(--my, -999px), black 0%, transparent 100%);
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: -1;
+}
+
+.circuit-bg {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 60%;
+  height: 300px;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: -1;
+  mask-image: linear-gradient(to right, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
+}
+
+.binary-bg {
+  display: none;
+  position: absolute;
+  width: 40%;
+  height: 300px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+
+  &--top-left {
+    top: 60px;
+    left: 0;
+    mask-image: linear-gradient(to right, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
+  }
+
+  &--top-right {
+    top: 60px;
+    right: 0;
+    mask-image: linear-gradient(to left, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 40%, transparent 100%);
+  }
+
+  &--bottom {
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    mask-image: linear-gradient(to right, black 30%, transparent 90%), linear-gradient(to top, black 30%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 30%, transparent 90%), linear-gradient(to top, black 30%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}
+
+:host-context(.dark-theme),
+:host-context(.light-theme) {
+  .content-area::before,
+  .content-area::after {
+    display: none;
+  }
+
+  .binary-bg {
+    display: block;
+
+    &--top-left,
+    &--top-right { width: 50%; }
+
+    &--bottom { width: 60%; }
+  }
+}
+
+:host-context(.sable-theme) {
+  .content-area::before,
+  .content-area::after {
+    display: none;
+  }
+
+  .binary-bg {
+    display: block;
+
+    &--top-left,
+    &--top-right { width: 50%; }
+
+    &--bottom { width: 60%; }
   }
 }
