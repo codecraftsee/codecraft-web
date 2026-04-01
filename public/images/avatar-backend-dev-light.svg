@@ -1,0 +1,64 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8F8F8"/>
+      <stop offset="100%" stop-color="#F0F0F0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="500" fill="transparent"/>
+
+  <!-- Subtle dot grid -->
+  <g opacity="0.08">
+    <circle cx="50" cy="50" r="1.5" fill="#F59E0B"/><circle cx="90" cy="50" r="1.5" fill="#F59E0B"/><circle cx="130" cy="50" r="1.5" fill="#F59E0B"/><circle cx="170" cy="50" r="1.5" fill="#F59E0B"/><circle cx="210" cy="50" r="1.5" fill="#F59E0B"/><circle cx="250" cy="50" r="1.5" fill="#F59E0B"/><circle cx="290" cy="50" r="1.5" fill="#F59E0B"/><circle cx="330" cy="50" r="1.5" fill="#F59E0B"/><circle cx="370" cy="50" r="1.5" fill="#F59E0B"/><circle cx="410" cy="50" r="1.5" fill="#F59E0B"/><circle cx="450" cy="50" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="90" r="1.5" fill="#F59E0B"/><circle cx="90" cy="90" r="1.5" fill="#F59E0B"/><circle cx="130" cy="90" r="1.5" fill="#F59E0B"/><circle cx="170" cy="90" r="1.5" fill="#F59E0B"/><circle cx="210" cy="90" r="1.5" fill="#F59E0B"/><circle cx="250" cy="90" r="1.5" fill="#F59E0B"/><circle cx="290" cy="90" r="1.5" fill="#F59E0B"/><circle cx="330" cy="90" r="1.5" fill="#F59E0B"/><circle cx="370" cy="90" r="1.5" fill="#F59E0B"/><circle cx="410" cy="90" r="1.5" fill="#F59E0B"/><circle cx="450" cy="90" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="410" r="1.5" fill="#F59E0B"/><circle cx="90" cy="410" r="1.5" fill="#F59E0B"/><circle cx="130" cy="410" r="1.5" fill="#F59E0B"/><circle cx="170" cy="410" r="1.5" fill="#F59E0B"/><circle cx="210" cy="410" r="1.5" fill="#F59E0B"/><circle cx="250" cy="410" r="1.5" fill="#F59E0B"/><circle cx="290" cy="410" r="1.5" fill="#F59E0B"/><circle cx="330" cy="410" r="1.5" fill="#F59E0B"/><circle cx="370" cy="410" r="1.5" fill="#F59E0B"/><circle cx="410" cy="410" r="1.5" fill="#F59E0B"/><circle cx="450" cy="410" r="1.5" fill="#F59E0B"/>
+    <circle cx="50" cy="450" r="1.5" fill="#F59E0B"/><circle cx="90" cy="450" r="1.5" fill="#F59E0B"/><circle cx="130" cy="450" r="1.5" fill="#F59E0B"/><circle cx="170" cy="450" r="1.5" fill="#F59E0B"/><circle cx="210" cy="450" r="1.5" fill="#F59E0B"/><circle cx="250" cy="450" r="1.5" fill="#F59E0B"/><circle cx="290" cy="450" r="1.5" fill="#F59E0B"/><circle cx="330" cy="450" r="1.5" fill="#F59E0B"/><circle cx="370" cy="450" r="1.5" fill="#F59E0B"/><circle cx="410" cy="450" r="1.5" fill="#F59E0B"/><circle cx="450" cy="450" r="1.5" fill="#F59E0B"/>
+  </g>
+
+  <!-- Main hex badge shape -->
+  <g transform="translate(250,250)">
+    <!-- Outer hexagon -->
+    <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="none" stroke="#F59E0B" stroke-width="2.5" opacity="0.6"/>
+
+    <!-- Inner structure lines -->
+    <line x1="0" y1="-150" x2="0" y2="150" stroke="#F59E0B" stroke-width="1" opacity="0.2"/>
+    <line x1="-130" y1="-75" x2="130" y2="75" stroke="#F59E0B" stroke-width="1" opacity="0.2"/>
+    <line x1="130" y1="-75" x2="-130" y2="75" stroke="#F59E0B" stroke-width="1" opacity="0.2"/>
+
+    <!-- Middle hexagon -->
+    <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="#F59E0B" fill-opacity="0.08" stroke="#D97706" stroke-width="2" opacity="0.5"/>
+
+    <!-- Inner circle with code symbol -->
+    <circle cx="0" cy="0" r="48" fill="#F59E0B" fill-opacity="0.12" stroke="#D97706" stroke-width="2" opacity="0.6"/>
+
+    <!-- Code tag symbol inside -->
+    <text x="-24" y="10" font-family="monospace" font-size="48" font-weight="700" fill="#F59E0B" opacity="0.9">&lt;/&gt;</text>
+
+    <!-- Vertex dots on outer hex -->
+    <circle cx="0" cy="-150" r="5" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="130" cy="-75" r="5" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="130" cy="75" r="5" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="0" cy="150" r="5" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="-130" cy="75" r="5" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="-130" cy="-75" r="5" fill="#F59E0B" opacity="0.7"/>
+
+    <!-- Vertex dots on middle hex -->
+    <circle cx="0" cy="-90" r="3.5" fill="#D97706" opacity="0.6"/>
+    <circle cx="78" cy="-45" r="3.5" fill="#D97706" opacity="0.6"/>
+    <circle cx="78" cy="45" r="3.5" fill="#D97706" opacity="0.6"/>
+    <circle cx="0" cy="90" r="3.5" fill="#D97706" opacity="0.6"/>
+    <circle cx="-78" cy="45" r="3.5" fill="#D97706" opacity="0.6"/>
+    <circle cx="-78" cy="-45" r="3.5" fill="#D97706" opacity="0.6"/>
+
+    <!-- Connecting lines from inner to outer vertices -->
+    <line x1="0" y1="-90" x2="0" y2="-150" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+    <line x1="78" y1="-45" x2="130" y2="-75" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+    <line x1="78" y1="45" x2="130" y2="75" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+    <line x1="0" y1="90" x2="0" y2="150" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+    <line x1="-78" y1="45" x2="-130" y2="75" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+    <line x1="-78" y1="-45" x2="-130" y2="-75" stroke="#D97706" stroke-width="1" opacity="0.3"/>
+  </g>
+
+
+</svg>
