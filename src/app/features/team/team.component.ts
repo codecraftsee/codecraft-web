@@ -466,6 +466,7 @@ export class TeamComponent {
       tags: ['Leadership', 'Frontend', 'Full-Stack'],
       emoji: '👨‍💼',
       image: 'images/mio.jpg',
+      cvUrl: 'cv/Miodrag_Pavkovic_CV.pdf',
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miodrag-pavkovi%C4%87-4351129/' },
       ],
