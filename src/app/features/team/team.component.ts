@@ -534,6 +534,7 @@ export class TeamComponent {
       tags: ['Backend', 'Team Lead', 'Leadership'],
       emoji: '👨‍💻',
       image: 'images/miroslav.jpg',
+      cvUrl: 'cv/Miroslav_Pavkovic_CV.pdf',
       social: [
         { icon: 'in', label: 'LinkedIn', url: 'https://www.linkedin.com/in/miroslav-pavkovic-a0248283/' },
       ],
