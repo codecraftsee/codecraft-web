@@ -214,53 +214,53 @@ interface ServiceOffering {
 
     /* Light Theme Overrides */
     :host-context(.light-theme) {
-      color: #1a1a2e;
+      color: #030712;
     }
     :host-context(.light-theme) .timeline::before {
-      background: linear-gradient(180deg, #F59E0B, #D97706);
+      background: linear-gradient(180deg, #EA580C, #C2410C);
       opacity: 0.6;
     }
     :host-context(.light-theme) .timeline__dot {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+      background: linear-gradient(135deg, #EA580C, #C2410C);
+      box-shadow: 0 0 12px rgba(234, 88, 12, 0.3);
     }
     :host-context(.light-theme) .hero__title {
-      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      background: linear-gradient(135deg, #EA580C, #C2410C, #9A3412);
       -webkit-background-clip: text;
       background-clip: text;
     }
     :host-context(.light-theme) .hero__subtitle {
-      color: #94a3b8;
+      color: #374151;
     }
     :host-context(.light-theme) .card {
       background-color: var(--cc-surface);
-      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
-      border-color: rgba(0, 0, 0, 0.08);
+      background-image: none;
+      border-color: #D1D5DB;
     }
     :host-context(.light-theme) .card:hover {
-      border-color: rgba(245, 158, 11, 0.3);
+      border-color: rgba(234, 88, 12, 0.4);
       background-color: var(--cc-surface);
-      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      background-image: none;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
     }
     :host-context(.light-theme) .card::before {
-      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+      background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.06), transparent);
     }
     :host-context(.light-theme) .card__title {
-      color: #1a1a2e;
+      color: #030712;
     }
     :host-context(.light-theme) .card__desc {
-      color: #94a3b8;
+      color: #374151;
     }
     :host-context(.light-theme) .card__number {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
+      background: linear-gradient(135deg, #EA580C, #C2410C);
       -webkit-background-clip: text;
       background-clip: text;
     }
     :host-context(.light-theme) .card__tag {
-      border-color: rgba(245, 158, 11, 0.15);
-      color: #F59E0B;
-      background: rgba(245, 158, 11, 0.06);
+      border-color: rgba(234, 88, 12, 0.25);
+      color: #C2410C;
+      background: rgba(234, 88, 12, 0.08);
     }
 
     :host-context(.sable-theme) {

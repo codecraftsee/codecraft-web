@@ -492,77 +492,77 @@ import { ContactService } from './contact.service';
 
     /* Light theme */
     :host-context(.light-theme) {
-      color: #1a1a2e;
+      color: #030712;
     }
     :host-context(.light-theme) .hero__title {
-      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
+      background: linear-gradient(135deg, #EA580C, #C2410C, #9A3412);
       -webkit-background-clip: text;
       background-clip: text;
     }
-    :host-context(.light-theme) .hero__subtitle { color: #94a3b8; }
+    :host-context(.light-theme) .hero__subtitle { color: #374151; }
     :host-context(.light-theme) .badge {
-      background: rgba(245, 158, 11, 0.06);
-      border-color: rgba(245, 158, 11, 0.2);
-      color: #F59E0B;
+      background: rgba(234, 88, 12, 0.08);
+      border-color: rgba(234, 88, 12, 0.25);
+      color: #C2410C;
     }
     :host-context(.light-theme) .progress__dot {
-      border-color: rgba(0, 0, 0, 0.12);
-      background: rgba(0, 0, 0, 0.02);
-      color: #94a3b8;
+      border-color: #D1D5DB;
+      background: #F9FAFB;
+      color: #4B5563;
     }
     :host-context(.light-theme) .progress__step--active .progress__dot {
-      border-color: #F59E0B;
-      background: rgba(245, 158, 11, 0.08);
-      color: #F59E0B;
-      box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
+      border-color: #EA580C;
+      background: rgba(234, 88, 12, 0.08);
+      color: #C2410C;
+      box-shadow: 0 0 16px rgba(234, 88, 12, 0.2);
     }
     :host-context(.light-theme) .progress__step--done .progress__dot {
-      border-color: #F59E0B;
-      background: #F59E0B;
+      border-color: #EA580C;
+      background: #EA580C;
       color: #fff;
     }
-    :host-context(.light-theme) .progress__line { background: rgba(0, 0, 0, 0.08); }
-    :host-context(.light-theme) .progress__line--done { background: rgba(245, 158, 11, 0.4); }
-    :host-context(.light-theme) .progress__label { color: #94a3b8; }
+    :host-context(.light-theme) .progress__line { background: #E5E7EB; }
+    :host-context(.light-theme) .progress__line--done { background: rgba(234, 88, 12, 0.45); }
+    :host-context(.light-theme) .progress__label { color: #4B5563; }
     :host-context(.light-theme) .form-card {
-      background: rgba(0, 0, 0, 0.02);
-      border-color: rgba(0, 0, 0, 0.08);
+      background: #F9FAFB;
+      border-color: #D1D5DB;
     }
-    :host-context(.light-theme) .form-card__title { color: #1a1a2e; }
-    :host-context(.light-theme) .field__label { color: #94a3b8; }
-    :host-context(.light-theme) .field__required { color: #F59E0B; }
+    :host-context(.light-theme) .form-card__title { color: #030712; }
+    :host-context(.light-theme) .field__label { color: #374151; }
+    :host-context(.light-theme) .field__required { color: #EA580C; }
     :host-context(.light-theme) .field__input {
       background: #ffffff;
-      border-color: rgba(0, 0, 0, 0.12);
-      color: #1a1a2e;
+      border-color: #D1D5DB;
+      color: #030712;
     }
     :host-context(.light-theme) .field__input:focus {
-      border-color: rgba(245, 158, 11, 0.5);
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.08);
+      border-color: rgba(234, 88, 12, 0.5);
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
     }
-    :host-context(.light-theme) .field__input option { background: #fff; color: #1a1a2e; }
+    :host-context(.light-theme) .field__input option { background: #fff; color: #030712; }
     :host-context(.light-theme) .btn--ghost {
-      color: #94a3b8;
-      border-color: rgba(0, 0, 0, 0.12);
+      color: #374151;
+      border-color: #D1D5DB;
     }
     :host-context(.light-theme) .btn--ghost:hover {
-      border-color: rgba(245, 158, 11, 0.35);
-      color: #F59E0B;
+      border-color: rgba(234, 88, 12, 0.4);
+      color: #C2410C;
     }
     :host-context(.light-theme) .success__title {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
+      background: linear-gradient(135deg, #EA580C, #C2410C);
       -webkit-background-clip: text;
       background-clip: text;
     }
-    :host-context(.light-theme) .success__text { color: #94a3b8; }
+    :host-context(.light-theme) .success__text { color: #374151; }
     :host-context(.light-theme) .submit-error {
-      color: #dc2626;
-      background: rgba(220, 38, 38, 0.06);
-      border-color: rgba(220, 38, 38, 0.15);
+      color: #B91C1C;
+      background: rgba(185, 28, 28, 0.06);
+      border-color: rgba(185, 28, 28, 0.2);
     }
-    :host-context(.light-theme) .fallback { color: #94a3b8; }
-    :host-context(.light-theme) .fallback__link { color: #94a3b8; }
-    :host-context(.light-theme) .fallback__link:hover { color: #F59E0B; }
+    :host-context(.light-theme) .fallback { color: #374151; }
+    :host-context(.light-theme) .fallback__link { color: #374151; }
+    :host-context(.light-theme) .fallback__link:hover { color: #C2410C; }
 
     :host-context(.sable-theme) {
       color: #F5F0E8;

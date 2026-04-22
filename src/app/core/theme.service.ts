@@ -19,16 +19,12 @@ export class ThemeService {
   }
 
   toggle(): void {
-    this.activeTheme.update(t => {
-      if (t === 'light') return 'dark';
-      if (t === 'dark') return 'sable';
-      return 'light';
-    });
+    this.activeTheme.update(t => (t === 'dark' ? 'sable' : 'dark'));
   }
 
   private getInitialTheme(): Theme {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark' || stored === 'sable') return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (stored === 'dark' || stored === 'sable') return stored;
+    return 'dark';
   }
 }
