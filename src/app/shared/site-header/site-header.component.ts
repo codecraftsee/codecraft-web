@@ -97,21 +97,21 @@ import { ThemeService } from '../../core/theme.service';
 
     /* Light Theme */
     :host-context(.light-theme) .header {
-      border-bottom-color: rgba(0, 0, 0, 0.08);
+      border-bottom-color: #E5E7EB;
     }
     :host-context(.light-theme) .logo__img {
       filter: none;
     }
     :host-context(.light-theme) .nav__link {
-      color: #94a3b8;
+      color: #374151;
     }
     :host-context(.light-theme) .nav__link:hover {
-      color: #F59E0B;
+      color: #C2410C;
     }
-    :host-context(.light-theme) .nav__link--active { color: #F59E0B; }
-    :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #F59E0B; }
+    :host-context(.light-theme) .nav__link--active { color: #C2410C; }
+    :host-context(.light-theme) .nav__btn--active { box-shadow: 0 0 0 2px #EA580C; }
     :host-context(.light-theme) .nav__btn {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
+      background: linear-gradient(135deg, #EA580C, #C2410C);
       color: #ffffff;
     }
 
@@ -167,12 +167,12 @@ import { ThemeService } from '../../core/theme.service';
       }
 
       :host-context(.light-theme) .nav__link {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 0, 0, 0.1);
+        background: #F9FAFB;
+        border-color: #D1D5DB;
       }
       :host-context(.light-theme) .nav__link:hover {
-        background: rgba(245, 158, 11, 0.08);
-        border-color: rgba(245, 158, 11, 0.2);
+        background: rgba(234, 88, 12, 0.08);
+        border-color: rgba(234, 88, 12, 0.3);
       }
 
       :host-context(.sable-theme) .nav__link {

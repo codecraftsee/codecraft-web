@@ -11,30 +11,32 @@
 
   color-scheme: light;
 
-  // Brand colour tokens
-  --cc-primary:         #6C3CE1;
+  // Brand colour tokens — Option C: High-Contrast Paper
+  --cc-primary:         #EA580C;
   --cc-on-primary:      #FFFFFF;
   --cc-surface:         #FFFFFF;
-  --cc-on-surface:      #1A1A2E;
-  --cc-surface-variant: #F5F5FA;
-  --cc-surface-dim:     #FAFAFE;
-  --cc-outline:         #E0E0EA;
+  --cc-on-surface:      #030712;
+  --cc-surface-variant: #F9FAFB;
+  --cc-surface-dim:     #F3F4F6;
+  --cc-outline:         #D1D5DB;
   --cc-error:           var(--mat-sys-error);
-  --cc-accent:          #6C3CE1;
+  --cc-accent:          #EA580C;
+  --cc-accent-hover:    #C2410C;
   --cc-on-accent:       #FFFFFF;
+  --cc-muted-text:      #374151;
 
   // Glass tokens
-  --cc-glass-bg:      rgba(255, 255, 255, 0.6);
-  --cc-glass-border:  rgba(255, 255, 255, 0.3);
+  --cc-glass-bg:      rgba(255, 255, 255, 0.72);
+  --cc-glass-border:  rgba(209, 213, 219, 0.6);
   --cc-glass-blur:    16px;
-  --cc-glass-shadow:  0 8px 32px rgba(0, 0, 0, 0.08);
+  --cc-glass-shadow:  0 8px 32px rgba(15, 23, 42, 0.08);
 
   // Backdrop tokens
-  --cc-backdrop-start:  #e8e0ff;
-  --cc-backdrop-mid:    #f0e6ff;
-  --cc-backdrop-end:    #dce8ff;
-  --cc-backdrop-accent: #c4b5fd;
-  --cc-backdrop-hex:    #F59E0B;
+  --cc-backdrop-start:  #F9FAFB;
+  --cc-backdrop-mid:    #F3F4F6;
+  --cc-backdrop-end:    #E5E7EB;
+  --cc-backdrop-accent: #FED7AA;
+  --cc-backdrop-hex:    #EA580C;
 
   // Typography tokens
   --cc-font-sans:  'Inter', system-ui, sans-serif;

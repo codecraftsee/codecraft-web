@@ -4,12 +4,12 @@ import { ThemeService } from './theme.service';
 describe('ThemeService', () => {
   let service: ThemeService;
 
-  const setupService = (storedTheme?: string, prefersDark = false) => {
+  const setupService = (storedTheme?: string) => {
     localStorage.clear();
     if (storedTheme) localStorage.setItem('cc-theme', storedTheme);
 
     window.matchMedia = (query: string) =>
-      ({ matches: prefersDark && query === '(prefers-color-scheme: dark)' } as MediaQueryList);
+      ({ matches: false, media: query } as MediaQueryList);
 
     TestBed.configureTestingModule({});
     service = TestBed.inject(ThemeService);
@@ -19,11 +19,6 @@ describe('ThemeService', () => {
   afterEach(() => localStorage.clear());
 
   describe('initial theme', () => {
-    it('reads stored light preference from localStorage', () => {
-      setupService('light');
-      expect(service.activeTheme()).toBe('light');
-    });
-
     it('reads stored dark preference from localStorage', () => {
       setupService('dark');
       expect(service.activeTheme()).toBe('dark');
@@ -34,45 +29,32 @@ describe('ThemeService', () => {
       expect(service.activeTheme()).toBe('sable');
     });
 
-    it('falls back to dark when OS prefers dark and no stored preference', () => {
-      setupService(undefined, true);
+    it('ignores a stored light preference and falls back to dark', () => {
+      setupService('light');
       expect(service.activeTheme()).toBe('dark');
     });
 
-    it('falls back to light when OS prefers light and no stored preference', () => {
-      setupService(undefined, false);
-      expect(service.activeTheme()).toBe('light');
+    it('defaults to dark when no preference is stored', () => {
+      setupService();
+      expect(service.activeTheme()).toBe('dark');
     });
   });
 
   describe('toggle()', () => {
-    it('switches from light to dark', () => {
-      setupService('light');
-      service.toggle();
-      expect(service.activeTheme()).toBe('dark');
-    });
-
     it('switches from dark to sable', () => {
       setupService('dark');
       service.toggle();
       expect(service.activeTheme()).toBe('sable');
     });
 
-    it('switches from sable to light', () => {
+    it('switches from sable to dark', () => {
       setupService('sable');
       service.toggle();
-      expect(service.activeTheme()).toBe('light');
+      expect(service.activeTheme()).toBe('dark');
     });
   });
 
   describe('localStorage persistence', () => {
-    it('writes dark to localStorage when toggling from light', () => {
-      setupService('light');
-      service.toggle();
-      TestBed.flushEffects();
-      expect(localStorage.getItem('cc-theme')).toBe('dark');
-    });
-
     it('writes sable to localStorage when toggling from dark', () => {
       setupService('dark');
       service.toggle();
@@ -80,22 +62,15 @@ describe('ThemeService', () => {
       expect(localStorage.getItem('cc-theme')).toBe('sable');
     });
 
-    it('writes light to localStorage when toggling from sable', () => {
+    it('writes dark to localStorage when toggling from sable', () => {
       setupService('sable');
       service.toggle();
       TestBed.flushEffects();
-      expect(localStorage.getItem('cc-theme')).toBe('light');
+      expect(localStorage.getItem('cc-theme')).toBe('dark');
     });
   });
 
   describe('DOM class', () => {
-    it('applies light-theme class to documentElement', () => {
-      setupService('light');
-      expect(document.documentElement.classList.contains('light-theme')).toBe(true);
-      expect(document.documentElement.classList.contains('dark-theme')).toBe(false);
-      expect(document.documentElement.classList.contains('sable-theme')).toBe(false);
-    });
-
     it('applies dark-theme class to documentElement', () => {
       setupService('dark');
       expect(document.documentElement.classList.contains('dark-theme')).toBe(true);
@@ -111,12 +86,12 @@ describe('ThemeService', () => {
     });
 
     it('swaps classes on toggle', () => {
-      setupService('light');
+      setupService('dark');
       service.toggle();
       TestBed.flushEffects();
-      expect(document.documentElement.classList.contains('dark-theme')).toBe(true);
+      expect(document.documentElement.classList.contains('sable-theme')).toBe(true);
+      expect(document.documentElement.classList.contains('dark-theme')).toBe(false);
       expect(document.documentElement.classList.contains('light-theme')).toBe(false);
-      expect(document.documentElement.classList.contains('sable-theme')).toBe(false);
     });
   });
 });
