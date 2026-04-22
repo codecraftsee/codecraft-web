@@ -6,10 +6,10 @@ import { ThemeService } from '../../core/theme.service';
 describe('ThemeToggleComponent', () => {
   let fixture: ComponentFixture<ThemeToggleComponent>;
   let toggleSpy: ReturnType<typeof vi.fn>;
-  let activeThemeSignal: ReturnType<typeof signal<'light' | 'dark' | 'sable'>>;
+  let activeThemeSignal: ReturnType<typeof signal<'dark' | 'sable'>>;
 
-  const setupComponent = (theme: 'light' | 'dark' | 'sable') => {
-    activeThemeSignal = signal<'light' | 'dark' | 'sable'>(theme);
+  const setupComponent = (theme: 'dark' | 'sable') => {
+    activeThemeSignal = signal<'dark' | 'sable'>(theme);
     toggleSpy = vi.fn();
 
     TestBed.configureTestingModule({
@@ -25,20 +25,6 @@ describe('ThemeToggleComponent', () => {
     fixture = TestBed.createComponent(ThemeToggleComponent);
     fixture.detectChanges();
   };
-
-  describe('when theme is light', () => {
-    beforeEach(() => setupComponent('light'));
-
-    it('renders the sun icon', () => {
-      const svg = fixture.nativeElement.querySelector('[data-testid="sun-icon"]');
-      expect(svg).toBeTruthy();
-    });
-
-    it('sets aria-label to switch to dark mode', () => {
-      const button = fixture.nativeElement.querySelector('button');
-      expect(button.getAttribute('aria-label')).toBe('Switch to dark mode');
-    });
-  });
 
   describe('when theme is dark', () => {
     beforeEach(() => setupComponent('dark'));
@@ -62,14 +48,14 @@ describe('ThemeToggleComponent', () => {
       expect(svg).toBeTruthy();
     });
 
-    it('sets aria-label to switch to light mode', () => {
+    it('sets aria-label to switch to dark mode', () => {
       const button = fixture.nativeElement.querySelector('button');
-      expect(button.getAttribute('aria-label')).toBe('Switch to light mode');
+      expect(button.getAttribute('aria-label')).toBe('Switch to dark mode');
     });
   });
 
   describe('interaction', () => {
-    beforeEach(() => setupComponent('light'));
+    beforeEach(() => setupComponent('dark'));
 
     it('calls themeService.toggle() on click', () => {
       const button = fixture.nativeElement.querySelector('button');
