@@ -776,6 +776,9 @@ interface TeamMember {
       pointer-events: none;
       transform: translate(-50%, -50%) scale(0.6);
     }
+    .constellation--focused .hex-node:not(.hex-node--active) {
+      opacity: 0.35;
+    }
 
     .skill-burst {
       position: absolute;
@@ -967,9 +970,14 @@ export class TeamComponent {
       bio: 'Strategic business leader and frontend specialist driving digital transformation with hands-on engineering expertise.',
       tags: ['Leadership', 'Frontend', 'Full-Stack'],
       skillCategories: [
-        { name: 'Leadership', skills: ['Strategy', 'Product Vision', 'Team Building', 'Client Relations'] },
-        { name: 'Frontend', skills: ['Angular', 'TypeScript', 'RxJS', 'SCSS', 'Signals'] },
-        { name: 'Full-Stack', skills: ['Node.js', 'REST APIs', 'PostgreSQL', 'CI/CD', 'Cloud'] },
+        { name: 'Frontend', skills: ['Angular', 'AngularJS', 'React', 'TypeScript', 'JavaScript', 'JQuery', 'GWT', 'HTML5', 'CSS/Sass', 'Bootstrap'] },
+        { name: 'State Management', skills: ['NgRx', 'Akita', 'Angularfire', 'Angular Service Worker', 'Angular Material'] },
+        { name: 'Backend', skills: ['Java', 'Python', 'Go', 'Node.js', 'Express', 'Spring', 'Django REST'] },
+        { name: 'Databases', skills: ['MySQL', 'MSSQL', 'PostgreSQL', 'Oracle', 'Hibernate', 'Liquibase'] },
+        { name: 'Messaging', skills: ['RabbitMQ', 'ActiveMQ', 'REST', 'RPC', 'SOAP', 'OAuth2'] },
+        { name: 'DevOps & Tools', skills: ['Docker', 'Docker Compose', 'Kubernetes', 'AWS', 'Firebase', 'Jenkins', 'Semaphore', 'Git'] },
+        { name: 'Testing', skills: ['Karma', 'Jasmine', 'JUnit', 'Mockito', 'Protractor', 'JMeter', 'Cucumber'] },
+        { name: 'Servers', skills: ['JBoss/WildFly', 'NGINX', 'Apache Tomcat'] },
       ],
       emoji: '👨‍💼',
       image: 'images/mio.jpg',
@@ -986,10 +994,12 @@ export class TeamComponent {
       bio: 'Technology visionary architecting scalable systems and driving innovation.',
       tags: ['Technology', 'Architecture', 'Innovation', 'Frontend'],
       skillCategories: [
-        { name: 'Architecture', skills: ['System Design', 'Micro-frontends', 'Monorepos', 'Module Boundaries'] },
-        { name: 'Frontend', skills: ['Angular', 'RxJS', 'TypeScript', 'NgRx', 'Testing'] },
-        { name: 'Innovation', skills: ['POC Prototyping', 'Tech Radar', 'Tooling', 'DX'] },
-        { name: 'Technology', skills: ['CI/CD', 'Cloud', 'Observability', 'Security'] },
+        { name: 'Front-End', skills: ['React', 'Next.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Web Components', 'HTMX', 'Flutter', 'Shopify Hydrogen', 'RxJS'] },
+        { name: 'State Management', skills: ['Redux', 'NgRx', 'Angular Signals', 'Zustand', 'Recoil'] },
+        { name: 'Back-End', skills: ['Node.js', 'NestJS'] },
+        { name: 'API', skills: ['REST', 'GraphQL', 'WebSockets'] },
+        { name: 'Databases', skills: ['MySQL', 'PostgreSQL', 'Firestore'] },
+        { name: 'Tools', skills: ['Git', 'Docker', 'Postman', 'Vite', 'Turborepo', 'Cypress', 'Husky', 'NPM', 'Stripe API'] },
       ],
       emoji: '👨‍💻',
       image: 'images/dejan.jpg',
@@ -1061,9 +1071,14 @@ export class TeamComponent {
       bio: 'Backend software engineer and team lead driving technical excellence and business growth.',
       tags: ['Backend', 'Team Lead', 'Leadership'],
       skillCategories: [
-        { name: 'Backend', skills: ['Node.js', 'Python', 'PostgreSQL', 'REST', 'gRPC'] },
-        { name: 'Team Lead', skills: ['Mentoring', 'Code Review', 'Agile', 'Delivery'] },
-        { name: 'Leadership', skills: ['Strategy', 'Hiring', 'Roadmapping', 'Stakeholders'] },
+        { name: 'Languages', skills: ['Java', 'Python', 'PHP', 'Groovy', 'SQL'] },
+        { name: 'Back-End', skills: ['Spring', 'Spring Boot', 'Spring Cloud', 'Hibernate', 'RabbitMQ', 'Python Django'] },
+        { name: 'Front-End', skills: ['Angular (2+)', 'HTML', 'CSS', 'jQuery'] },
+        { name: 'Databases', skills: ['PostgreSQL', 'MySQL', 'Oracle SQL', 'MS SQL', 'H2', 'Influx DB', 'DynamoDB', 'Flyway', 'Liquibase'] },
+        { name: 'DevOps', skills: ['Docker', 'Kubernetes', 'AWS', 'Jenkins', 'Woodpecker', 'TeamCity'] },
+        { name: 'Testing', skills: ['JUnit', 'Cucumber', 'Mockito', 'Power Mockito', 'Spring Cloud Contract', 'Selenium'] },
+        { name: 'Tools', skills: ['Gradle', 'Maven', 'Git', 'SVN', 'Grafana', 'ELK Bundle', 'Jasper', 'jBPM', 'Jira', 'Confluence', 'Redmine'] },
+        { name: 'Methodologies', skills: ['Scrum', 'Agile', 'Waterfall'] },
       ],
       emoji: '👨‍💻',
       image: 'images/miroslav.jpg',
