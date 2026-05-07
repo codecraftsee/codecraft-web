@@ -11,34 +11,51 @@
 
   color-scheme: dark;
 
-  // Brand colour tokens
-  --cc-primary:         #D97706;
-  --cc-on-primary:      #1C1917;
-  --cc-surface:         #1C1917;
-  --cc-on-surface:      #F5F0E8;
-  --cc-surface-variant: #292524;
-  --cc-surface-dim:     #0F0E0B;
-  --cc-outline:         #3C3633;
-  --cc-error:           var(--mat-sys-error);
-  --cc-accent:          #F59E0B;
-  --cc-accent-hover:    #D97706;
-  --cc-on-accent:       #1C1917;
-  --cc-muted-text:      #D4B896;
+  // Background
+  --cc-bg:    #15110C;
+  --cc-bg2:   #1C170F;
+  --cc-panel: #1A150E;
 
-  // Glass tokens
-  --cc-glass-bg:      rgba(28, 25, 23, 0.65);
-  --cc-glass-border:  rgba(217, 119, 6, 0.18);
-  --cc-glass-blur:    20px;
-  --cc-glass-shadow:  0 8px 32px rgba(0, 0, 0, 0.45);
+  // Ink
+  --cc-ink:      #F5EBD8;
+  --cc-ink-soft: #C8B690;
+  --cc-ink-mute: #8A7A5C;
 
-  // Backdrop tokens
-  --cc-backdrop-start:  #3B1F00;
-  --cc-backdrop-mid:    #1C1410;
-  --cc-backdrop-end:    #140F09;
-  --cc-backdrop-accent: #D97706;
-  --cc-backdrop-hex:    #F59E0B;
+  // Rules
+  --cc-rule:        rgba(217, 169, 90, 0.16);
+  --cc-rule-strong: rgba(217, 169, 90, 0.45);
 
-  // Typography tokens
-  --cc-font-sans:  'Inter', system-ui, sans-serif;
-  --cc-font-serif: 'Instrument Serif', Georgia, serif;
+  // Accent — cyan (same as dark/blueprint)
+  --cc-accent:      #5BD0E8;
+  --cc-accent-2:    #3BB8D4;
+  --cc-accent-glow: rgba(91, 208, 232, 0.18);
+  --cc-accent-soft: rgba(91, 208, 232, 0.10);
+
+  // Grid
+  --cc-grid-size:      56px;
+  --cc-grid-size-fine: 14px;
+
+  // Typography
+  --cc-font-display: 'Geist', 'Inter Tight', system-ui, sans-serif;
+  --cc-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --cc-font-body:    system-ui, -apple-system, sans-serif;
+
+  // Error / warn
+  --cc-err:  #FF7A7A;
+  --cc-warn: #E8C45B;
+
+  // Legacy compat aliases
+  --cc-primary:         var(--cc-accent);
+  --cc-on-primary:      #07090E;
+  --cc-surface:         var(--cc-bg);
+  --cc-on-surface:      var(--cc-ink);
+  --cc-surface-variant: var(--cc-panel);
+  --cc-surface-dim:     var(--cc-bg2);
+  --cc-outline:         var(--cc-rule-strong);
+  --cc-error:           var(--cc-err);
+  --cc-accent-hover:    var(--cc-accent-2);
+  --cc-on-accent:       #07090E;
+  --cc-muted-text:      var(--cc-ink-soft);
+  --cc-font-sans:       var(--cc-font-display);
+  --cc-font-serif:      var(--cc-font-mono);
 }
