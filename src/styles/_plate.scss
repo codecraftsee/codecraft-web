@@ -1,0 +1,56 @@
+// Blueprint structural mixins — replaces _glass.scss
+
+// Plate surface: bordered panel with accent corner brackets
+@mixin cc-plate {
+  position: relative;
+  background-color: var(--cc-bg);
+  border: 1px solid var(--cc-rule-strong);
+
+  // Top-left corner bracket
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 16px; height: 16px;
+    border-top: 1.5px solid var(--cc-accent);
+    border-left: 1.5px solid var(--cc-accent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Top-right corner bracket
+  &::after {
+    content: '';
+    position: absolute;
+    top: -1px; right: -1px;
+    width: 16px; height: 16px;
+    border-top: 1.5px solid var(--cc-accent);
+    border-right: 1.5px solid var(--cc-accent);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Monospace label — 9–11px uppercase, JetBrains Mono
+@mixin cc-mono-label($size: 10px, $spacing: 0.18em) {
+  font-family: var(--cc-font-mono);
+  font-size: $size;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+  font-feature-settings: 'ss01', 'cv01';
+}
+
+// Section header row: §NN · TITLE · rule · COUNT
+@mixin cc-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+// Dotted leader between key and value
+@mixin cc-leader-dots {
+  flex: 1;
+  height: 0;
+  border-bottom: 1px dotted var(--cc-rule-strong);
+  margin-bottom: 4px;
+}

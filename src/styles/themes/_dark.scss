@@ -3,7 +3,7 @@
 :root.dark-theme {
   @include mat.theme((
     color: (
-      primary: mat.$violet-palette,
+      primary: mat.$cyan-palette,
       tertiary: mat.$blue-palette,
       theme-type: dark,
     ),
@@ -11,34 +11,51 @@
 
   color-scheme: dark;
 
-  // Brand colour tokens
-  --cc-primary:         #B49AFF;
-  --cc-on-primary:      #1A0A3E;
-  --cc-surface:         #121218;
-  --cc-on-surface:      #E8E8F0;
-  --cc-surface-variant: #1E1E2A;
-  --cc-surface-dim:     #0E0E14;
-  --cc-outline:         #2A2A3A;
-  --cc-error:           var(--mat-sys-error);
-  --cc-accent:          #B49AFF;
-  --cc-accent-hover:    #9A7FFF;
-  --cc-on-accent:       #1A0A3E;
-  --cc-muted-text:      #A5B4FC;
+  // Background
+  --cc-bg:    #07090E;
+  --cc-bg2:   #0C1018;
+  --cc-panel: #0F141C;
 
-  // Glass tokens
-  --cc-glass-bg:      rgba(18, 18, 24, 0.6);
-  --cc-glass-border:  rgba(255, 255, 255, 0.08);
-  --cc-glass-blur:    20px;
-  --cc-glass-shadow:  0 8px 32px rgba(0, 0, 0, 0.3);
+  // Ink
+  --cc-ink:      #E8EDF5;
+  --cc-ink-soft: #9BA8BF;
+  --cc-ink-mute: #5A6478;
 
-  // Backdrop tokens
-  --cc-backdrop-start:  #2a1460;
-  --cc-backdrop-mid:    #161640;
-  --cc-backdrop-end:    #122240;
-  --cc-backdrop-accent: #9553ff;
-  --cc-backdrop-hex:    #10B981;
+  // Rules
+  --cc-rule:        rgba(155, 168, 191, 0.16);
+  --cc-rule-strong: rgba(155, 168, 191, 0.40);
 
-  // Typography tokens
-  --cc-font-sans:  'Inter', system-ui, sans-serif;
-  --cc-font-serif: 'Instrument Serif', Georgia, serif;
+  // Accent — cyan
+  --cc-accent:      #5BD0E8;
+  --cc-accent-2:    #3BB8D4;
+  --cc-accent-glow: rgba(91, 208, 232, 0.18);
+  --cc-accent-soft: rgba(91, 208, 232, 0.10);
+
+  // Grid
+  --cc-grid-size:      56px;
+  --cc-grid-size-fine: 14px;
+
+  // Typography
+  --cc-font-display: 'Geist', 'Inter Tight', system-ui, sans-serif;
+  --cc-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --cc-font-body:    system-ui, -apple-system, sans-serif;
+
+  // Error / warn
+  --cc-err:  #FF7A7A;
+  --cc-warn: #E8C45B;
+
+  // Legacy compat aliases (used by Material + old selectors)
+  --cc-primary:         var(--cc-accent);
+  --cc-on-primary:      #07090E;
+  --cc-surface:         var(--cc-bg);
+  --cc-on-surface:      var(--cc-ink);
+  --cc-surface-variant: var(--cc-panel);
+  --cc-surface-dim:     var(--cc-bg2);
+  --cc-outline:         var(--cc-rule-strong);
+  --cc-error:           var(--cc-err);
+  --cc-accent-hover:    var(--cc-accent-2);
+  --cc-on-accent:       #07090E;
+  --cc-muted-text:      var(--cc-ink-soft);
+  --cc-font-sans:       var(--cc-font-display);
+  --cc-font-serif:      var(--cc-font-mono);
 }

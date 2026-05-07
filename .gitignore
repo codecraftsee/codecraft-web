@@ -43,3 +43,9 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 .claude/settings.json
+src/app/features/home/home.component.ts
+blueprint-app.jsx
+CLAUDE_CODE_PROMPT.md
+CodeCraft Solutions - Blueprint.html
+shared.jsx
+tweaks-panel.jsx

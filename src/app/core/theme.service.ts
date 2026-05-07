@@ -1,8 +1,9 @@
 import { effect, Injectable, signal } from '@angular/core';
 
-type Theme = 'light' | 'dark' | 'sable';
+export type Theme = 'light' | 'dark' | 'sable';
 
 const STORAGE_KEY = 'cc-theme';
+const THEMES: Theme[] = ['dark', 'light', 'sable'];
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
@@ -18,13 +19,21 @@ export class ThemeService {
     });
   }
 
+  cycleTheme(): void {
+    this.activeTheme.update(t => {
+      const idx = THEMES.indexOf(t);
+      return THEMES[(idx + 1) % THEMES.length];
+    });
+  }
+
+  // Legacy compat — kept so existing callers don't break
   toggle(): void {
-    this.activeTheme.update(t => (t === 'dark' ? 'sable' : 'dark'));
+    this.cycleTheme();
   }
 
   private getInitialTheme(): Theme {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'dark' || stored === 'sable') return stored;
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    if (stored && THEMES.includes(stored)) return stored;
     return 'dark';
   }
 }
