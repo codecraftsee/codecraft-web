@@ -4,12 +4,15 @@
 @use 'styles/themes/dark';
 @use 'styles/themes/sable';
 
+// Geist display font + JetBrains Mono labels
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 // Typography and density are theme-neutral — applied once globally.
 html {
   min-height: 100%;
 
   @include mat.theme((
-    typography: Inter,
+    typography: Geist,
     density: 0,
   ));
 }
@@ -17,8 +20,32 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  background-color: var(--cc-surface-dim);
-  color: var(--cc-on-surface);
-  font: var(--mat-sys-body-medium);
-  font-family: var(--cc-font-sans);
+  background-color: var(--cc-bg, #07090E);
+  color: var(--cc-ink, #E8EDF5);
+  font-family: var(--cc-font-body, system-ui, sans-serif);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+// Default (dark) theme active on :root for initial load
+:root {
+  --cc-bg:             #07090E;
+  --cc-bg2:            #0C1018;
+  --cc-panel:          #0F141C;
+  --cc-ink:            #E8EDF5;
+  --cc-ink-soft:       #9BA8BF;
+  --cc-ink-mute:       #5A6478;
+  --cc-rule:           rgba(155, 168, 191, 0.16);
+  --cc-rule-strong:    rgba(155, 168, 191, 0.40);
+  --cc-accent:         #5BD0E8;
+  --cc-accent-2:       #3BB8D4;
+  --cc-accent-glow:    rgba(91, 208, 232, 0.18);
+  --cc-accent-soft:    rgba(91, 208, 232, 0.10);
+  --cc-grid-size:      56px;
+  --cc-grid-size-fine: 14px;
+  --cc-font-display:   'Geist', 'Inter Tight', system-ui, sans-serif;
+  --cc-font-mono:      'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --cc-font-body:      system-ui, -apple-system, sans-serif;
+  --cc-err:            #FF7A7A;
+  --cc-warn:           #E8C45B;
 }

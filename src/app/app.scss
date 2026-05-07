@@ -1,103 +1,53 @@
 :host {
-  display: block;
-  min-height: 100dvh;
-}
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--cc-bg);
 
-.content-area {
+  // Two-layer blueprint grid paper background
   position: relative;
-  z-index: 1;
-  min-height: 100dvh;
 
   &::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, var(--cc-backdrop-hex, #3B82F6) 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
-    opacity: 0.08;
+    background-image:
+      linear-gradient(to right, var(--cc-rule) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--cc-rule) 1px, transparent 1px);
+    background-size: var(--cc-grid-size) var(--cc-grid-size);
+    opacity: 0.7;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
   }
 
-}
-
-.circuit-bg {
-  display: none;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 60%;
-  height: 300px;
-  opacity: 0.45;
-  pointer-events: none;
-  z-index: -1;
-  mask-image: linear-gradient(to right, black 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
-}
-
-.binary-bg {
-  display: none;
-  position: absolute;
-  width: 40%;
-  height: 300px;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.8;
-
-  &--top-left {
-    top: 60px;
-    left: 0;
-    mask-image: linear-gradient(to right, black 40%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
-  }
-
-  &--top-right {
-    top: 60px;
-    right: 0;
-    mask-image: linear-gradient(to left, black 40%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to left, black 40%, transparent 100%);
-  }
-
-  &--bottom {
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    mask-image: linear-gradient(to right, black 30%, transparent 90%), linear-gradient(to top, black 30%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 30%, transparent 90%), linear-gradient(to top, black 30%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-composite: source-in;
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--cc-rule) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--cc-rule) 1px, transparent 1px);
+    background-size: var(--cc-grid-size-fine) var(--cc-grid-size-fine);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
-:host-context(.dark-theme),
-:host-context(.light-theme) {
-  .content-area::before,
-  .content-area::after {
-    display: none;
-  }
+.bp-scroll {
+  position: relative;
+  z-index: 4;
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 
-  .binary-bg {
-    display: block;
-
-    &--top-left,
-    &--top-right { width: 50%; }
-
-    &--bottom { width: 60%; }
-  }
+  &::-webkit-scrollbar { width: 10px; }
+  &::-webkit-scrollbar-track { background: var(--cc-bg); border-left: 1px solid var(--cc-rule); }
+  &::-webkit-scrollbar-thumb { background: var(--cc-rule-strong); }
 }
 
-:host-context(.sable-theme) {
-  .content-area::before,
-  .content-area::after {
-    display: none;
-  }
-
-  .binary-bg {
-    display: block;
-
-    &--top-left,
-    &--top-right { width: 50%; }
-
-    &--bottom { width: 60%; }
-  }
+.bp-main {
+  position: relative;
+  z-index: 1;
 }

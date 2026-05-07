@@ -3,7 +3,7 @@
 :root.light-theme {
   @include mat.theme((
     color: (
-      primary: mat.$violet-palette,
+      primary: mat.$cyan-palette,
       tertiary: mat.$blue-palette,
       theme-type: light,
     ),
@@ -11,34 +11,51 @@
 
   color-scheme: light;
 
-  // Brand colour tokens — Option C: High-Contrast Paper
-  --cc-primary:         #EA580C;
-  --cc-on-primary:      #FFFFFF;
-  --cc-surface:         #FFFFFF;
-  --cc-on-surface:      #030712;
-  --cc-surface-variant: #F9FAFB;
-  --cc-surface-dim:     #F3F4F6;
-  --cc-outline:         #D1D5DB;
-  --cc-error:           var(--mat-sys-error);
-  --cc-accent:          #EA580C;
-  --cc-accent-hover:    #C2410C;
-  --cc-on-accent:       #FFFFFF;
-  --cc-muted-text:      #374151;
+  // Background
+  --cc-bg:    #F1F4F9;
+  --cc-bg2:   #E6EBF2;
+  --cc-panel: #FFFFFF;
 
-  // Glass tokens
-  --cc-glass-bg:      rgba(255, 255, 255, 0.72);
-  --cc-glass-border:  rgba(209, 213, 219, 0.6);
-  --cc-glass-blur:    16px;
-  --cc-glass-shadow:  0 8px 32px rgba(15, 23, 42, 0.08);
+  // Ink
+  --cc-ink:      #0F1722;
+  --cc-ink-soft: #4A5568;
+  --cc-ink-mute: #8C95A6;
 
-  // Backdrop tokens
-  --cc-backdrop-start:  #F9FAFB;
-  --cc-backdrop-mid:    #F3F4F6;
-  --cc-backdrop-end:    #E5E7EB;
-  --cc-backdrop-accent: #FED7AA;
-  --cc-backdrop-hex:    #EA580C;
+  // Rules
+  --cc-rule:        rgba(15, 23, 34, 0.14);
+  --cc-rule-strong: rgba(15, 23, 34, 0.38);
 
-  // Typography tokens
-  --cc-font-sans:  'Inter', system-ui, sans-serif;
-  --cc-font-serif: 'Instrument Serif', Georgia, serif;
+  // Accent — cyan (same as dark/blueprint)
+  --cc-accent:      #5BD0E8;
+  --cc-accent-2:    #3BB8D4;
+  --cc-accent-glow: rgba(91, 208, 232, 0.18);
+  --cc-accent-soft: rgba(91, 208, 232, 0.10);
+
+  // Grid
+  --cc-grid-size:      56px;
+  --cc-grid-size-fine: 14px;
+
+  // Typography
+  --cc-font-display: 'Geist', 'Inter Tight', system-ui, sans-serif;
+  --cc-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --cc-font-body:    system-ui, -apple-system, sans-serif;
+
+  // Error / warn
+  --cc-err:  #DC2626;
+  --cc-warn: #D97706;
+
+  // Legacy compat aliases
+  --cc-primary:         var(--cc-accent);
+  --cc-on-primary:      #07090E;
+  --cc-surface:         var(--cc-bg);
+  --cc-on-surface:      var(--cc-ink);
+  --cc-surface-variant: var(--cc-panel);
+  --cc-surface-dim:     var(--cc-bg2);
+  --cc-outline:         var(--cc-rule-strong);
+  --cc-error:           var(--cc-err);
+  --cc-accent-hover:    var(--cc-accent-2);
+  --cc-on-accent:       #07090E;
+  --cc-muted-text:      var(--cc-ink-soft);
+  --cc-font-sans:       var(--cc-font-display);
+  --cc-font-serif:      var(--cc-font-mono);
 }

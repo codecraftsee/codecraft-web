@@ -1,34 +1,36 @@
-// Token contract for CodeCraft Solutions.
+// Blueprint token contract for CodeCraft Solutions.
 // Values are defined per theme in _light.scss, _dark.scss, and _sable.scss.
 // Components MUST reference these tokens — never hard-code colour values.
 //
-// Colour tokens:
-// --cc-primary          Primary brand colour
-// --cc-on-primary       Text / icons on primary surface
-// --cc-surface          Page / card background
-// --cc-on-surface       Primary text on surface
-// --cc-surface-variant  Subtle background (inputs, chips)
-// --cc-surface-dim      Alternating section background
-// --cc-outline          Borders and dividers
-// --cc-error            Error states
-// --cc-accent           Accent / CTA colour
-// --cc-accent-hover     Accent colour on hover / pressed state
-// --cc-on-accent        Text / icons on accent surfaces
-// --cc-muted-text       Secondary / muted body text (always WCAG AA on surface)
+// Background tokens:
+// --cc-bg           Main page background
+// --cc-bg2          Secondary background (nav bar, alternating)
+// --cc-panel        Elevated surface (cards, spec panels)
 //
-// Glass tokens:
-// --cc-glass-bg         Semi-transparent glass panel background
-// --cc-glass-border     Glass panel border colour with alpha
-// --cc-glass-blur       Backdrop blur radius for glass panels
-// --cc-glass-shadow     Box shadow for glass panels
+// Ink tokens:
+// --cc-ink          Primary text
+// --cc-ink-soft     Secondary / muted text
+// --cc-ink-mute     Tertiary / hint text
 //
-// Backdrop tokens:
-// --cc-backdrop-start   Background gradient start colour
-// --cc-backdrop-mid     Background gradient middle colour
-// --cc-backdrop-end     Background gradient end colour
-// --cc-backdrop-accent  Background gradient accent colour
-// --cc-backdrop-hex     Hex mesh grid overlay colour
+// Rule tokens:
+// --cc-rule         Subtle inner borders (grid lines, dividers)
+// --cc-rule-strong  Structural borders (plates, outer)
+//
+// Accent tokens:
+// --cc-accent       Primary accent colour (cyan/teal/amber per theme)
+// --cc-accent-2     Secondary accent (unused for now, future)
+// --cc-accent-glow  Transparent accent for glows and focus rings
+// --cc-accent-soft  Very transparent accent for hover fills
+//
+// Grid tokens:
+// --cc-grid-size       Major grid cell size (default 56px)
+// --cc-grid-size-fine  Minor grid sub-cell size (default 14px)
 //
 // Typography tokens:
-// --cc-font-sans        Primary sans-serif font stack (Inter)
-// --cc-font-serif       Accent serif font stack (Instrument Serif)
+// --cc-font-display  Geist display font
+// --cc-font-mono     JetBrains Mono for labels / UI
+// --cc-font-body     System sans for body text
+//
+// Error/warn tokens:
+// --cc-err   Error colour
+// --cc-warn  Warning colour

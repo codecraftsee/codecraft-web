@@ -1,8 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { ContactService } from './contact.service';
 
 @Component({
@@ -10,647 +7,350 @@ import { ContactService } from './contact.service';
   imports: [ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="container">
-
+    <div class="bp-page">
       @if (submitted()) {
-        <section class="success" role="alert" aria-live="polite">
-          <div class="success__icon" aria-hidden="true">✓</div>
-          <h1 class="success__title">Message Sent!</h1>
-          <p class="success__text">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+        <!-- SUCCESS STATE -->
+        <section class="bp-plate bp-plate--narrow" aria-live="polite" role="alert">
+          <span class="bp-plate__corners" aria-hidden="true"></span>
+          <div class="bp-success">
+            <div class="bp-success__stamp" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="bp-callout">
+              <span class="bp-callout__dot"></span>
+              <span class="bp-mono">REQUEST RECEIVED · ID·{{ requestId() }}</span>
+            </div>
+            <h1 class="bp-h1">Transmission<br><span class="bp-h1__accent">acknowledged.</span></h1>
+            <p class="bp-lede">Engineering team notified. Expect a response in &lt; 24h UTC.</p>
+            <button class="bp-btn bp-btn--ghost" (click)="reset()" type="button">
+              <span class="bp-btn__label">SUBMIT_ANOTHER</span>
+            </button>
+          </div>
         </section>
       } @else {
-        <section class="hero">
-          <h1 class="hero__title">Let's Talk About Your Project</h1>
-          <p class="hero__subtitle">Tell us what you're building and we'll get back to you within 24 hours.</p>
-          <div class="trust-badges" aria-label="Our commitments">
-            <span class="badge">Free consultation</span>
-            <span class="badge">Response within 24h</span>
-            <span class="badge">No obligation</span>
+        <!-- FORM STATE -->
+        <section class="bp-plate bp-plate--narrow">
+          <span class="bp-plate__corners" aria-hidden="true"></span>
+          <div class="bp-dims bp-dims--top">
+            <span class="bp-mono">VIEW · 04 / INTAKE</span>
+            <span class="bp-dims__line"></span>
+            <span class="bp-mono">FORM · CC-04</span>
           </div>
-        </section>
 
-        <div class="progress" aria-label="Form progress">
-          <div class="progress__steps">
-            @for (step of [1, 2, 3]; track step) {
-              <div class="progress__step" [class.progress__step--active]="currentStep() === step" [class.progress__step--done]="currentStep() > step">
-                <div class="progress__dot">{{ currentStep() > step ? '✓' : step }}</div>
+          <div class="bp-section__head">
+            <span class="bp-mono bp-section__num">§01</span>
+            <h1 class="bp-h2">PROJECT INTAKE FORM</h1>
+            <span class="bp-section__rule"></span>
+            <span class="bp-mono bp-section__count">STEP {{ step() }} / 3</span>
+          </div>
+
+          <!-- STEPPER -->
+          <div class="bp-stepper" aria-label="Form progress">
+            @for (n of [1,2,3]; track n) {
+              <div class="bp-step"
+                [class.is-active]="step() === n"
+                [class.is-done]="step() > n"
+                [attr.aria-current]="step() === n ? 'step' : null">
+                <span class="bp-mono bp-step__num">0{{ n }}</span>
+                <span class="bp-step__label">{{ ['SCOPE','CONSTRAINTS','IDENTIFY'][n - 1] }}</span>
               </div>
-              @if (step < 3) {
-                <div class="progress__line" [class.progress__line--done]="currentStep() > step"></div>
-              }
             }
           </div>
-          <p class="progress__label">Step {{ currentStep() }} of 3</p>
-        </div>
 
-        <div class="form-card">
+          <!-- FORM FRAME -->
+          <div class="bp-form-frame">
 
-          <!-- Step 1: Project Details -->
-          @if (currentStep() === 1) {
-            <form [formGroup]="step1" (ngSubmit)="nextStep()" novalidate>
-              <h2 class="form-card__title">Tell us about your project</h2>
-              <div class="field">
-                <label class="field__label" for="projectDescription">
-                  Project description <span class="field__required" aria-hidden="true">*</span>
-                </label>
-                <textarea
-                  id="projectDescription"
-                  class="field__input field__input--textarea"
-                  formControlName="projectDescription"
-                  rows="5"
-                  placeholder="Describe what you want to build, the problem you're solving, or the outcome you're looking for…"
-                  [attr.aria-invalid]="step1.controls.projectDescription.invalid && step1.controls.projectDescription.touched"
-                  aria-describedby="projectDescription-error"
-                ></textarea>
-                @if (step1.controls.projectDescription.invalid && step1.controls.projectDescription.touched) {
-                  <p class="field__error" id="projectDescription-error" role="alert">Please describe your project.</p>
-                }
-              </div>
-              <div class="actions">
-                <button type="submit" class="btn btn--primary">Next →</button>
-              </div>
-            </form>
-          }
-
-          <!-- Step 2: Timeline & Budget -->
-          @if (currentStep() === 2) {
-            <form [formGroup]="step2" (ngSubmit)="nextStep()" novalidate>
-              <h2 class="form-card__title">Timeline &amp; budget</h2>
-              <div class="field">
-                <label class="field__label" for="timeline">
-                  When do you need this? <span class="field__required" aria-hidden="true">*</span>
-                </label>
-                <select
-                  id="timeline"
-                  class="field__input"
-                  formControlName="timeline"
-                  [attr.aria-invalid]="step2.controls.timeline.invalid && step2.controls.timeline.touched"
-                  aria-describedby="timeline-error"
-                >
-                  <option value="" disabled>Select a timeline…</option>
-                  <option value="asap">ASAP</option>
-                  <option value="1-3months">1–3 months</option>
-                  <option value="3-6months">3–6 months</option>
-                  <option value="exploring">Just exploring</option>
-                </select>
-                @if (step2.controls.timeline.invalid && step2.controls.timeline.touched) {
-                  <p class="field__error" id="timeline-error" role="alert">Please select a timeline.</p>
-                }
-              </div>
-              <div class="field">
-                <label class="field__label" for="budget">
-                  Estimated budget <span class="field__required" aria-hidden="true">*</span>
-                </label>
-                <select
-                  id="budget"
-                  class="field__input"
-                  formControlName="budget"
-                  [attr.aria-invalid]="step2.controls.budget.invalid && step2.controls.budget.touched"
-                  aria-describedby="budget-error"
-                >
-                  <option value="" disabled>Select a budget range…</option>
-                  <option value="lt5k">&lt; €5k</option>
-                  <option value="5k-15k">€5k – €15k</option>
-                  <option value="15k-50k">€15k – €50k</option>
-                  <option value="50k+">€50k+</option>
-                </select>
-                @if (step2.controls.budget.invalid && step2.controls.budget.touched) {
-                  <p class="field__error" id="budget-error" role="alert">Please select a budget range.</p>
-                }
-              </div>
-              <div class="actions">
-                <button type="button" class="btn btn--ghost" (click)="prevStep()">← Back</button>
-                <button type="submit" class="btn btn--primary">Next →</button>
-              </div>
-            </form>
-          }
-
-          <!-- Step 3: Contact Info -->
-          @if (currentStep() === 3) {
-            <form [formGroup]="step3" (ngSubmit)="onSubmit()" novalidate>
-              <h2 class="form-card__title">Your contact details</h2>
-              <div class="field">
-                <label class="field__label" for="name">
-                  Full name <span class="field__required" aria-hidden="true">*</span>
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  class="field__input"
-                  formControlName="name"
-                  placeholder="Jane Smith"
-                  autocomplete="name"
-                  [attr.aria-invalid]="step3.controls.name.invalid && step3.controls.name.touched"
-                  aria-describedby="name-error"
-                />
-                @if (step3.controls.name.invalid && step3.controls.name.touched) {
-                  <p class="field__error" id="name-error" role="alert">Please enter your name.</p>
-                }
-              </div>
-              <div class="field">
-                <label class="field__label" for="email">
-                  Email address <span class="field__required" aria-hidden="true">*</span>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  class="field__input"
-                  formControlName="email"
-                  placeholder="jane@company.com"
-                  autocomplete="email"
-                  [attr.aria-invalid]="step3.controls.email.invalid && step3.controls.email.touched"
-                  aria-describedby="email-error"
-                />
-                @if (step3.controls.email.touched) {
-                  @if (step3.controls.email.errors?.['required']) {
-                    <p class="field__error" id="email-error" role="alert">Please enter your email address.</p>
-                  } @else if (step3.controls.email.errors?.['email']) {
-                    <p class="field__error" id="email-error" role="alert">Please enter a valid email address.</p>
+            <!-- STEP 1 -->
+            @if (step() === 1) {
+              <form [formGroup]="step1Form" (ngSubmit)="nextStep()" novalidate class="bp-form">
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    01 / PROJECT_DESCRIPTION
+                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                  </span>
+                  <textarea
+                    formControlName="projectDescription"
+                    rows="6"
+                    placeholder="Describe the system, the problem, the desired outcome…"
+                    [attr.aria-invalid]="step1Form.controls.projectDescription.invalid && step1Form.controls.projectDescription.touched"
+                  ></textarea>
+                  @if (step1Form.controls.projectDescription.invalid && step1Form.controls.projectDescription.touched) {
+                    <span class="bp-mono bp-field__err" role="alert">! Please describe your project.</span>
                   }
+                </label>
+                <div class="bp-actions">
+                  <button class="bp-btn bp-btn--primary" type="submit">
+                    <span class="bp-btn__label">CONTINUE</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </button>
+                </div>
+              </form>
+            }
+
+            <!-- STEP 2 -->
+            @if (step() === 2) {
+              <form [formGroup]="step2Form" (ngSubmit)="nextStep()" novalidate class="bp-form">
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    02 / TIMELINE
+                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                  </span>
+                  <select formControlName="timeline"
+                    [attr.aria-invalid]="step2Form.controls.timeline.invalid && step2Form.controls.timeline.touched">
+                    <option value="">— SELECT —</option>
+                    <option value="asap">ASAP</option>
+                    <option value="1-3">1–3 months</option>
+                    <option value="3-6">3–6 months</option>
+                    <option value="exploring">Exploring</option>
+                  </select>
+                  @if (step2Form.controls.timeline.invalid && step2Form.controls.timeline.touched) {
+                    <span class="bp-mono bp-field__err" role="alert">! Please select a timeline.</span>
+                  }
+                </label>
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    03 / BUDGET
+                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                  </span>
+                  <select formControlName="budget"
+                    [attr.aria-invalid]="step2Form.controls.budget.invalid && step2Form.controls.budget.touched">
+                    <option value="">— SELECT —</option>
+                    <option value="lt5">&lt; €5K</option>
+                    <option value="5-15">€5K – €15K</option>
+                    <option value="15-50">€15K – €50K</option>
+                    <option value="50+">€50K+</option>
+                  </select>
+                  @if (step2Form.controls.budget.invalid && step2Form.controls.budget.touched) {
+                    <span class="bp-mono bp-field__err" role="alert">! Please select a budget range.</span>
+                  }
+                </label>
+                <div class="bp-actions bp-actions--split">
+                  <button class="bp-btn bp-btn--ghost" (click)="prevStep()" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    <span class="bp-btn__label">BACK</span>
+                  </button>
+                  <button class="bp-btn bp-btn--primary" type="submit">
+                    <span class="bp-btn__label">CONTINUE</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </button>
+                </div>
+              </form>
+            }
+
+            <!-- STEP 3 -->
+            @if (step() === 3) {
+              <form [formGroup]="step3Form" (ngSubmit)="onSubmit()" novalidate class="bp-form">
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    04 / FULL_NAME
+                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                  </span>
+                  <input formControlName="name" placeholder="Last, First" autocomplete="name"
+                    [attr.aria-invalid]="step3Form.controls.name.invalid && step3Form.controls.name.touched" />
+                  @if (step3Form.controls.name.invalid && step3Form.controls.name.touched) {
+                    <span class="bp-mono bp-field__err" role="alert">! Please enter your name.</span>
+                  }
+                </label>
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    05 / EMAIL
+                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                  </span>
+                  <input type="email" formControlName="email" placeholder="user&#64;domain.tld" autocomplete="email"
+                    [attr.aria-invalid]="step3Form.controls.email.invalid && step3Form.controls.email.touched" />
+                  @if (step3Form.controls.email.touched && step3Form.controls.email.errors?.['required']) {
+                    <span class="bp-mono bp-field__err" role="alert">! Email address required.</span>
+                  }
+                  @if (step3Form.controls.email.touched && step3Form.controls.email.errors?.['email']) {
+                    <span class="bp-mono bp-field__err" role="alert">! Please enter a valid email address.</span>
+                  }
+                </label>
+                <label class="bp-field">
+                  <span class="bp-mono bp-field__label">
+                    06 / COMPANY
+                    <span class="bp-field__opt"> (OPT)</span>
+                  </span>
+                  <input formControlName="company" placeholder="Optional" autocomplete="organization" />
+                </label>
+                @if (submitError()) {
+                  <p class="bp-mono bp-field__err" role="alert">! {{ submitError() }}</p>
                 }
-              </div>
-              <div class="field">
-                <label class="field__label" for="company">Company / website <span class="field__optional">(optional)</span></label>
-                <input
-                  id="company"
-                  type="text"
-                  class="field__input"
-                  formControlName="company"
-                  placeholder="Acme Inc. or acme.com"
-                  autocomplete="organization"
-                />
-              </div>
-              <div class="actions">
-                <button type="button" class="btn btn--ghost" (click)="prevStep()">← Back</button>
-                <button type="submit" class="btn btn--primary" [disabled]="loading()">
-                  {{ loading() ? 'Sending…' : 'Send message' }}
-                </button>
-              </div>
-            </form>
-          }
-
-        </div>
-
-        @if (error()) {
-          <p class="submit-error" role="alert">{{ error() }}</p>
-        }
-
-        <p class="fallback">
-          Prefer email?
-          <a class="fallback__link" href="mailto:hello@codecraftsolutions.rs">hello@codecraftsolutions.rs</a>
-        </p>
+                <div class="bp-actions bp-actions--split">
+                  <button class="bp-btn bp-btn--ghost" (click)="prevStep()" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    <span class="bp-btn__label">BACK</span>
+                  </button>
+                  <button class="bp-btn bp-btn--primary" type="submit" [disabled]="loading()">
+                    <span class="bp-btn__label">{{ loading() ? 'TRANSMITTING…' : 'TRANSMIT' }}</span>
+                    @if (!loading()) {
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    }
+                  </button>
+                </div>
+              </form>
+            }
+          </div>
+        </section>
       }
-
     </div>
   `,
   styles: `
-    :host {
-      display: block;
-      background: transparent;
-      color: #F1F5F9;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      min-height: 100dvh;
-    }
+    :host { display: block; }
 
-    .container {
-      max-width: 680px;
+    .bp-mono { font-family: var(--cc-font-mono); font-feature-settings: 'ss01','cv01'; }
+
+    .bp-page {
+      padding: 32px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 2rem 6rem;
     }
 
-    /* Hero */
-    .hero {
-      padding: 6rem 0 2.5rem;
-      text-align: center;
+    /* PLATE */
+    .bp-plate {
+      position: relative;
+      background-color: var(--cc-bg);
+      border: 1px solid var(--cc-rule-strong);
+      padding: 32px 36px 40px;
     }
-    .hero__title {
-      display: inline-block;
-      font-size: 42px;
-      font-weight: 800;
-      margin: 0 0 1rem;
-      padding: 0.05em 0;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #10B981, #059669, #34d399);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .bp-plate--narrow { max-width: 860px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+    .bp-plate__corners { pointer-events: none; }
+    .bp-plate::before, .bp-plate::after,
+    .bp-plate__corners::before, .bp-plate__corners::after {
+      content: ''; position: absolute;
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--cc-accent);
+      pointer-events: none; z-index: 1;
     }
-    .hero__subtitle {
-      font-size: 17px;
-      color: #cbd5e1;
-      line-height: 1.7;
-      margin: 0 0 2rem;
-    }
+    .bp-plate::before  { top: -1px;    left: -1px;  border-right: 0; border-bottom: 0; }
+    .bp-plate::after   { top: -1px;    right: -1px; border-left: 0;  border-bottom: 0; }
+    .bp-plate__corners::before { bottom: -1px; left: -1px;  border-right: 0; border-top: 0; position: absolute; }
+    .bp-plate__corners::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; position: absolute; }
 
-    /* Trust badges */
-    .trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
+    .bp-dims {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; color: var(--cc-ink-mute); letter-spacing: 0.18em;
     }
-    .badge {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      background: rgba(16, 185, 129, 0.06);
-      color: #10B981;
-      letter-spacing: 0.02em;
-    }
+    .bp-dims--top { margin-bottom: 28px; }
+    .bp-dims__line { flex: 1; height: 1px; background: var(--cc-rule-strong); }
 
-    /* Progress */
-    .progress {
-      margin: 2.5rem 0;
-      text-align: center;
-    }
-    .progress__steps {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 0.75rem;
-    }
-    .progress__step { display: flex; align-items: center; }
-    .progress__dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      border: 2px solid rgba(16, 185, 129, 0.2);
-      background: rgba(16, 185, 129, 0.05);
-      color: #94a3b8;
-      transition: all 0.3s;
-    }
-    .progress__step--active .progress__dot {
-      border-color: #10B981;
-      background: rgba(16, 185, 129, 0.12);
-      color: #10B981;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
-    }
-    .progress__step--done .progress__dot {
-      border-color: #10B981;
-      background: #10B981;
-      color: #1E1E2E;
-    }
-    .progress__line {
-      width: 60px;
-      height: 2px;
-      background: rgba(16, 185, 129, 0.15);
-      transition: background 0.3s;
-    }
-    .progress__line--done {
-      background: rgba(16, 185, 129, 0.5);
-    }
-    .progress__label {
-      font-size: 13px;
-      color: #94a3b8;
-      margin: 0;
-    }
+    .bp-section__head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; }
+    .bp-section__num  { font-size: 11px; letter-spacing: 0.2em; color: var(--cc-accent); }
+    .bp-h2 { font-family: var(--cc-font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.22em; margin: 0; color: var(--cc-ink); }
+    .bp-section__rule  { flex: 1; height: 1px; background: var(--cc-rule-strong); }
+    .bp-section__count { font-size: 10px; letter-spacing: 0.18em; color: var(--cc-ink-mute); }
 
-    /* Form card */
-    .form-card {
-      background-color: var(--cc-surface);
-      background-image: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(5, 150, 105, 0.04));
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      border-radius: 16px;
-      padding: 2.5rem;
+    /* STEPPER */
+    .bp-stepper {
+      display: flex; gap: 0;
+      border: 1px solid var(--cc-rule-strong);
+      margin: 4px 0 24px;
     }
-    .form-card__title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 2rem;
+    .bp-step {
+      flex: 1; padding: 14px 18px;
+      border-right: 1px solid var(--cc-rule);
+      display: flex; align-items: center; gap: 12px;
+      font-size: 11px; letter-spacing: 0.18em;
+      color: var(--cc-ink-mute);
     }
+    .bp-step:last-child { border-right: 0; }
+    .bp-step.is-active  { color: var(--cc-accent); background: var(--cc-panel); }
+    .bp-step.is-done    { color: var(--cc-ink-soft); }
+    .bp-step__num { font-size: 10px; opacity: 0.6; }
+    .bp-step.is-active .bp-step__num { opacity: 1; }
 
-    /* Fields */
-    .field { margin-bottom: 1.5rem; }
-    .field__label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.02em;
+    /* FORM FRAME */
+    .bp-form-frame {
+      border: 1px solid var(--cc-rule-strong);
+      background: var(--cc-panel);
+      padding: 30px 32px;
     }
-    .field__required { color: #10B981; margin-left: 2px; }
-    .field__optional { color: #94a3b8; font-weight: 400; }
-    .field__input {
-      width: 100%;
-      box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(16, 185, 129, 0.15);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: #F1F5F9;
+    .bp-form { display: flex; flex-direction: column; gap: 22px; }
+    .bp-field { display: flex; flex-direction: column; gap: 9px; }
+    .bp-field__label {
+      font-size: 10px; letter-spacing: 0.2em; color: var(--cc-ink-mute);
+    }
+    .bp-field__req { color: var(--cc-accent); }
+    .bp-field__opt { color: var(--cc-ink-mute); }
+    .bp-field input,
+    .bp-field textarea,
+    .bp-field select {
+      background: var(--cc-bg);
+      border: 1px solid var(--cc-rule-strong);
+      padding: 13px 14px;
+      font-family: var(--cc-font-display);
       font-size: 14px;
-      font-family: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    .field__input--textarea { resize: vertical; min-height: 120px; }
-    .field__input:focus {
+      color: var(--cc-ink);
       outline: none;
-      border-color: rgba(16, 185, 129, 0.5);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      resize: vertical;
     }
-    .field__input[aria-invalid="true"] {
-      border-color: rgba(255, 80, 100, 0.5);
+    .bp-field input:focus,
+    .bp-field textarea:focus,
+    .bp-field select:focus {
+      border-color: var(--cc-accent);
+      box-shadow: 0 0 0 3px var(--cc-accent-glow);
     }
-    .field__input[aria-invalid="true"]:focus {
-      box-shadow: 0 0 0 3px rgba(255, 80, 100, 0.1);
+    .bp-field textarea { min-height: 140px; }
+    .bp-field select {
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--cc-ink-soft) 50%),
+        linear-gradient(135deg, var(--cc-ink-soft) 50%, transparent 50%);
+      background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+      background-size: 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 36px;
+      background-color: var(--cc-bg);
     }
-    .field__input option { background: #1a2233; color: #F1F5F9; }
-    .field__error {
-      font-size: 12px;
-      color: #f87171;
-      margin: 0.4rem 0 0;
-    }
+    .bp-field select option { background: var(--cc-bg); color: var(--cc-ink); }
+    .bp-field__err { font-size: 11px; color: var(--cc-err); letter-spacing: 0.06em; }
 
-    /* Actions */
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.75rem;
-      margin-top: 2rem;
+    /* BUTTONS */
+    .bp-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .bp-actions--split { justify-content: space-between; }
+    .bp-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 18px; font-family: var(--cc-font-mono);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      border: 1px solid; cursor: pointer;
+      transition: all 0.18s ease; background: transparent;
+      text-decoration: none; text-transform: uppercase;
     }
-    .btn {
-      padding: 0.65rem 1.5rem;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid transparent;
-    }
-    .btn--primary {
-      background: linear-gradient(135deg, #10B981, #059669);
-      color: #1E1E2E;
-      border-color: transparent;
-    }
-    .btn--primary:active {
-      transform: scale(0.96);
-      opacity: 0.85;
-    }
-    .btn--primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
-    }
-    .btn--ghost {
-      background: transparent;
-      color: #cbd5e1;
-      border-color: rgba(16, 185, 129, 0.15);
-    }
-    .btn--ghost:active {
-      transform: scale(0.96);
-      opacity: 0.8;
-    }
-    .btn--ghost:hover {
-      border-color: rgba(16, 185, 129, 0.35);
-      color: #10B981;
-    }
+    .bp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .bp-btn--primary { background: var(--cc-accent); color: var(--cc-bg); border-color: var(--cc-accent); }
+    .bp-btn--primary:hover:not(:disabled) { filter: brightness(1.1); box-shadow: 0 0 0 4px var(--cc-accent-glow); transform: translateY(-1px); }
+    .bp-btn--ghost { color: var(--cc-ink); border-color: var(--cc-rule-strong); }
+    .bp-btn--ghost:hover { border-color: var(--cc-accent); color: var(--cc-accent); background: var(--cc-accent-soft); }
 
-    /* Success state */
-    .success {
-      padding: 8rem 0;
-      text-align: center;
+    /* SUCCESS */
+    .bp-success { text-align: center; padding: 40px 20px; max-width: 580px; margin: 0 auto; }
+    .bp-success__stamp {
+      width: 84px; height: 84px;
+      border: 2px solid var(--cc-accent); color: var(--cc-accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 26px;
     }
-    .success__icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #10B981, #059669);
-      color: #1E1E2E;
-      font-size: 28px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
+    .bp-callout {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; color: var(--cc-accent);
+      margin-bottom: 20px; text-transform: uppercase;
     }
-    .success__title {
-      font-size: 36px;
-      font-weight: 800;
-      margin: 0 0 1rem;
-      padding: 0.05em 0;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #10B981, #059669);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
+    .bp-callout__dot { width: 7px; height: 7px; background: var(--cc-accent); display: inline-block; }
+    .bp-h1 {
+      font-family: var(--cc-font-display);
+      font-size: clamp(36px, 4vw, 60px);
+      line-height: 0.96; font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0 0 24px; color: var(--cc-ink);
     }
-    .success__text {
-      font-size: 16px;
-      color: #cbd5e1;
-      line-height: 1.7;
-      margin: 0;
-    }
+    .bp-h1__accent { color: var(--cc-accent); }
+    .bp-lede { font-size: 17px; line-height: 1.55; color: var(--cc-ink-soft); margin: 0 0 32px; }
 
-    /* Submit error */
-    .submit-error {
-      font-size: 13px;
-      color: #f87171;
-      background: rgba(248, 113, 113, 0.08);
-      border: 1px solid rgba(248, 113, 113, 0.2);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-
-    /* Disabled button */
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none !important;
-      box-shadow: none !important;
-    }
-
-    /* Email fallback */
-    .fallback {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 13px;
-      color: #94a3b8;
-    }
-    .fallback__link {
-      color: #cbd5e1;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color 0.2s;
-    }
-    .fallback__link:hover { color: #10B981; }
-
-    /* Light theme */
-    :host-context(.light-theme) {
-      color: #030712;
-    }
-    :host-context(.light-theme) .hero__title {
-      background: linear-gradient(135deg, #EA580C, #C2410C, #9A3412);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    :host-context(.light-theme) .hero__subtitle { color: #374151; }
-    :host-context(.light-theme) .badge {
-      background: rgba(234, 88, 12, 0.08);
-      border-color: rgba(234, 88, 12, 0.25);
-      color: #C2410C;
-    }
-    :host-context(.light-theme) .progress__dot {
-      border-color: #D1D5DB;
-      background: #F9FAFB;
-      color: #4B5563;
-    }
-    :host-context(.light-theme) .progress__step--active .progress__dot {
-      border-color: #EA580C;
-      background: rgba(234, 88, 12, 0.08);
-      color: #C2410C;
-      box-shadow: 0 0 16px rgba(234, 88, 12, 0.2);
-    }
-    :host-context(.light-theme) .progress__step--done .progress__dot {
-      border-color: #EA580C;
-      background: #EA580C;
-      color: #fff;
-    }
-    :host-context(.light-theme) .progress__line { background: #E5E7EB; }
-    :host-context(.light-theme) .progress__line--done { background: rgba(234, 88, 12, 0.45); }
-    :host-context(.light-theme) .progress__label { color: #4B5563; }
-    :host-context(.light-theme) .form-card {
-      background: #F9FAFB;
-      border-color: #D1D5DB;
-    }
-    :host-context(.light-theme) .form-card__title { color: #030712; }
-    :host-context(.light-theme) .field__label { color: #374151; }
-    :host-context(.light-theme) .field__required { color: #EA580C; }
-    :host-context(.light-theme) .field__input {
-      background: #ffffff;
-      border-color: #D1D5DB;
-      color: #030712;
-    }
-    :host-context(.light-theme) .field__input:focus {
-      border-color: rgba(234, 88, 12, 0.5);
-      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
-    }
-    :host-context(.light-theme) .field__input option { background: #fff; color: #030712; }
-    :host-context(.light-theme) .btn--ghost {
-      color: #374151;
-      border-color: #D1D5DB;
-    }
-    :host-context(.light-theme) .btn--ghost:hover {
-      border-color: rgba(234, 88, 12, 0.4);
-      color: #C2410C;
-    }
-    :host-context(.light-theme) .success__title {
-      background: linear-gradient(135deg, #EA580C, #C2410C);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    :host-context(.light-theme) .success__text { color: #374151; }
-    :host-context(.light-theme) .submit-error {
-      color: #B91C1C;
-      background: rgba(185, 28, 28, 0.06);
-      border-color: rgba(185, 28, 28, 0.2);
-    }
-    :host-context(.light-theme) .fallback { color: #374151; }
-    :host-context(.light-theme) .fallback__link { color: #374151; }
-    :host-context(.light-theme) .fallback__link:hover { color: #C2410C; }
-
-    :host-context(.sable-theme) {
-      color: #F5F0E8;
-    }
-    :host-context(.sable-theme) .hero__title {
-      background: linear-gradient(135deg, #F59E0B, #D97706, #EA580C);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    :host-context(.sable-theme) .hero__subtitle { color: #D4B896; }
-    :host-context(.sable-theme) .badge {
-      background: rgba(217, 119, 6, 0.08);
-      border-color: rgba(217, 119, 6, 0.2);
-      color: #F59E0B;
-    }
-    :host-context(.sable-theme) .progress__dot {
-      border-color: rgba(217, 119, 6, 0.2);
-      background: rgba(217, 119, 6, 0.04);
-      color: #A07850;
-    }
-    :host-context(.sable-theme) .progress__step--active .progress__dot {
-      border-color: #F59E0B;
-      background: rgba(245, 158, 11, 0.1);
-      color: #F59E0B;
-      box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
-    }
-    :host-context(.sable-theme) .progress__step--done .progress__dot {
-      border-color: #D97706;
-      background: #D97706;
-      color: #1C1917;
-    }
-    :host-context(.sable-theme) .progress__line { background: rgba(217, 119, 6, 0.15); }
-    :host-context(.sable-theme) .progress__line--done { background: rgba(245, 158, 11, 0.45); }
-    :host-context(.sable-theme) .progress__label { color: #A07850; }
-    :host-context(.sable-theme) .form-card {
-      background: rgba(217, 119, 6, 0.04);
-      border-color: rgba(217, 119, 6, 0.12);
-    }
-    :host-context(.sable-theme) .form-card__title { color: #F5F0E8; }
-    :host-context(.sable-theme) .field__label { color: #D4B896; }
-    :host-context(.sable-theme) .field__required { color: #F59E0B; }
-    :host-context(.sable-theme) .field__input {
-      background: rgba(28, 25, 23, 0.6);
-      border-color: rgba(217, 119, 6, 0.2);
-      color: #F5F0E8;
-    }
-    :host-context(.sable-theme) .field__input:focus {
-      border-color: rgba(245, 158, 11, 0.5);
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
-    }
-    :host-context(.sable-theme) .field__input option { background: #1C1917; color: #F5F0E8; }
-    :host-context(.sable-theme) .btn--primary {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
-      color: #1C1917;
-    }
-    :host-context(.sable-theme) .btn--primary:hover {
-      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25);
-    }
-    :host-context(.sable-theme) .btn--ghost {
-      color: #D4B896;
-      border-color: rgba(217, 119, 6, 0.2);
-    }
-    :host-context(.sable-theme) .btn--ghost:hover {
-      border-color: rgba(245, 158, 11, 0.4);
-      color: #F59E0B;
-    }
-    :host-context(.sable-theme) .success__title {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    :host-context(.sable-theme) .success__text { color: #D4B896; }
-    :host-context(.sable-theme) .fallback { color: #A07850; }
-    :host-context(.sable-theme) .fallback__link { color: #D4B896; }
-    :host-context(.sable-theme) .fallback__link:hover { color: #F59E0B; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .btn, .field__input, .progress__dot, .progress__line { transition: none; }
-      .btn--primary:hover { transform: none; }
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .hero__title { font-size: 30px; }
-      .hero__subtitle { font-size: 15px; }
-      .form-card { padding: 1.5rem; }
-      .progress__line { width: 32px; }
+    @media (max-width: 980px) {
+      .bp-page { padding: 18px; }
+      .bp-plate { padding: 22px; }
+      .bp-stepper { flex-direction: column; }
+      .bp-step { border-right: 0; border-bottom: 1px solid var(--cc-rule); }
+      .bp-form-frame { padding: 20px; }
     }
   `,
 })
@@ -658,68 +358,74 @@ export class ContactComponent {
   private readonly fb = inject(FormBuilder);
   private readonly contactService = inject(ContactService);
 
-  constructor() {
-    inject(Router).events.pipe(
-      filter(e => e instanceof NavigationEnd && e.url === '/contact'),
-      takeUntilDestroyed(),
-    ).subscribe(() => {
-      this.submitted.set(false);
-      this.loading.set(false);
-      this.error.set(null);
-      this.currentStep.set(1);
-      this.step1.reset();
-      this.step2.reset();
-      this.step3.reset();
-    });
-  }
-
-  readonly currentStep = signal<1 | 2 | 3>(1);
+  readonly step = signal(1);
   readonly submitted = signal(false);
   readonly loading = signal(false);
-  readonly error = signal<string | null>(null);
+  readonly submitError = signal('');
+  readonly requestId = signal('');
 
-  readonly step1 = this.fb.group({
-    projectDescription: ['', Validators.required],
+  readonly step1Form = this.fb.group({
+    projectDescription: ['', [Validators.required, Validators.minLength(20)]],
   });
 
-  readonly step2 = this.fb.group({
+  readonly step2Form = this.fb.group({
     timeline: ['', Validators.required],
-    budget: ['', Validators.required],
+    budget:   ['', Validators.required],
   });
 
-  readonly step3 = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+  readonly step3Form = this.fb.group({
+    name:    ['', Validators.required],
+    email:   ['', [Validators.required, Validators.email]],
     company: [''],
   });
 
   nextStep(): void {
-    const group = this.currentStep() === 1 ? this.step1 : this.step2;
-    if (group.invalid) {
-      group.markAllAsTouched();
-      return;
+    if (this.step() === 1) {
+      this.step1Form.markAllAsTouched();
+      if (this.step1Form.invalid) return;
+    } else if (this.step() === 2) {
+      this.step2Form.markAllAsTouched();
+      if (this.step2Form.invalid) return;
     }
-    this.currentStep.update(s => (s + 1) as 1 | 2 | 3);
+    this.step.update(s => s + 1);
   }
 
   prevStep(): void {
-    this.currentStep.update(s => (s - 1) as 1 | 2 | 3);
+    this.step.update(s => Math.max(1, s - 1));
   }
 
   onSubmit(): void {
-    if (this.step3.invalid) {
-      this.step3.markAllAsTouched();
-      return;
-    }
+    this.step3Form.markAllAsTouched();
+    if (this.step3Form.invalid) return;
+
     this.loading.set(true);
-    this.error.set(null);
-    this.contactService.submit({
-      ...this.step1.value,
-      ...this.step2.value,
-      ...this.step3.value,
-    }).subscribe({
-      next: () => { this.loading.set(false); this.submitted.set(true); },
-      error: () => { this.loading.set(false); this.error.set('Something went wrong. Please try again or email us directly.'); },
+    this.submitError.set('');
+
+    const payload = {
+      ...this.step1Form.value,
+      ...this.step2Form.value,
+      ...this.step3Form.value,
+    };
+
+    this.contactService.submit(payload).subscribe({
+      next: () => {
+        this.loading.set(false);
+        this.requestId.set(String(Math.floor(Math.random() * 9000 + 1000)));
+        this.submitted.set(true);
+      },
+      error: () => {
+        this.loading.set(false);
+        this.submitError.set('Transmission failed. Try again or email us directly.');
+      },
     });
+  }
+
+  reset(): void {
+    this.submitted.set(false);
+    this.step.set(1);
+    this.step1Form.reset();
+    this.step2Form.reset();
+    this.step3Form.reset();
+    this.submitError.set('');
   }
 }
