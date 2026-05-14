@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <div class="bp-foot__inner">
         <span class="bp-mono">© 2026 CODECRAFT_SOLUTIONS · ALL RIGHTS RESERVED</span>
         <span class="bp-mono">HELLO&#64;CODECRAFTSOLUTIONS.RS</span>
-        <span class="bp-mono">BELGRADE · RS · REMOTE</span>
+        <span class="bp-mono">NOVI SAD · RS · REMOTE</span>
       </div>
     </footer>
   `,
