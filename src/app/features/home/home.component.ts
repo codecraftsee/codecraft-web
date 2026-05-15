@@ -2,11 +2,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
-  signal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SERVICES } from '../../shared/data/services.data';
+
+interface RadarAxis {
+  label: string;
+  sub: string;
+  score: number;
+  ex: number; ey: number;
+  vx: number; vy: number;
+  lx: number; ly: number;
+  anchor: 'start' | 'middle' | 'end';
+}
 
 @Component({
   selector: 'cc-home',
@@ -67,31 +75,40 @@ import { SERVICES } from '../../shared/data/services.data';
             </div>
             <div class="cc-instrument" aria-hidden="true">
               <div class="cc-instrument__head">
-                <span class="cc-mono">FIG.A · RANGE OF MOTION</span>
-                <span class="cc-mono cc-instrument__legend">θ · {{ angle() }}°</span>
+                <span class="cc-mono">FIG.A · STACK COVERAGE</span>
+                <span class="cc-mono cc-instrument__legend">05 DOMAINS</span>
               </div>
-              <svg class="cc-instrument__svg" viewBox="0 0 200 200">
-                <defs>
-                  <pattern id="cc-ig" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.35"/>
-                  </pattern>
-                </defs>
-                <rect width="200" height="200" fill="url(#cc-ig)"/>
-                <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="0.6"/>
-                <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 3"/>
-                <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="0.6"/>
-                <line x1="20" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="0.6"/>
-                <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" stroke-width="0.6"/>
-                @for (tick of ticks; track $index) {
+              <svg class="cc-instrument__svg" viewBox="0 0 290 220">
+                @for (ring of radar.rings; track $index) {
+                  <polygon [attr.points]="ring" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.3"/>
+                }
+                @for (axis of radar.axes; track axis.label) {
                   <line
-                    [attr.x1]="tick.x1" [attr.y1]="tick.y1"
-                    [attr.x2]="tick.x2" [attr.y2]="tick.y2"
-                    stroke="currentColor" stroke-width="0.7"
+                    [attr.x1]="radar.cx" [attr.y1]="radar.cy"
+                    [attr.x2]="axis.ex" [attr.y2]="axis.ey"
+                    stroke="currentColor" stroke-width="0.6" opacity="0.3"
                   />
                 }
-                <line x1="100" y1="100" [attr.x2]="sweepX()" [attr.y2]="sweepY()" stroke="var(--cc-accent)" stroke-width="1.6"/>
-                <circle [attr.cx]="sweepX()" [attr.cy]="sweepY()" r="3" fill="var(--cc-accent)"/>
-                <circle cx="100" cy="100" r="2.5" fill="var(--cc-accent)"/>
+                <polygon
+                  [attr.points]="radar.polygon"
+                  fill="var(--cc-accent)" fill-opacity="0.13"
+                  stroke="var(--cc-accent)" stroke-width="1.5"
+                />
+                @for (axis of radar.axes; track axis.label) {
+                  <circle [attr.cx]="axis.vx" [attr.cy]="axis.vy" r="2.2" fill="var(--cc-accent)"/>
+                  <text
+                    [attr.x]="axis.lx" [attr.y]="axis.ly"
+                    [attr.text-anchor]="axis.anchor"
+                    font-family="var(--cc-font-mono)" font-size="9"
+                    fill="var(--cc-ink)" letter-spacing="0.12em"
+                  >{{ axis.label }}</text>
+                  <text
+                    [attr.x]="axis.lx" [attr.y]="axis.ly + 9"
+                    [attr.text-anchor]="axis.anchor"
+                    font-family="var(--cc-font-mono)" font-size="7.5"
+                    fill="var(--cc-ink-soft)" letter-spacing="0.08em"
+                  >{{ axis.sub }}</text>
+                }
               </svg>
             </div>
           </aside>
@@ -150,10 +167,8 @@ import { SERVICES } from '../../shared/data/services.data';
     </div>
   `,
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent {
   readonly #router = inject(Router);
-  #rafId = 0;
-  #lastTime = 0;
 
   readonly services = SERVICES;
   readonly specRows: [string, string][] = [
@@ -165,40 +180,45 @@ export class HomeComponent implements OnDestroy {
     ['REGIONS',      'EU · NA'],
   ];
 
-  readonly angle = signal(0);
-  readonly ticks = this.#buildTicks();
-
-  constructor() {
-    const tick = (t: number) => {
-      const dt = (t - (this.#lastTime || t)) / 1000;
-      this.#lastTime = t;
-      this.angle.update(a => Math.round((a + dt * 18) % 360));
-      this.#rafId = requestAnimationFrame(tick);
-    };
-    this.#rafId = requestAnimationFrame(tick);
-  }
-
-  ngOnDestroy(): void {
-    cancelAnimationFrame(this.#rafId);
-  }
+  readonly radar = this.#buildRadar();
 
   go(route: string): void {
     this.#router.navigate([route]);
   }
 
-  sweepX(): number {
-    return 100 + Math.cos((this.angle() - 90) * Math.PI / 180) * 70;
-  }
-
-  sweepY(): number {
-    return 100 + Math.sin((this.angle() - 90) * Math.PI / 180) * 70;
-  }
-
-  #buildTicks(): { x1: number; y1: number; x2: number; y2: number }[] {
-    return Array.from({ length: 24 }, (_, i) => {
-      const a = (i * 15 - 90) * Math.PI / 180;
-      const r2 = i % 4 === 0 ? 72 : 76;
-      return { x1: 100 + Math.cos(a) * 80, y1: 100 + Math.sin(a) * 80, x2: 100 + Math.cos(a) * r2, y2: 100 + Math.sin(a) * r2 };
+  #buildRadar(): { cx: number; cy: number; axes: RadarAxis[]; polygon: string; rings: string[] } {
+    const cx = 145, cy = 108, R = 52;
+    const source: { label: string; sub: string; score: number }[] = [
+      { label: 'FRONTEND', sub: 'React · Next · Angular', score: 0.92 },
+      { label: 'BACKEND',  sub: 'Java · Node · Go',       score: 0.88 },
+      { label: 'DATABASE', sub: 'Postgres · Kafka',       score: 0.80 },
+      { label: 'INFRA',    sub: 'AWS · K8s · Docker',     score: 0.78 },
+      { label: 'MOBILE',   sub: 'Swift · Kotlin',         score: 0.85 },
+    ];
+    const angleFor = (i: number) => (-90 + i * 72) * Math.PI / 180;
+    const axes: RadarAxis[] = source.map((a, i) => {
+      const rad = angleFor(i);
+      const cos = Math.cos(rad), sin = Math.sin(rad);
+      const anchor: 'start' | 'middle' | 'end' =
+        Math.abs(cos) < 0.2 ? 'middle' : cos < 0 ? 'end' : 'start';
+      return {
+        ...a,
+        ex: cx + cos * R,
+        ey: cy + sin * R,
+        vx: cx + cos * R * a.score,
+        vy: cy + sin * R * a.score,
+        lx: cx + cos * R * 1.45,
+        ly: cy + sin * R * 1.45,
+        anchor,
+      };
     });
+    const polygon = axes.map(a => `${a.vx.toFixed(1)},${a.vy.toFixed(1)}`).join(' ');
+    const rings = [0.25, 0.5, 0.75, 1.0].map(s =>
+      Array.from({ length: 5 }, (_, i) => {
+        const rad = angleFor(i);
+        return `${(cx + Math.cos(rad) * R * s).toFixed(1)},${(cy + Math.sin(rad) * R * s).toFixed(1)}`;
+      }).join(' '),
+    );
+    return { cx, cy, axes, polygon, rings };
   }
 }
