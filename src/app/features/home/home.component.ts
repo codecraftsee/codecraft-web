@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { SERVICES } from '../../shared/data/services.data';
+import { RouterLink } from '@angular/router';
 
 interface RadarAxis {
   label: string;
@@ -115,62 +113,15 @@ interface RadarAxis {
         </div>
 
         <div class="cc-dims cc-dims--bottom">
-          <span class="cc-mono">NEXT · §02 / CAPABILITIES</span>
+          <span class="cc-mono">CCS · END OF OVERVIEW</span>
           <span class="cc-dims__line"></span>
-          <span class="cc-mono">SHEET 01 / 03</span>
-        </div>
-      </section>
-
-      <!-- CAPABILITIES DIAGRAM -->
-      <section class="cc-section" aria-label="Capabilities">
-        <div class="cc-section__head">
-          <span class="cc-mono cc-section__num">§02</span>
-          <h2 class="cc-h2">CAPABILITIES MATRIX</h2>
-          <span class="cc-section__rule"></span>
-          <span class="cc-mono cc-section__count">06 SERVICES</span>
-        </div>
-        <div class="cc-svc-diagram" role="list">
-          @for (s of services; track s.num) {
-            <button class="cc-svc-node" role="listitem" type="button" (click)="go('/services')" [attr.aria-label]="s.title">
-              <div class="cc-mono cc-svc-node__num">{{ s.num }}</div>
-              <div class="cc-svc-node__title">{{ s.title }}</div>
-              <p class="cc-svc-node__desc">{{ s.desc }}</p>
-              <span class="cc-svc-node__arrow" aria-hidden="true">→</span>
-            </button>
-          }
-        </div>
-      </section>
-
-<!-- CTA BAND -->
-      <section class="cc-cta-band" aria-label="Call to action">
-        <span class="cc-plate__corners" aria-hidden="true"></span>
-        <div class="cc-cta-band__inner">
-          <div>
-            <div class="cc-callout" aria-hidden="true">
-              <span class="cc-callout__dot"></span>
-              <span class="cc-mono">REQUEST · INTAKE</span>
-            </div>
-            <h2 class="cc-cta-band__title">Got a system to build?</h2>
-            <p class="cc-cta-band__desc">Send a brief. We'll come back within 24h with a scope, a price, and a plan.</p>
-          </div>
-          <div class="cc-cta-band__actions">
-            <button class="cc-btn cc-btn--primary cc-btn--lg" (click)="go('/contact')" type="button">
-              <span class="cc-btn__label">START INTAKE</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-            <a class="cc-btn cc-btn--ghost cc-btn--lg" href="mailto:hello@codecraftsolutions.rs">
-              <span class="cc-btn__label">EMAIL US</span>
-            </a>
-          </div>
+          <span class="cc-mono">SHEET 01 / 01</span>
         </div>
       </section>
     </div>
   `,
 })
 export class HomeComponent {
-  readonly #router = inject(Router);
-
-  readonly services = SERVICES;
   readonly specRows: [string, string][] = [
     ['CLIENTS',      '10+'],
     ['UPTIME / SLA', '99.95%'],
@@ -181,10 +132,6 @@ export class HomeComponent {
   ];
 
   readonly radar = this.#buildRadar();
-
-  go(route: string): void {
-    this.#router.navigate([route]);
-  }
 
   #buildRadar(): { cx: number; cy: number; axes: RadarAxis[]; polygon: string; rings: string[] } {
     const cx = 145, cy = 108, R = 52;
