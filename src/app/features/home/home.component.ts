@@ -28,7 +28,7 @@ import { SERVICES } from '../../shared/data/services.data';
           <div class="cc-hero__main">
             <div class="cc-callout" aria-hidden="true">
               <span class="cc-callout__dot"></span>
-              <span class="cc-mono">FIG.01 · PRIMARY OUTPUT</span>
+              <span class="cc-mono">NOVI SAD · ENGINEERING STUDIO</span>
             </div>
             <h1 class="cc-h1">
               We engineer<br>
@@ -36,7 +36,7 @@ import { SERVICES } from '../../shared/data/services.data';
               <span class="cc-h1__sub">that ship and stay shipped.</span>
             </h1>
             <p class="cc-lede">
-              CodeCraft Solutions is a Novi Sad based engineering studio. We design,
+              CodeCraft Solutions is a Novi Sad-based engineering studio. We design,
               build, and maintain web and mobile software for teams who treat their
               codebase as critical infrastructure — not a sketch.
             </p>
