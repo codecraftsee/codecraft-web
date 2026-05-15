@@ -20,7 +20,7 @@ import { ContactService } from './contact.service';
               <span class="cc-callout__dot"></span>
               <span class="cc-mono">REQUEST RECEIVED · ID·{{ requestId() }}</span>
             </div>
-            <h1 class="cc-h1">Transmission<br><span class="cc-h1__accent">acknowledged.</span></h1>
+            <h1 class="cc-h1">Transmission acknowledged.</h1>
             <p class="cc-lede">Engineering team notified. Expect a response in &lt; 24h UTC.</p>
             <button class="cc-btn cc-btn--ghost" (click)="reset()" type="button">
               <span class="cc-btn__label">SUBMIT_ANOTHER</span>
