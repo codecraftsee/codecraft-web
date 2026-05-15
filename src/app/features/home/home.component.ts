@@ -76,7 +76,7 @@ interface RadarAxis {
                 <span class="cc-mono">FIG.A · STACK COVERAGE</span>
                 <span class="cc-mono cc-instrument__legend">05 DOMAINS</span>
               </div>
-              <svg class="cc-instrument__svg" viewBox="0 0 290 220">
+              <svg class="cc-instrument__svg" viewBox="-20 -10 330 240">
                 @for (ring of radar.rings; track $index) {
                   <polygon [attr.points]="ring" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.3"/>
                 }
