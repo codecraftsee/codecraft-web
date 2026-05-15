@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'cc-cc-footer',
+  selector: 'cc-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <footer class="cc-foot">
