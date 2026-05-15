@@ -5,11 +5,12 @@ import {
   OnDestroy,
   signal,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SERVICES } from '../../shared/data/services.data';
 
 @Component({
   selector: 'cc-home',
+  imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './home.component.scss',
   template: `
@@ -41,13 +42,13 @@ import { SERVICES } from '../../shared/data/services.data';
               codebase as critical infrastructure — not a sketch.
             </p>
             <div class="cc-actions">
-              <button class="cc-btn cc-btn--primary" (click)="go('/contact')" type="button">
-                <span class="cc-btn__label">INITIATE PROJECT</span>
+              <a class="cc-btn cc-btn--primary" routerLink="/contact">
+                <span class="cc-btn__label">INITIATE_PROJECT</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </button>
-              <button class="cc-btn cc-btn--ghost" (click)="go('/services')" type="button">
-                <span class="cc-btn__label">VIEW CAPABILITIES</span>
-              </button>
+              </a>
+              <a class="cc-btn cc-btn--ghost" routerLink="/services">
+                <span class="cc-btn__label">VIEW_CAPABILITIES</span>
+              </a>
             </div>
           </div>
 
