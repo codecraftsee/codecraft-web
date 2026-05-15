@@ -6,10 +6,10 @@ export interface Service {
 }
 
 export const SERVICES: Service[] = [
-  { num: '01', title: 'Web Applications',    desc: 'Full-stack web platforms built for scale, reliability, and great UX — from SPAs to complex dashboards.', tags: ['Angular', 'React', 'Node', 'TypeScript'] },
-  { num: '02', title: 'Mobile Development',  desc: 'Cross-platform mobile apps that feel native. React Native and Flutter — one codebase, every device.', tags: ['React Native', 'Flutter', 'iOS', 'Android'] },
-  { num: '03', title: 'Cloud & DevOps',       desc: 'CI/CD pipelines, container orchestration, and infrastructure-as-code. Your system, always running.', tags: ['AWS', 'Docker', 'K8s', 'Terraform'] },
-  { num: '04', title: 'API & Backend',        desc: 'Robust REST and GraphQL APIs, microservices architecture, and data pipelines designed for growth.', tags: ['NestJS', 'Go', 'Postgres', 'Redis'] },
-  { num: '05', title: 'UI/UX Design',         desc: 'Design systems, prototypes, and pixel-perfect interfaces that are as functional as they are beautiful.', tags: ['Figma', 'Design Systems', 'A11y'] },
-  { num: '06', title: 'Tech Consulting',      desc: 'Architecture reviews, technology selection, and strategic guidance for teams scaling their engineering.', tags: ['Architecture', 'ADRs', 'Audits'] },
+  { num: '01', title: 'Web Applications',        desc: 'Dynamic, high-performing web apps tailored to complex problems and engaged users.',                                  tags: ['SPA', 'Real-time', 'Cloud-native'] },
+  { num: '02', title: 'AngularJS Migration',     desc: 'Modernise legacy AngularJS to Angular — preserve business logic, unlock performance and long-term support.',          tags: ['Legacy', 'TypeScript', 'Incremental'] },
+  { num: '03', title: 'Performance Engineering', desc: 'Discover, audit and fix bottlenecks across your stack — load times, UI lag, slow APIs, hot queries.',                 tags: ['Profiling', 'Core Web Vitals', 'DB Tuning'] },
+  { num: '04', title: 'On-Demand Engineering',   desc: 'Embedded support that squashes critical bugs, unblocks sprints and helps you hit deadlines.',                         tags: ['Urgent', 'Sprint Help', 'Augmentation'] },
+  { num: '05', title: 'Mobile Development',      desc: 'Native iOS and Android apps — built for performance, reliability and a seamless experience.',                         tags: ['Swift', 'Kotlin', 'Native'] },
+  { num: '06', title: 'Websites',                desc: 'Responsive, visually engaging sites that communicate your brand and convert visitors into customers.',                tags: ['Responsive', 'SEO', 'CMS'] },
 ];
