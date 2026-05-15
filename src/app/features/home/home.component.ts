@@ -117,7 +117,7 @@ interface RadarAxis {
         <div class="cc-dims cc-dims--bottom">
           <span class="cc-mono">NEXT · §02 / CAPABILITIES</span>
           <span class="cc-dims__line"></span>
-          <span class="cc-mono">SHEET 01 / 04</span>
+          <span class="cc-mono">SHEET 01 / 03</span>
         </div>
       </section>
 
