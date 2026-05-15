@@ -1,28 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'cc-bp-footer',
+  selector: 'cc-cc-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="bp-foot">
-      <div class="bp-foot__inner">
-        <span class="bp-mono">© 2026 CODECRAFT_SOLUTIONS · ALL RIGHTS RESERVED</span>
-        <span class="bp-mono">HELLO&#64;CODECRAFTSOLUTIONS.RS</span>
-        <span class="bp-mono">NOVI SAD · RS · REMOTE</span>
+    <footer class="cc-foot">
+      <div class="cc-foot__inner">
+        <span class="cc-mono">© 2026 CODECRAFT_SOLUTIONS · ALL RIGHTS RESERVED</span>
+        <span class="cc-mono">HELLO&#64;CODECRAFTSOLUTIONS.RS</span>
+        <span class="cc-mono">NOVI SAD · RS · REMOTE</span>
       </div>
     </footer>
   `,
   styles: `
     :host { display: block; }
 
-    .bp-foot {
+    .cc-foot {
       border-top: 1px solid var(--cc-rule-strong);
       padding: 22px 28px;
       margin-top: 16px;
       background: var(--cc-bg);
     }
 
-    .bp-foot__inner {
+    .cc-foot__inner {
       max-width: 1280px;
       margin: 0 auto;
       display: flex;
@@ -32,13 +32,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       color: var(--cc-ink-mute);
     }
 
-    .bp-mono {
+    .cc-mono {
       font-family: var(--cc-font-mono);
       font-feature-settings: 'ss01', 'cv01';
     }
 
     @media (max-width: 640px) {
-      .bp-foot__inner {
+      .cc-foot__inner {
         flex-direction: column;
         gap: 8px;
         align-items: flex-start;

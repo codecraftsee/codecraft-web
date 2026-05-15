@@ -7,66 +7,66 @@ import { ContactService } from './contact.service';
   imports: [ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="bp-page">
+    <div class="cc-page">
       @if (submitted()) {
         <!-- SUCCESS STATE -->
-        <section class="bp-plate bp-plate--narrow" aria-live="polite" role="alert">
-          <span class="bp-plate__corners" aria-hidden="true"></span>
-          <div class="bp-success">
-            <div class="bp-success__stamp" aria-hidden="true">
+        <section class="cc-plate cc-plate--narrow" aria-live="polite" role="alert">
+          <span class="cc-plate__corners" aria-hidden="true"></span>
+          <div class="cc-success">
+            <div class="cc-success__stamp" aria-hidden="true">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <div class="bp-callout">
-              <span class="bp-callout__dot"></span>
-              <span class="bp-mono">REQUEST RECEIVED · ID·{{ requestId() }}</span>
+            <div class="cc-callout">
+              <span class="cc-callout__dot"></span>
+              <span class="cc-mono">REQUEST RECEIVED · ID·{{ requestId() }}</span>
             </div>
-            <h1 class="bp-h1">Transmission<br><span class="bp-h1__accent">acknowledged.</span></h1>
-            <p class="bp-lede">Engineering team notified. Expect a response in &lt; 24h UTC.</p>
-            <button class="bp-btn bp-btn--ghost" (click)="reset()" type="button">
-              <span class="bp-btn__label">SUBMIT_ANOTHER</span>
+            <h1 class="cc-h1">Transmission<br><span class="cc-h1__accent">acknowledged.</span></h1>
+            <p class="cc-lede">Engineering team notified. Expect a response in &lt; 24h UTC.</p>
+            <button class="cc-btn cc-btn--ghost" (click)="reset()" type="button">
+              <span class="cc-btn__label">SUBMIT_ANOTHER</span>
             </button>
           </div>
         </section>
       } @else {
         <!-- FORM STATE -->
-        <section class="bp-plate bp-plate--narrow">
-          <span class="bp-plate__corners" aria-hidden="true"></span>
-          <div class="bp-dims bp-dims--top">
-            <span class="bp-mono">VIEW · 04 / INTAKE</span>
-            <span class="bp-dims__line"></span>
-            <span class="bp-mono">FORM · CC-04</span>
+        <section class="cc-plate cc-plate--narrow">
+          <span class="cc-plate__corners" aria-hidden="true"></span>
+          <div class="cc-dims cc-dims--top">
+            <span class="cc-mono">VIEW · 04 / INTAKE</span>
+            <span class="cc-dims__line"></span>
+            <span class="cc-mono">FORM · CC-04</span>
           </div>
 
-          <div class="bp-section__head">
-            <span class="bp-mono bp-section__num">§01</span>
-            <h1 class="bp-h2">PROJECT INTAKE FORM</h1>
-            <span class="bp-section__rule"></span>
-            <span class="bp-mono bp-section__count">STEP {{ step() }} / 3</span>
+          <div class="cc-section__head">
+            <span class="cc-mono cc-section__num">§01</span>
+            <h1 class="cc-h2">PROJECT INTAKE FORM</h1>
+            <span class="cc-section__rule"></span>
+            <span class="cc-mono cc-section__count">STEP {{ step() }} / 3</span>
           </div>
 
           <!-- STEPPER -->
-          <div class="bp-stepper" aria-label="Form progress">
+          <div class="cc-stepper" aria-label="Form progress">
             @for (n of [1,2,3]; track n) {
-              <div class="bp-step"
+              <div class="cc-step"
                 [class.is-active]="step() === n"
                 [class.is-done]="step() > n"
                 [attr.aria-current]="step() === n ? 'step' : null">
-                <span class="bp-mono bp-step__num">0{{ n }}</span>
-                <span class="bp-step__label">{{ ['SCOPE','CONSTRAINTS','IDENTIFY'][n - 1] }}</span>
+                <span class="cc-mono cc-step__num">0{{ n }}</span>
+                <span class="cc-step__label">{{ ['SCOPE','CONSTRAINTS','IDENTIFY'][n - 1] }}</span>
               </div>
             }
           </div>
 
           <!-- FORM FRAME -->
-          <div class="bp-form-frame">
+          <div class="cc-form-frame">
 
             <!-- STEP 1 -->
             @if (step() === 1) {
-              <form [formGroup]="step1Form" (ngSubmit)="nextStep()" novalidate class="bp-form">
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+              <form [formGroup]="step1Form" (ngSubmit)="nextStep()" novalidate class="cc-form">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     01 / PROJECT_DESCRIPTION
-                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                    <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <textarea
                     formControlName="projectDescription"
@@ -75,12 +75,12 @@ import { ContactService } from './contact.service';
                     [attr.aria-invalid]="step1Form.controls.projectDescription.invalid && step1Form.controls.projectDescription.touched"
                   ></textarea>
                   @if (step1Form.controls.projectDescription.invalid && step1Form.controls.projectDescription.touched) {
-                    <span class="bp-mono bp-field__err" role="alert">! Please describe your project.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Please describe your project.</span>
                   }
                 </label>
-                <div class="bp-actions">
-                  <button class="bp-btn bp-btn--primary" type="submit">
-                    <span class="bp-btn__label">CONTINUE</span>
+                <div class="cc-actions">
+                  <button class="cc-btn cc-btn--primary" type="submit">
+                    <span class="cc-btn__label">CONTINUE</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </button>
                 </div>
@@ -89,11 +89,11 @@ import { ContactService } from './contact.service';
 
             <!-- STEP 2 -->
             @if (step() === 2) {
-              <form [formGroup]="step2Form" (ngSubmit)="nextStep()" novalidate class="bp-form">
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+              <form [formGroup]="step2Form" (ngSubmit)="nextStep()" novalidate class="cc-form">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     02 / TIMELINE
-                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                    <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <select formControlName="timeline"
                     [attr.aria-invalid]="step2Form.controls.timeline.invalid && step2Form.controls.timeline.touched">
@@ -104,13 +104,13 @@ import { ContactService } from './contact.service';
                     <option value="exploring">Exploring</option>
                   </select>
                   @if (step2Form.controls.timeline.invalid && step2Form.controls.timeline.touched) {
-                    <span class="bp-mono bp-field__err" role="alert">! Please select a timeline.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Please select a timeline.</span>
                   }
                 </label>
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     03 / BUDGET
-                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                    <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <select formControlName="budget"
                     [attr.aria-invalid]="step2Form.controls.budget.invalid && step2Form.controls.budget.touched">
@@ -121,16 +121,16 @@ import { ContactService } from './contact.service';
                     <option value="50+">€50K+</option>
                   </select>
                   @if (step2Form.controls.budget.invalid && step2Form.controls.budget.touched) {
-                    <span class="bp-mono bp-field__err" role="alert">! Please select a budget range.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Please select a budget range.</span>
                   }
                 </label>
-                <div class="bp-actions bp-actions--split">
-                  <button class="bp-btn bp-btn--ghost" (click)="prevStep()" type="button">
+                <div class="cc-actions cc-actions--split">
+                  <button class="cc-btn cc-btn--ghost" (click)="prevStep()" type="button">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    <span class="bp-btn__label">BACK</span>
+                    <span class="cc-btn__label">BACK</span>
                   </button>
-                  <button class="bp-btn bp-btn--primary" type="submit">
-                    <span class="bp-btn__label">CONTINUE</span>
+                  <button class="cc-btn cc-btn--primary" type="submit">
+                    <span class="cc-btn__label">CONTINUE</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </button>
                 </div>
@@ -139,49 +139,49 @@ import { ContactService } from './contact.service';
 
             <!-- STEP 3 -->
             @if (step() === 3) {
-              <form [formGroup]="step3Form" (ngSubmit)="onSubmit()" novalidate class="bp-form">
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+              <form [formGroup]="step3Form" (ngSubmit)="onSubmit()" novalidate class="cc-form">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     04 / FULL_NAME
-                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                    <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <input formControlName="name" placeholder="Last, First" autocomplete="name"
                     [attr.aria-invalid]="step3Form.controls.name.invalid && step3Form.controls.name.touched" />
                   @if (step3Form.controls.name.invalid && step3Form.controls.name.touched) {
-                    <span class="bp-mono bp-field__err" role="alert">! Please enter your name.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Please enter your name.</span>
                   }
                 </label>
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     05 / EMAIL
-                    <span class="bp-field__req" aria-hidden="true"> *</span>
+                    <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <input type="email" formControlName="email" placeholder="user&#64;domain.tld" autocomplete="email"
                     [attr.aria-invalid]="step3Form.controls.email.invalid && step3Form.controls.email.touched" />
                   @if (step3Form.controls.email.touched && step3Form.controls.email.errors?.['required']) {
-                    <span class="bp-mono bp-field__err" role="alert">! Email address required.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Email address required.</span>
                   }
                   @if (step3Form.controls.email.touched && step3Form.controls.email.errors?.['email']) {
-                    <span class="bp-mono bp-field__err" role="alert">! Please enter a valid email address.</span>
+                    <span class="cc-mono cc-field__err" role="alert">! Please enter a valid email address.</span>
                   }
                 </label>
-                <label class="bp-field">
-                  <span class="bp-mono bp-field__label">
+                <label class="cc-field">
+                  <span class="cc-mono cc-field__label">
                     06 / COMPANY
-                    <span class="bp-field__opt"> (OPT)</span>
+                    <span class="cc-field__opt"> (OPT)</span>
                   </span>
                   <input formControlName="company" placeholder="Optional" autocomplete="organization" />
                 </label>
                 @if (submitError()) {
-                  <p class="bp-mono bp-field__err" role="alert">! {{ submitError() }}</p>
+                  <p class="cc-mono cc-field__err" role="alert">! {{ submitError() }}</p>
                 }
-                <div class="bp-actions bp-actions--split">
-                  <button class="bp-btn bp-btn--ghost" (click)="prevStep()" type="button">
+                <div class="cc-actions cc-actions--split">
+                  <button class="cc-btn cc-btn--ghost" (click)="prevStep()" type="button">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    <span class="bp-btn__label">BACK</span>
+                    <span class="cc-btn__label">BACK</span>
                   </button>
-                  <button class="bp-btn bp-btn--primary" type="submit" [disabled]="loading()">
-                    <span class="bp-btn__label">{{ loading() ? 'TRANSMITTING…' : 'TRANSMIT' }}</span>
+                  <button class="cc-btn cc-btn--primary" type="submit" [disabled]="loading()">
+                    <span class="cc-btn__label">{{ loading() ? 'TRANSMITTING…' : 'TRANSMIT' }}</span>
                     @if (!loading()) {
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     }
@@ -197,83 +197,83 @@ import { ContactService } from './contact.service';
   styles: `
     :host { display: block; }
 
-    .bp-mono { font-family: var(--cc-font-mono); font-feature-settings: 'ss01','cv01'; }
+    .cc-mono { font-family: var(--cc-font-mono); font-feature-settings: 'ss01','cv01'; }
 
-    .bp-page {
+    .cc-page {
       padding: 32px;
       max-width: 1280px;
       margin: 0 auto;
     }
 
     /* PLATE */
-    .bp-plate {
+    .cc-plate {
       position: relative;
       background-color: var(--cc-bg);
       border: 1px solid var(--cc-rule-strong);
       padding: 32px 36px 40px;
     }
-    .bp-plate--narrow { max-width: 860px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-    .bp-plate__corners { pointer-events: none; }
-    .bp-plate::before, .bp-plate::after,
-    .bp-plate__corners::before, .bp-plate__corners::after {
+    .cc-plate--narrow { max-width: 860px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+    .cc-plate__corners { pointer-events: none; }
+    .cc-plate::before, .cc-plate::after,
+    .cc-plate__corners::before, .cc-plate__corners::after {
       content: ''; position: absolute;
       width: 16px; height: 16px;
       border: 1.5px solid var(--cc-accent);
       pointer-events: none; z-index: 1;
     }
-    .bp-plate::before  { top: -1px;    left: -1px;  border-right: 0; border-bottom: 0; }
-    .bp-plate::after   { top: -1px;    right: -1px; border-left: 0;  border-bottom: 0; }
-    .bp-plate__corners::before { bottom: -1px; left: -1px;  border-right: 0; border-top: 0; position: absolute; }
-    .bp-plate__corners::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; position: absolute; }
+    .cc-plate::before  { top: -1px;    left: -1px;  border-right: 0; border-bottom: 0; }
+    .cc-plate::after   { top: -1px;    right: -1px; border-left: 0;  border-bottom: 0; }
+    .cc-plate__corners::before { bottom: -1px; left: -1px;  border-right: 0; border-top: 0; position: absolute; }
+    .cc-plate__corners::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; position: absolute; }
 
-    .bp-dims {
+    .cc-dims {
       display: flex; align-items: center; gap: 14px;
       font-size: 10px; color: var(--cc-ink-mute); letter-spacing: 0.18em;
     }
-    .bp-dims--top { margin-bottom: 28px; }
-    .bp-dims__line { flex: 1; height: 1px; background: var(--cc-rule-strong); }
+    .cc-dims--top { margin-bottom: 28px; }
+    .cc-dims__line { flex: 1; height: 1px; background: var(--cc-rule-strong); }
 
-    .bp-section__head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; }
-    .bp-section__num  { font-size: 11px; letter-spacing: 0.2em; color: var(--cc-accent); }
-    .bp-h2 { font-family: var(--cc-font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.22em; margin: 0; color: var(--cc-ink); }
-    .bp-section__rule  { flex: 1; height: 1px; background: var(--cc-rule-strong); }
-    .bp-section__count { font-size: 10px; letter-spacing: 0.18em; color: var(--cc-ink-mute); }
+    .cc-section__head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; }
+    .cc-section__num  { font-size: 11px; letter-spacing: 0.2em; color: var(--cc-accent); }
+    .cc-h2 { font-family: var(--cc-font-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.22em; margin: 0; color: var(--cc-ink); }
+    .cc-section__rule  { flex: 1; height: 1px; background: var(--cc-rule-strong); }
+    .cc-section__count { font-size: 10px; letter-spacing: 0.18em; color: var(--cc-ink-mute); }
 
     /* STEPPER */
-    .bp-stepper {
+    .cc-stepper {
       display: flex; gap: 0;
       border: 1px solid var(--cc-rule-strong);
       margin: 4px 0 24px;
     }
-    .bp-step {
+    .cc-step {
       flex: 1; padding: 14px 18px;
       border-right: 1px solid var(--cc-rule);
       display: flex; align-items: center; gap: 12px;
       font-size: 11px; letter-spacing: 0.18em;
       color: var(--cc-ink-mute);
     }
-    .bp-step:last-child { border-right: 0; }
-    .bp-step.is-active  { color: var(--cc-accent); background: var(--cc-panel); }
-    .bp-step.is-done    { color: var(--cc-ink-soft); }
-    .bp-step__num { font-size: 10px; opacity: 0.6; }
-    .bp-step.is-active .bp-step__num { opacity: 1; }
+    .cc-step:last-child { border-right: 0; }
+    .cc-step.is-active  { color: var(--cc-accent); background: var(--cc-panel); }
+    .cc-step.is-done    { color: var(--cc-ink-soft); }
+    .cc-step__num { font-size: 10px; opacity: 0.6; }
+    .cc-step.is-active .cc-step__num { opacity: 1; }
 
     /* FORM FRAME */
-    .bp-form-frame {
+    .cc-form-frame {
       border: 1px solid var(--cc-rule-strong);
       background: var(--cc-panel);
       padding: 30px 32px;
     }
-    .bp-form { display: flex; flex-direction: column; gap: 22px; }
-    .bp-field { display: flex; flex-direction: column; gap: 9px; }
-    .bp-field__label {
+    .cc-form { display: flex; flex-direction: column; gap: 22px; }
+    .cc-field { display: flex; flex-direction: column; gap: 9px; }
+    .cc-field__label {
       font-size: 10px; letter-spacing: 0.2em; color: var(--cc-ink-mute);
     }
-    .bp-field__req { color: var(--cc-accent); }
-    .bp-field__opt { color: var(--cc-ink-mute); }
-    .bp-field input,
-    .bp-field textarea,
-    .bp-field select {
+    .cc-field__req { color: var(--cc-accent); }
+    .cc-field__opt { color: var(--cc-ink-mute); }
+    .cc-field input,
+    .cc-field textarea,
+    .cc-field select {
       background: var(--cc-bg);
       border: 1px solid var(--cc-rule-strong);
       padding: 13px 14px;
@@ -283,14 +283,14 @@ import { ContactService } from './contact.service';
       outline: none;
       resize: vertical;
     }
-    .bp-field input:focus,
-    .bp-field textarea:focus,
-    .bp-field select:focus {
+    .cc-field input:focus,
+    .cc-field textarea:focus,
+    .cc-field select:focus {
       border-color: var(--cc-accent);
       box-shadow: 0 0 0 3px var(--cc-accent-glow);
     }
-    .bp-field textarea { min-height: 140px; }
-    .bp-field select {
+    .cc-field textarea { min-height: 140px; }
+    .cc-field select {
       appearance: none;
       background-image:
         linear-gradient(45deg, transparent 50%, var(--cc-ink-soft) 50%),
@@ -301,13 +301,13 @@ import { ContactService } from './contact.service';
       padding-right: 36px;
       background-color: var(--cc-bg);
     }
-    .bp-field select option { background: var(--cc-bg); color: var(--cc-ink); }
-    .bp-field__err { font-size: 11px; color: var(--cc-err); letter-spacing: 0.06em; }
+    .cc-field select option { background: var(--cc-bg); color: var(--cc-ink); }
+    .cc-field__err { font-size: 11px; color: var(--cc-err); letter-spacing: 0.06em; }
 
     /* BUTTONS */
-    .bp-actions { display: flex; justify-content: flex-end; gap: 10px; }
-    .bp-actions--split { justify-content: space-between; }
-    .bp-btn {
+    .cc-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .cc-actions--split { justify-content: space-between; }
+    .cc-btn {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 13px 18px; font-family: var(--cc-font-mono);
       font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
@@ -315,42 +315,42 @@ import { ContactService } from './contact.service';
       transition: all 0.18s ease; background: transparent;
       text-decoration: none; text-transform: uppercase;
     }
-    .bp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .bp-btn--primary { background: var(--cc-accent); color: var(--cc-bg); border-color: var(--cc-accent); }
-    .bp-btn--primary:hover:not(:disabled) { filter: brightness(1.1); box-shadow: 0 0 0 4px var(--cc-accent-glow); transform: translateY(-1px); }
-    .bp-btn--ghost { color: var(--cc-ink); border-color: var(--cc-rule-strong); }
-    .bp-btn--ghost:hover { border-color: var(--cc-accent); color: var(--cc-accent); background: var(--cc-accent-soft); }
+    .cc-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .cc-btn--primary { background: var(--cc-accent); color: var(--cc-bg); border-color: var(--cc-accent); }
+    .cc-btn--primary:hover:not(:disabled) { filter: brightness(1.1); box-shadow: 0 0 0 4px var(--cc-accent-glow); transform: translateY(-1px); }
+    .cc-btn--ghost { color: var(--cc-ink); border-color: var(--cc-rule-strong); }
+    .cc-btn--ghost:hover { border-color: var(--cc-accent); color: var(--cc-accent); background: var(--cc-accent-soft); }
 
     /* SUCCESS */
-    .bp-success { text-align: center; padding: 40px 20px; max-width: 580px; margin: 0 auto; }
-    .bp-success__stamp {
+    .cc-success { text-align: center; padding: 40px 20px; max-width: 580px; margin: 0 auto; }
+    .cc-success__stamp {
       width: 84px; height: 84px;
       border: 2px solid var(--cc-accent); color: var(--cc-accent);
       display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 26px;
     }
-    .bp-callout {
+    .cc-callout {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 10px; letter-spacing: 0.2em; color: var(--cc-accent);
       margin-bottom: 20px; text-transform: uppercase;
     }
-    .bp-callout__dot { width: 7px; height: 7px; background: var(--cc-accent); display: inline-block; }
-    .bp-h1 {
+    .cc-callout__dot { width: 7px; height: 7px; background: var(--cc-accent); display: inline-block; }
+    .cc-h1 {
       font-family: var(--cc-font-display);
       font-size: clamp(36px, 4vw, 60px);
       line-height: 0.96; font-weight: 700;
       letter-spacing: -0.025em;
       margin: 0 0 24px; color: var(--cc-ink);
     }
-    .bp-h1__accent { color: var(--cc-accent); }
-    .bp-lede { font-size: 17px; line-height: 1.55; color: var(--cc-ink-soft); margin: 0 0 32px; }
+    .cc-h1__accent { color: var(--cc-accent); }
+    .cc-lede { font-size: 17px; line-height: 1.55; color: var(--cc-ink-soft); margin: 0 0 32px; }
 
     @media (max-width: 980px) {
-      .bp-page { padding: 18px; }
-      .bp-plate { padding: 22px; }
-      .bp-stepper { flex-direction: column; }
-      .bp-step { border-right: 0; border-bottom: 1px solid var(--cc-rule); }
-      .bp-form-frame { padding: 20px; }
+      .cc-page { padding: 18px; }
+      .cc-plate { padding: 22px; }
+      .cc-stepper { flex-direction: column; }
+      .cc-step { border-right: 0; border-bottom: 1px solid var(--cc-rule); }
+      .cc-form-frame { padding: 20px; }
     }
   `,
 })

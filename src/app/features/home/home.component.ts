@@ -13,69 +13,69 @@ import { SERVICES } from '../../shared/data/services.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './home.component.scss',
   template: `
-    <div class="bp-page">
+    <div class="cc-page">
 
       <!-- HERO PLATE -->
-      <section class="bp-plate" aria-label="Hero">
-        <span class="bp-plate__corners" aria-hidden="true"></span>
-        <div class="bp-dims bp-dims--top">
-          <span class="bp-mono">VIEW · 01 / OVERVIEW</span>
-          <span class="bp-dims__line"></span>
-          <span class="bp-mono">W·1280 · H·auto</span>
+      <section class="cc-plate" aria-label="Hero">
+        <span class="cc-plate__corners" aria-hidden="true"></span>
+        <div class="cc-dims cc-dims--top">
+          <span class="cc-mono">VIEW · 01 / OVERVIEW</span>
+          <span class="cc-dims__line"></span>
+          <span class="cc-mono">W·1280 · H·auto</span>
         </div>
 
-        <div class="bp-hero">
-          <div class="bp-hero__main">
-            <div class="bp-callout" aria-hidden="true">
-              <span class="bp-callout__dot"></span>
-              <span class="bp-mono">FIG.01 · PRIMARY OUTPUT</span>
+        <div class="cc-hero">
+          <div class="cc-hero__main">
+            <div class="cc-callout" aria-hidden="true">
+              <span class="cc-callout__dot"></span>
+              <span class="cc-mono">FIG.01 · PRIMARY OUTPUT</span>
             </div>
-            <h1 class="bp-h1">
+            <h1 class="cc-h1">
               We engineer<br>
-              <span class="bp-h1__accent">software systems</span><br>
-              <span class="bp-h1__sub">that ship and stay shipped.</span>
+              <span class="cc-h1__accent">software systems</span><br>
+              <span class="cc-h1__sub">that ship and stay shipped.</span>
             </h1>
-            <p class="bp-lede">
+            <p class="cc-lede">
               CodeCraft Solutions is a Novi Sad based engineering studio. We design,
               build, and maintain web and mobile software for teams who treat their
               codebase as critical infrastructure — not a sketch.
             </p>
-            <div class="bp-actions">
-              <button class="bp-btn bp-btn--primary" (click)="go('/contact')" type="button">
-                <span class="bp-btn__label">INITIATE PROJECT</span>
+            <div class="cc-actions">
+              <button class="cc-btn cc-btn--primary" (click)="go('/contact')" type="button">
+                <span class="cc-btn__label">INITIATE PROJECT</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
-              <button class="bp-btn bp-btn--ghost" (click)="go('/services')" type="button">
-                <span class="bp-btn__label">VIEW CAPABILITIES</span>
+              <button class="cc-btn cc-btn--ghost" (click)="go('/services')" type="button">
+                <span class="cc-btn__label">VIEW CAPABILITIES</span>
               </button>
             </div>
           </div>
 
-          <aside class="bp-hero__aside">
-            <div class="bp-spec">
-              <div class="bp-mono bp-spec__head">SYSTEM SPECIFICATION</div>
-              <ul class="bp-spec__rows" aria-label="System stats">
+          <aside class="cc-hero__aside">
+            <div class="cc-spec">
+              <div class="cc-mono cc-spec__head">SYSTEM SPECIFICATION</div>
+              <ul class="cc-spec__rows" aria-label="System stats">
                 @for (row of specRows; track row[0]) {
-                  <li class="bp-spec__row">
-                    <span class="bp-mono bp-spec__k">{{ row[0] }}</span>
-                    <span class="bp-spec__leader"></span>
-                    <span class="bp-spec__v">{{ row[1] }}</span>
+                  <li class="cc-spec__row">
+                    <span class="cc-mono cc-spec__k">{{ row[0] }}</span>
+                    <span class="cc-spec__leader"></span>
+                    <span class="cc-spec__v">{{ row[1] }}</span>
                   </li>
                 }
               </ul>
             </div>
-            <div class="bp-instrument" aria-hidden="true">
-              <div class="bp-instrument__head">
-                <span class="bp-mono">FIG.A · RANGE OF MOTION</span>
-                <span class="bp-mono bp-instrument__legend">θ · {{ angle() }}°</span>
+            <div class="cc-instrument" aria-hidden="true">
+              <div class="cc-instrument__head">
+                <span class="cc-mono">FIG.A · RANGE OF MOTION</span>
+                <span class="cc-mono cc-instrument__legend">θ · {{ angle() }}°</span>
               </div>
-              <svg class="bp-instrument__svg" viewBox="0 0 200 200">
+              <svg class="cc-instrument__svg" viewBox="0 0 200 200">
                 <defs>
-                  <pattern id="bp-ig" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <pattern id="cc-ig" width="10" height="10" patternUnits="userSpaceOnUse">
                     <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.35"/>
                   </pattern>
                 </defs>
-                <rect width="200" height="200" fill="url(#bp-ig)"/>
+                <rect width="200" height="200" fill="url(#cc-ig)"/>
                 <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="0.6"/>
                 <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 3"/>
                 <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="0.6"/>
@@ -96,52 +96,52 @@ import { SERVICES } from '../../shared/data/services.data';
           </aside>
         </div>
 
-        <div class="bp-dims bp-dims--bottom">
-          <span class="bp-mono">NEXT · §02 / CAPABILITIES</span>
-          <span class="bp-dims__line"></span>
-          <span class="bp-mono">SHEET 01 / 04</span>
+        <div class="cc-dims cc-dims--bottom">
+          <span class="cc-mono">NEXT · §02 / CAPABILITIES</span>
+          <span class="cc-dims__line"></span>
+          <span class="cc-mono">SHEET 01 / 04</span>
         </div>
       </section>
 
       <!-- CAPABILITIES DIAGRAM -->
-      <section class="bp-section" aria-label="Capabilities">
-        <div class="bp-section__head">
-          <span class="bp-mono bp-section__num">§02</span>
-          <h2 class="bp-h2">CAPABILITIES MATRIX</h2>
-          <span class="bp-section__rule"></span>
-          <span class="bp-mono bp-section__count">06 SERVICES</span>
+      <section class="cc-section" aria-label="Capabilities">
+        <div class="cc-section__head">
+          <span class="cc-mono cc-section__num">§02</span>
+          <h2 class="cc-h2">CAPABILITIES MATRIX</h2>
+          <span class="cc-section__rule"></span>
+          <span class="cc-mono cc-section__count">06 SERVICES</span>
         </div>
-        <div class="bp-svc-diagram" role="list">
+        <div class="cc-svc-diagram" role="list">
           @for (s of services; track s.num) {
-            <button class="bp-svc-node" role="listitem" type="button" (click)="go('/services')" [attr.aria-label]="s.title">
-              <div class="bp-mono bp-svc-node__num">{{ s.num }}</div>
-              <div class="bp-svc-node__title">{{ s.title }}</div>
-              <p class="bp-svc-node__desc">{{ s.desc }}</p>
-              <span class="bp-svc-node__arrow" aria-hidden="true">→</span>
+            <button class="cc-svc-node" role="listitem" type="button" (click)="go('/services')" [attr.aria-label]="s.title">
+              <div class="cc-mono cc-svc-node__num">{{ s.num }}</div>
+              <div class="cc-svc-node__title">{{ s.title }}</div>
+              <p class="cc-svc-node__desc">{{ s.desc }}</p>
+              <span class="cc-svc-node__arrow" aria-hidden="true">→</span>
             </button>
           }
         </div>
       </section>
 
 <!-- CTA BAND -->
-      <section class="bp-cta-band" aria-label="Call to action">
-        <span class="bp-plate__corners" aria-hidden="true"></span>
-        <div class="bp-cta-band__inner">
+      <section class="cc-cta-band" aria-label="Call to action">
+        <span class="cc-plate__corners" aria-hidden="true"></span>
+        <div class="cc-cta-band__inner">
           <div>
-            <div class="bp-callout" aria-hidden="true">
-              <span class="bp-callout__dot"></span>
-              <span class="bp-mono">REQUEST · INTAKE</span>
+            <div class="cc-callout" aria-hidden="true">
+              <span class="cc-callout__dot"></span>
+              <span class="cc-mono">REQUEST · INTAKE</span>
             </div>
-            <h2 class="bp-cta-band__title">Got a system to build?</h2>
-            <p class="bp-cta-band__desc">Send a brief. We'll come back within 24h with a scope, a price, and a plan.</p>
+            <h2 class="cc-cta-band__title">Got a system to build?</h2>
+            <p class="cc-cta-band__desc">Send a brief. We'll come back within 24h with a scope, a price, and a plan.</p>
           </div>
-          <div class="bp-cta-band__actions">
-            <button class="bp-btn bp-btn--primary bp-btn--lg" (click)="go('/contact')" type="button">
-              <span class="bp-btn__label">START INTAKE</span>
+          <div class="cc-cta-band__actions">
+            <button class="cc-btn cc-btn--primary cc-btn--lg" (click)="go('/contact')" type="button">
+              <span class="cc-btn__label">START INTAKE</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-            <a class="bp-btn bp-btn--ghost bp-btn--lg" href="mailto:hello@codecraftsolutions.rs">
-              <span class="bp-btn__label">EMAIL US</span>
+            <a class="cc-btn cc-btn--ghost cc-btn--lg" href="mailto:hello@codecraftsolutions.rs">
+              <span class="cc-btn__label">EMAIL US</span>
             </a>
           </div>
         </div>

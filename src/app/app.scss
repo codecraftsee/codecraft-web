@@ -35,7 +35,7 @@
   }
 }
 
-.bp-scroll {
+.cc-scroll {
   position: relative;
   z-index: 4;
   flex: 1;
@@ -47,7 +47,7 @@
   &::-webkit-scrollbar-thumb { background: var(--cc-rule-strong); }
 }
 
-.bp-main {
+.cc-main {
   position: relative;
   z-index: 1;
 }
