@@ -157,12 +157,12 @@ export class HomeComponent implements OnDestroy {
 
   readonly services = SERVICES;
   readonly specRows: [string, string][] = [
-    ['CLIENTS',     '10+'],
-    ['UPTIME / SLA','99.95%'],
-    // ['LOC SHIPPED', '2.4M'],
-    ['AVG RESPONSE','<24h'],
-    ['STACK DEPTH', '12 lang.'],
-    ['REGIONS',     'EU · NA'],
+    ['CLIENTS',      '10+'],
+    ['UPTIME / SLA', '99.95%'],
+    ['LOC SHIPPED',  '2.4M'],
+    ['AVG_RESPONSE', '<24h'],
+    ['STACK_DEPTH',  '12 lang.'],
+    ['REGIONS',      'EU · NA'],
   ];
 
   readonly angle = signal(0);
