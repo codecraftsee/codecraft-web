@@ -3,7 +3,7 @@ import { effect, Injectable, signal } from '@angular/core';
 export type Theme = 'light' | 'dark' | 'sable';
 
 const STORAGE_KEY = 'cc-theme';
-const THEMES: Theme[] = ['dark', 'light', 'sable'];
+const THEMES: Theme[] = ['light', 'dark', 'sable'];
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

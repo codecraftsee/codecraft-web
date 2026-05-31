@@ -24,11 +24,11 @@ const NAV = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {},
   template: `
-    <header class="bp-chrome">
+    <header class="cc-chrome">
       <!-- TOP ROW -->
-      <div class="bp-chrome__top">
-        <a class="bp-mark" routerLink="/" aria-label="CodeCraft Solutions home">
-          <svg class="bp-mark__logo" aria-hidden="true" viewBox="0 0 984.78 368.72" xmlns="http://www.w3.org/2000/svg">
+      <div class="cc-chrome__top">
+        <a class="cc-mark" routerLink="/" aria-label="CodeCraft Solutions home">
+          <svg class="cc-mark__logo" aria-hidden="true" viewBox="0 0 984.78 368.72" xmlns="http://www.w3.org/2000/svg">
             <!-- main shapes: ink color (matches body text) -->
             <g fill="var(--cc-ink)">
               <polygon points="984.77 257.64 984.77 326.83 942.88 368.72 520.19 368.72 520.19 299.53 562.08 257.64 984.77 257.64"/>
@@ -47,56 +47,60 @@ const NAV = [
               <path d="M994.9,754.6H981.12V698.31H953.41v-12h68.68v11.61H994.9Z" transform="translate(-74.54 -406.71)"/>
             </g>
           </svg>
-          <span class="bp-mark__sub bp-mono">CCS / REV.04 · BUILD 2026.05</span>
+          <span class="cc-mark__divider" aria-hidden="true"></span>
+          <span class="cc-mark__est cc-mono">
+            <span class="cc-mark__est-label">EST.</span>
+            <span class="cc-mark__est-date">13 04 2020</span>
+          </span>
         </a>
 
-        <div class="bp-meta" aria-label="System status">
-          <div class="bp-meta-cell">
-            <span class="bp-mono bp-meta-cell__label">LAT</span>
-            <span class="bp-meta-cell__value bp-mono">44.7866</span>
+        <div class="cc-meta" aria-label="System status">
+          <div class="cc-meta-cell">
+            <span class="cc-mono cc-meta-cell__label">LAT</span>
+            <span class="cc-meta-cell__value cc-mono">45.2671</span>
           </div>
-          <div class="bp-meta-cell">
-            <span class="bp-mono bp-meta-cell__label">LON</span>
-            <span class="bp-meta-cell__value bp-mono">20.4489</span>
+          <div class="cc-meta-cell">
+            <span class="cc-mono cc-meta-cell__label">LON</span>
+            <span class="cc-meta-cell__value cc-mono">19.8335</span>
           </div>
-          <div class="bp-meta-cell">
-            <span class="bp-mono bp-meta-cell__label">STATUS</span>
-            <span class="bp-meta-cell__value">
-              <span class="bp-pulse bp-mono" aria-label="Operational">OPERATIONAL</span>
+          <div class="cc-meta-cell">
+            <span class="cc-mono cc-meta-cell__label">STATUS</span>
+            <span class="cc-meta-cell__value">
+              <span class="cc-pulse cc-mono" aria-label="Operational">OPERATIONAL</span>
             </span>
           </div>
-          <div class="bp-meta-cell">
-            <span class="bp-mono bp-meta-cell__label">UTC</span>
-            <span class="bp-meta-cell__value bp-mono" aria-live="polite" aria-atomic="true">{{ utcTime() }}</span>
+          <div class="cc-meta-cell">
+            <span class="cc-mono cc-meta-cell__label">UTC</span>
+            <span class="cc-meta-cell__value cc-mono" aria-live="polite" aria-atomic="true">{{ utcTime() }}</span>
           </div>
         </div>
       </div>
 
       <!-- NAV ROW -->
-      <nav class="bp-nav" aria-label="Main navigation">
+      <nav class="cc-nav" aria-label="Main navigation">
         @for (n of navItems; track n.id) {
           <a
-            class="bp-tab"
+            class="cc-tab"
             [class.is-active]="activeRoute() === n.id"
             [routerLink]="n.id"
             [routerLinkActive]="'is-active'"
             [routerLinkActiveOptions]="{ exact: n.id === '/' }"
           >
-            <span class="bp-tab__idx bp-mono">[{{ n.idx }}]</span>
-            <span class="bp-tab__label">{{ n.label }}</span>
+            <span class="cc-tab__idx cc-mono">[{{ n.idx }}]</span>
+            <span class="cc-tab__label">{{ n.label }}</span>
             @if (activeRoute() === n.id) {
-              <span class="bp-tab__bar" aria-hidden="true"></span>
+              <span class="cc-tab__bar" aria-hidden="true"></span>
             }
           </a>
         }
-        <div class="bp-nav__spacer"></div>
+        <div class="cc-nav__spacer"></div>
         <button
-          class="bp-theme-btn"
+          class="cc-theme-btn"
           (click)="cycleTheme()"
           [title]="'Current theme: ' + theme() + ' — click to cycle'"
           type="button"
         >
-          <span class="bp-theme-btn__icon" aria-hidden="true">
+          <span class="cc-theme-btn__icon" aria-hidden="true">
             @if (theme() === 'light') {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             }
@@ -107,14 +111,14 @@ const NAV = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c0 6-6 8-6 14a6 6 0 0 0 12 0c0-6-6-8-6-14z"/></svg>
             }
           </span>
-          <span class="bp-mono">THEME / {{ theme().toUpperCase() }}</span>
+          <span class="cc-mono">THEME / {{ theme().toUpperCase() }}</span>
         </button>
       </nav>
 
       <!-- SCROLL PROGRESS -->
-      <div class="bp-progress-track" role="progressbar" [attr.aria-valuenow]="scrollPct()" aria-valuemin="0" aria-valuemax="100">
-        <div class="bp-progress-fill" [style.width.%]="scrollPct()"></div>
-        <span class="bp-mono bp-progress-label" aria-hidden="true">
+      <div class="cc-progress-track" role="progressbar" [attr.aria-valuenow]="scrollPct()" aria-valuemin="0" aria-valuemax="100">
+        <div class="cc-progress-fill" [style.width.%]="scrollPct()"></div>
+        <span class="cc-mono cc-progress-label" aria-hidden="true">
           SCROLL · {{ padded(scrollPct()) }}%
         </span>
       </div>
@@ -123,18 +127,18 @@ const NAV = [
   styles: `
     :host { display: block; position: relative; z-index: 100; }
 
-    .bp-mono {
+    .cc-mono {
       font-family: var(--cc-font-mono);
       font-feature-settings: 'ss01', 'cv01';
     }
 
-    .bp-chrome {
+    .cc-chrome {
       background: var(--cc-bg);
       border-bottom: 1px solid var(--cc-rule-strong);
     }
 
     /* TOP ROW */
-    .bp-chrome__top {
+    .cc-chrome__top {
       display: grid;
       grid-template-columns: auto 1fr;
       align-items: center;
@@ -142,61 +146,79 @@ const NAV = [
       gap: 24px;
     }
 
-    .bp-mark {
-      display: flex; align-items: center; gap: 12px;
+    .cc-mark {
+      display: flex; align-items: center; gap: 14px;
       background: none; border: 0; cursor: pointer;
       color: var(--cc-ink); font-family: var(--cc-font-display);
       padding: 0; text-decoration: none;
     }
-    .bp-mark__logo {
-      height: 28px;
+    .cc-mark__logo {
+      height: 34px;
       width: auto;
       flex-shrink: 0;
+      display: block;
+      overflow: visible;
     }
-    .bp-mark__sub {
-      font-size: 10px; color: var(--cc-ink-mute);
+    .cc-mark__divider {
+      width: 1px; height: 28px;
+      background: var(--cc-rule);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+    .cc-mark__est {
+      display: inline-flex; flex-direction: column;
+      line-height: 1.2;
+    }
+    .cc-mark__est-label {
+      font-size: 10px; font-weight: 600;
+      color: var(--cc-ink-soft);
+      letter-spacing: 0.22em;
+    }
+    .cc-mark__est-date {
+      font-size: 10px; font-weight: 700;
+      color: var(--cc-ink);
       letter-spacing: 0.14em;
     }
 
-    .bp-meta {
+    .cc-meta {
       justify-self: end;
       display: flex; gap: 28px;
     }
-    .bp-meta-cell { display: flex; flex-direction: column; gap: 3px; min-width: 70px; }
-    .bp-meta-cell__label {
+    .cc-meta-cell { display: flex; flex-direction: column; gap: 3px; min-width: 70px; }
+    .cc-meta-cell__label {
       font-size: 9px; letter-spacing: 0.18em; color: var(--cc-ink-mute);
     }
-    .bp-meta-cell__value {
+    .cc-meta-cell__value {
       font-size: 12px; color: var(--cc-ink);
       letter-spacing: 0.04em;
     }
 
-    .bp-pulse {
+    .cc-pulse {
       display: inline-flex; align-items: center; gap: 6px;
       color: var(--cc-accent);
     }
-    .bp-pulse::before {
+    .cc-pulse::before {
       content: '';
       width: 6px; height: 6px; border-radius: 50%;
       background: var(--cc-accent);
       box-shadow: 0 0 0 0 var(--cc-accent-glow);
-      animation: bp-pulse 1.6s infinite;
+      animation: cc-pulse 1.6s infinite;
       flex-shrink: 0;
     }
-    @keyframes bp-pulse {
+    @keyframes cc-pulse {
       0%   { box-shadow: 0 0 0 0 var(--cc-accent-glow); }
       70%  { box-shadow: 0 0 0 6px transparent; }
       100% { box-shadow: 0 0 0 0 transparent; }
     }
 
     /* NAV ROW */
-    .bp-nav {
+    .cc-nav {
       display: flex; align-items: stretch;
       border-top: 1px solid var(--cc-rule);
       background: var(--cc-bg2);
     }
 
-    .bp-tab {
+    .cc-tab {
       position: relative;
       background: transparent; border: 0;
       border-right: 1px solid var(--cc-rule);
@@ -209,18 +231,18 @@ const NAV = [
       transition: color 0.18s, background 0.18s;
       text-decoration: none;
     }
-    .bp-tab:hover { color: var(--cc-ink); background: var(--cc-panel); }
-    .bp-tab.is-active { color: var(--cc-accent); background: var(--cc-panel); }
-    .bp-tab__idx { font-size: 9px; color: var(--cc-ink-mute); letter-spacing: 0.1em; }
-    .bp-tab.is-active .bp-tab__idx { color: var(--cc-accent); }
-    .bp-tab__bar {
+    .cc-tab:hover { color: var(--cc-ink); background: var(--cc-panel); }
+    .cc-tab.is-active { color: var(--cc-accent); background: var(--cc-panel); }
+    .cc-tab__idx { font-size: 9px; color: var(--cc-ink-mute); letter-spacing: 0.1em; }
+    .cc-tab.is-active .cc-tab__idx { color: var(--cc-accent); }
+    .cc-tab__bar {
       position: absolute; left: 0; right: 0; bottom: -1px;
       height: 2px; background: var(--cc-accent);
     }
 
-    .bp-nav__spacer { flex: 1; border-right: 1px solid var(--cc-rule); }
+    .cc-nav__spacer { flex: 1; border-right: 1px solid var(--cc-rule); }
 
-    .bp-theme-btn {
+    .cc-theme-btn {
       background: transparent; border: 0;
       border-left: 1px solid var(--cc-rule);
       padding: 12px 18px; cursor: pointer;
@@ -229,21 +251,21 @@ const NAV = [
       color: var(--cc-ink-soft);
       font-size: 10px; letter-spacing: 0.16em;
     }
-    .bp-theme-btn:hover { color: var(--cc-accent); }
-    .bp-theme-btn__icon { color: var(--cc-accent); display: inline-flex; }
+    .cc-theme-btn:hover { color: var(--cc-accent); }
+    .cc-theme-btn__icon { color: var(--cc-accent); display: inline-flex; }
 
     /* SCROLL PROGRESS */
-    .bp-progress-track {
+    .cc-progress-track {
       position: relative; height: 18px;
       background: var(--cc-bg);
       border-top: 1px solid var(--cc-rule);
     }
-    .bp-progress-fill {
+    .cc-progress-fill {
       position: absolute; inset-block: 0; left: 0;
       background: linear-gradient(to right, transparent, var(--cc-accent-soft) 50%, var(--cc-accent));
       transition: width 0.1s;
     }
-    .bp-progress-label {
+    .cc-progress-label {
       position: absolute; right: 14px;
       top: 50%; transform: translateY(-50%);
       font-size: 9px; color: var(--cc-ink-mute);
@@ -252,13 +274,13 @@ const NAV = [
 
     /* RESPONSIVE */
     @media (max-width: 980px) {
-      .bp-chrome__top { grid-template-columns: 1fr; padding: 14px 18px; gap: 14px; }
-      .bp-meta { justify-self: start; gap: 18px; flex-wrap: wrap; }
-      .bp-nav { overflow-x: auto; }
-      .bp-tab { padding: 10px 14px; flex-shrink: 0; }
+      .cc-chrome__top { grid-template-columns: 1fr; padding: 14px 18px; gap: 14px; }
+      .cc-meta { justify-self: start; gap: 18px; flex-wrap: wrap; }
+      .cc-nav { overflow-x: auto; }
+      .cc-tab { padding: 10px 14px; flex-shrink: 0; }
     }
     @media (max-width: 600px) {
-      .bp-meta { display: none; }
+      .cc-meta { display: none; }
     }
   `,
 })
@@ -279,7 +301,7 @@ export class SiteHeaderComponent implements OnDestroy {
     }, 1000);
 
     afterNextRender(() => {
-      const scrollEl = document.getElementById('bp-scroll');
+      const scrollEl = document.getElementById('cc-scroll');
       if (scrollEl) {
         scrollEl.addEventListener('scroll', () => this.onScrollElement(scrollEl), { passive: true });
       }
