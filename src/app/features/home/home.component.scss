@@ -119,20 +119,6 @@
 .cc-spec__leader { flex: 1; height: 0; border-bottom: 1px dotted var(--cc-rule-strong); margin-bottom: 4px; }
 .cc-spec__v    { color: var(--cc-ink); font-weight: 600; font-family: var(--cc-font-mono); font-size: 12px; }
 
-.cc-instrument {
-  border: 1px solid var(--cc-rule); background: var(--cc-panel);
-  color: var(--cc-ink-mute); flex: 1; min-height: 240px;
-  display: flex; flex-direction: column;
-}
-.cc-instrument__head {
-  display: flex; justify-content: space-between;
-  padding: 10px 14px;
-  border-bottom: 1px dashed var(--cc-rule-strong);
-  font-size: 10px; letter-spacing: 0.18em; color: var(--cc-ink-mute);
-}
-.cc-instrument__legend { color: var(--cc-accent); }
-.cc-instrument__svg { width: 100%; flex: 1; padding: 8px; }
-
 /* SECTION */
 .cc-section { display: flex; flex-direction: column; gap: 20px; }
 .cc-section__head { display: flex; align-items: baseline; gap: 16px; }
