@@ -140,3 +140,14 @@
   .cc-detail-meta { flex-wrap: wrap; gap: 18px; }
   .cc-detail-title { font-size: 28px; }
 }
+@media (max-width: 600px) {
+  .cc-page { padding: 14px; }
+  .cc-plate { padding: 18px 16px 24px; }
+  .cc-svc-detail { padding: 20px 18px; }
+  .cc-svc-row { padding: 14px 16px; }
+  .cc-detail-title { font-size: 24px; }
+  .cc-detail-desc { font-size: 15px; }
+  .cc-section__count { display: none; }
+  .cc-actions { flex-wrap: wrap; }
+  .cc-actions .cc-btn { flex: 1 1 auto; justify-content: center; }
+}

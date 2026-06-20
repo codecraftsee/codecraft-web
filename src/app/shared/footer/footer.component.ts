@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <footer class="cc-foot">
       <div class="cc-foot__inner">
-        <span class="cc-mono">© 2026 CODECRAFT_SOLUTIONS · ALL RIGHTS RESERVED</span>
+        <span class="cc-mono">© 2026 CODECRAFT SOLUTIONS · ALL RIGHTS RESERVED</span>
         <span class="cc-mono">HELLO&#64;CODECRAFTSOLUTIONS.RS</span>
         <span class="cc-mono">NOVI SAD · RS · REMOTE</span>
       </div>

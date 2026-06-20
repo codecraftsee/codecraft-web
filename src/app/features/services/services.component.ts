@@ -95,7 +95,7 @@ import { SERVICES, Service } from '../../shared/data/services.data';
 
             <div class="cc-actions">
               <button class="cc-btn cc-btn--primary" (click)="go('/contact')" type="button">
-                <span class="cc-btn__label">REQUEST_QUOTE</span>
+                <span class="cc-btn__label">REQUEST QUOTE</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
             </div>
