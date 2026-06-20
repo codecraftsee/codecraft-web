@@ -67,7 +67,7 @@ interface TeamMember {
                   <div class="cc-id__actions">
                     @if (m.cvUrl) {
                       <a class="cc-btn cc-btn--ghost" [href]="m.cvUrl" download [attr.aria-label]="'Download CV for ' + m.name">
-                        <span class="cc-btn__label">CV_DOWNLOAD</span>
+                        <span class="cc-btn__label">CV DOWNLOAD</span>
                       </a>
                     }
                     @for (link of m.social; track link.label) {
@@ -214,6 +214,15 @@ interface TeamMember {
       .cc-roster { grid-template-columns: 1fr; }
       .cc-id__body { grid-template-columns: 110px 1fr; gap: 14px; }
       .cc-id__photo { width: 110px; height: 130px; }
+    }
+    @media (max-width: 600px) {
+      .cc-page { padding: 14px; }
+      .cc-plate { padding: 18px 16px 24px; }
+      .cc-section__count { display: none; }
+      .cc-id__body { grid-template-columns: 96px 1fr; gap: 12px; padding: 14px; }
+      .cc-id__photo { width: 96px; height: 116px; }
+      .cc-id__name { font-size: 19px; }
+      .cc-id__actions .cc-btn { flex: 1 1 auto; justify-content: center; }
     }
   `,
 })

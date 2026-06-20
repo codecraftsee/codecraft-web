@@ -41,11 +41,11 @@ import { TechRadarComponent } from './tech-radar/tech-radar.component';
             </p>
             <div class="cc-actions">
               <a class="cc-btn cc-btn--primary" routerLink="/contact">
-                <span class="cc-btn__label">INITIATE_PROJECT</span>
+                <span class="cc-btn__label">INITIATE PROJECT</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
               <a class="cc-btn cc-btn--ghost" routerLink="/services">
-                <span class="cc-btn__label">VIEW_CAPABILITIES</span>
+                <span class="cc-btn__label">VIEW CAPABILITIES</span>
               </a>
             </div>
           </div>
@@ -81,8 +81,8 @@ export class HomeComponent {
     ['CLIENTS',      '10+'],
     ['UPTIME / SLA', '99.95%'],
     ['LOC SHIPPED',  '2.4M'],
-    ['AVG_RESPONSE', '<24h'],
-    ['STACK_DEPTH',  '12 lang.'],
+    ['AVG RESPONSE', '<24h'],
+    ['STACK DEPTH',  '12 lang.'],
     ['REGIONS',      'EU · NA'],
   ];
 }

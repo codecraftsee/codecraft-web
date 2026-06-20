@@ -47,6 +47,9 @@
   gap: 40px;
   align-items: stretch;
 }
+/* Allow grid children to shrink below their content's intrinsic width
+   (default min-width:auto otherwise forces horizontal overflow). */
+.cc-hero__main { min-width: 0; }
 .cc-callout {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 10px; letter-spacing: 0.2em; color: var(--cc-accent);
@@ -57,10 +60,11 @@
 }
 .cc-h1 {
   font-family: var(--cc-font-display);
-  font-size: clamp(48px, 5.6vw, 84px);
-  line-height: 0.96; font-weight: 700;
+  font-size: clamp(34px, 9vw, 84px);
+  line-height: 0.98; font-weight: 700;
   letter-spacing: -0.025em;
   margin: 0 0 32px; color: var(--cc-ink);
+  overflow-wrap: break-word;
 }
 .cc-h1__accent { color: var(--cc-accent); }
 .cc-h1__sub    { color: var(--cc-ink-soft); font-weight: 500; }
@@ -102,7 +106,7 @@
 }
 
 /* ASIDE */
-.cc-hero__aside { display: flex; flex-direction: column; gap: 16px; }
+.cc-hero__aside { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .cc-spec {
   border: 1px solid var(--cc-rule);
   background: var(--cc-panel);
@@ -238,6 +242,12 @@
   .cc-cta-band__inner { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 600px) {
+  .cc-page { padding: 14px; gap: 14px; }
+  .cc-plate { padding: 18px 16px 24px; }
+  .cc-hero { gap: 22px; }
+  .cc-lede { font-size: 15px; }
+  .cc-actions { gap: 10px; }
+  .cc-actions .cc-btn { flex: 1 1 auto; justify-content: center; }
   .cc-svc-diagram { grid-template-columns: 1fr; }
   .cc-svc-node { border-right: 0 !important; }
   .cc-principles { grid-template-columns: 1fr; }
