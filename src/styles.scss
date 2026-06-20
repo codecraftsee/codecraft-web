@@ -25,6 +25,9 @@ body {
   font-family: var(--cc-font-body, system-ui, sans-serif);
   font-size: 15px;
   line-height: 1.55;
+  // Prevent stray horizontal scroll on small screens and iOS text inflation
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 // Default (dark) theme active on :root for initial load

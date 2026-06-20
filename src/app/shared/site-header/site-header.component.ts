@@ -281,6 +281,18 @@ const NAV = [
     }
     @media (max-width: 600px) {
       .cc-meta { display: none; }
+      /* Wrap the nav so every tab + theme toggle stays on-screen */
+      .cc-nav { overflow-x: visible; flex-wrap: wrap; }
+      .cc-tab {
+        flex: 1 1 auto; justify-content: center;
+        padding: 11px 8px; letter-spacing: 0.1em;
+      }
+      .cc-tab__idx { display: none; }
+      .cc-nav__spacer { display: none; }
+      .cc-theme-btn {
+        flex: 1 1 100%; justify-content: center;
+        border-left: 0; border-top: 1px solid var(--cc-rule);
+      }
     }
   `,
 })

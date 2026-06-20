@@ -23,7 +23,7 @@ import { ContactService } from './contact.service';
             <h1 class="cc-h1">Transmission acknowledged.</h1>
             <p class="cc-lede">Engineering team notified. Expect a response in &lt; 24h UTC.</p>
             <button class="cc-btn cc-btn--ghost" (click)="reset()" type="button">
-              <span class="cc-btn__label">SUBMIT_ANOTHER</span>
+              <span class="cc-btn__label">SUBMIT ANOTHER</span>
             </button>
           </div>
         </section>
@@ -65,7 +65,7 @@ import { ContactService } from './contact.service';
               <form [formGroup]="step1Form" (ngSubmit)="nextStep()" novalidate class="cc-form">
                 <label class="cc-field">
                   <span class="cc-mono cc-field__label">
-                    01 / PROJECT_DESCRIPTION
+                    01 / PROJECT DESCRIPTION
                     <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <textarea
@@ -142,7 +142,7 @@ import { ContactService } from './contact.service';
               <form [formGroup]="step3Form" (ngSubmit)="onSubmit()" novalidate class="cc-form">
                 <label class="cc-field">
                   <span class="cc-mono cc-field__label">
-                    04 / FULL_NAME
+                    04 / FULL NAME
                     <span class="cc-field__req" aria-hidden="true"> *</span>
                   </span>
                   <input formControlName="name" placeholder="Last, First" autocomplete="name"
@@ -351,6 +351,13 @@ import { ContactService } from './contact.service';
       .cc-stepper { flex-direction: column; }
       .cc-step { border-right: 0; border-bottom: 1px solid var(--cc-rule); }
       .cc-form-frame { padding: 20px; }
+    }
+    @media (max-width: 600px) {
+      .cc-page { padding: 14px; }
+      .cc-plate { padding: 18px 16px 24px; }
+      .cc-section__count { display: none; }
+      .cc-form-frame { padding: 16px; }
+      .cc-actions .cc-btn { flex: 1 1 auto; justify-content: center; }
     }
   `,
 })
