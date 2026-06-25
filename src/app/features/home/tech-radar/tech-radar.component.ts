@@ -104,10 +104,20 @@ export class TechRadarComponent {
     { id: 'react',   name: 'REACT',         accent: '#7AE3A4' },
     { id: 'ts',      name: 'TYPESCRIPT',    accent: '#C58BE8' },
     { id: 'java',    name: 'JAVA · SPRING', accent: '#F2B36E' },
+    { id: 'python',  name: 'PYTHON',        accent: '#6E9BF2' },
+    { id: 'mobile',  name: 'MOBILE',        accent: '#E89BD0' },
     { id: 'devops',  name: 'DEVOPS',        accent: '#E8C45B' },
   ];
 
   readonly clients: CcClient[] = [
+    {
+      id: 'ominimo',
+      client: 'Ominimo',
+      role: 'Telematics Platform',
+      stack: 'Python · FastAPI · Swift (iOS) · Kotlin · Firebase',
+      period: '2025 – Present',
+      techs: ['python', 'mobile'],
+    },
     {
       id: 'scfc',
       client: 'South Carolina Family Court',
