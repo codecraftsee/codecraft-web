@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { GlassPanelComponent } from './glass-panel.component';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { GlassElevation, GlassPanelComponent } from './glass-panel.component';
 
 @Component({
   imports: [GlassPanelComponent],
-  template: `<cc-glass-panel [elevation]="elevation">{{ content }}</cc-glass-panel>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<cc-glass-panel [elevation]="elevation()">{{ content }}</cc-glass-panel>`,
 })
 class TestHostComponent {
-  content = 'Hello glass';
-  elevation: 'low' | 'medium' | 'high' = 'medium';
+  readonly content = 'Hello glass';
+  readonly elevation = signal<GlassElevation>('medium');
 }
 
 describe('GlassPanelComponent', () => {
@@ -36,8 +37,7 @@ describe('GlassPanelComponent', () => {
   });
 
   it('should apply low elevation class', async () => {
-    host.elevation = 'low';
-    fixture.changeDetectorRef.markForCheck();
+    host.elevation.set('low');
     fixture.detectChanges();
     await fixture.whenStable();
     const panel = fixture.nativeElement.querySelector('cc-glass-panel');
@@ -45,8 +45,7 @@ describe('GlassPanelComponent', () => {
   });
 
   it('should apply high elevation class', async () => {
-    host.elevation = 'high';
-    fixture.changeDetectorRef.markForCheck();
+    host.elevation.set('high');
     fixture.detectChanges();
     await fixture.whenStable();
     const panel = fixture.nativeElement.querySelector('cc-glass-panel');

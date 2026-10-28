@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 import { routes } from '../../app.routes';
 import { ContactComponent } from './contact.component';
 import { ContactService } from './contact.service';
 
-function createMockService(returnValue: ReturnType<typeof of> = of({})) {
+/** Meets the step 1 minLength(20) validator. */
+const VALID_DESCRIPTION = 'A great project that needs building';
+
+function createMockService(returnValue: Observable<unknown> = of({})) {
   return { submit: vi.fn().mockReturnValue(returnValue) };
 }
 
@@ -34,9 +37,9 @@ describe('ContactComponent', () => {
     component.nextStep();
     fixture.detectChanges();
 
-    expect(component.currentStep()).toBe(1);
-    expect(component.step1.controls.projectDescription.touched).toBe(true);
-    expect(component.step1.invalid).toBe(true);
+    expect(component.step()).toBe(1);
+    expect(component.step1Form.controls.projectDescription.touched).toBe(true);
+    expect(component.step1Form.invalid).toBe(true);
   });
 
   it('8.3 should advance to step 2 when Next clicked with valid description', () => {
@@ -44,10 +47,10 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step1.controls.projectDescription.setValue('A great project');
+    component.step1Form.controls.projectDescription.setValue(VALID_DESCRIPTION);
     component.nextStep();
 
-    expect(component.currentStep()).toBe(2);
+    expect(component.step()).toBe(2);
   });
 
   it('8.4 should return to step 1 when Back clicked on step 2', () => {
@@ -55,11 +58,11 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step1.controls.projectDescription.setValue('A great project');
+    component.step1Form.controls.projectDescription.setValue(VALID_DESCRIPTION);
     component.nextStep();
     component.prevStep();
 
-    expect(component.currentStep()).toBe(1);
+    expect(component.step()).toBe(1);
   });
 
   it('6.2 successful submission calls service and sets submitted to true', () => {
@@ -69,12 +72,12 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step3.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
+    component.step3Form.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
     component.onSubmit();
 
     expect(mockService.submit).toHaveBeenCalled();
     expect(component.submitted()).toBe(true);
-    expect(component.error()).toBeNull();
+    expect(component.submitError()).toBe('');
   });
 
   it('6.3 failed submission sets error signal and leaves submitted as false', () => {
@@ -84,11 +87,11 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step3.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
+    component.step3Form.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
     component.onSubmit();
 
     expect(component.submitted()).toBe(false);
-    expect(component.error()).toBeTruthy();
+    expect(component.submitError()).toBeTruthy();
     expect(component.loading()).toBe(false);
   });
 
@@ -99,7 +102,7 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step3.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
+    component.step3Form.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
     component.onSubmit();
 
     expect(component.loading()).toBe(false);
@@ -112,12 +115,12 @@ describe('ContactComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component.step3.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
+    component.step3Form.setValue({ name: 'Jane', email: 'jane@example.com', company: '' });
     component.onSubmit();
     fixture.detectChanges();
 
     const el: HTMLElement = fixture.nativeElement;
-    expect(el.querySelector('.success')).toBeTruthy();
-    expect(el.querySelector('.form-card')).toBeFalsy();
+    expect(el.querySelector('.cc-success')).toBeTruthy();
+    expect(el.querySelector('.cc-stepper')).toBeFalsy();
   });
 });
