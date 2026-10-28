@@ -29,8 +29,13 @@ describe('ThemeService', () => {
       expect(service.activeTheme()).toBe('sable');
     });
 
-    it('ignores a stored light preference and falls back to dark', () => {
+    it('reads stored light preference from localStorage', () => {
       setupService('light');
+      expect(service.activeTheme()).toBe('light');
+    });
+
+    it('ignores an unknown stored value and falls back to dark', () => {
+      setupService('neon');
       expect(service.activeTheme()).toBe('dark');
     });
 
@@ -40,17 +45,21 @@ describe('ThemeService', () => {
     });
   });
 
-  describe('toggle()', () => {
-    it('switches from dark to sable', () => {
+  describe('cycleTheme()', () => {
+    it('cycles dark → sable → light → dark', () => {
       setupService('dark');
-      service.toggle();
+      service.cycleTheme();
       expect(service.activeTheme()).toBe('sable');
+      service.cycleTheme();
+      expect(service.activeTheme()).toBe('light');
+      service.cycleTheme();
+      expect(service.activeTheme()).toBe('dark');
     });
 
-    it('switches from sable to dark', () => {
+    it('toggle() is an alias for cycleTheme()', () => {
       setupService('sable');
       service.toggle();
-      expect(service.activeTheme()).toBe('dark');
+      expect(service.activeTheme()).toBe('light');
     });
   });
 
@@ -62,11 +71,11 @@ describe('ThemeService', () => {
       expect(localStorage.getItem('cc-theme')).toBe('sable');
     });
 
-    it('writes dark to localStorage when toggling from sable', () => {
+    it('writes light to localStorage when toggling from sable', () => {
       setupService('sable');
       service.toggle();
       TestBed.flushEffects();
-      expect(localStorage.getItem('cc-theme')).toBe('dark');
+      expect(localStorage.getItem('cc-theme')).toBe('light');
     });
   });
 
