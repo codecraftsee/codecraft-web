@@ -2,8 +2,8 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
-  OnDestroy,
   signal,
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
@@ -296,26 +296,30 @@ const NAV = [
     }
   `,
 })
-export class SiteHeaderComponent implements OnDestroy {
+export class SiteHeaderComponent {
   private readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
-  private readonly clockInterval: ReturnType<typeof setInterval>;
 
   readonly navItems = NAV;
   readonly theme = this.themeService.activeTheme;
-  readonly utcTime = signal(this.formatUTC());
+  /** Placeholder until the browser clock starts, so prerendered HTML hydrates cleanly. */
+  readonly utcTime = signal('--:--:--');
   readonly scrollPct = signal(0);
   readonly activeRoute = signal('/');
 
   constructor() {
-    this.clockInterval = setInterval(() => {
-      this.utcTime.set(this.formatUTC());
-    }, 1000);
+    const destroyRef = inject(DestroyRef);
 
     afterNextRender(() => {
+      this.utcTime.set(this.formatUTC());
+      const clock = setInterval(() => this.utcTime.set(this.formatUTC()), 1000);
+      destroyRef.onDestroy(() => clearInterval(clock));
+
       const scrollEl = document.getElementById('cc-scroll');
       if (scrollEl) {
-        scrollEl.addEventListener('scroll', () => this.onScrollElement(scrollEl), { passive: true });
+        const onScroll = (): void => this.onScrollElement(scrollEl);
+        scrollEl.addEventListener('scroll', onScroll, { passive: true });
+        destroyRef.onDestroy(() => scrollEl.removeEventListener('scroll', onScroll));
       }
     });
 
@@ -334,10 +338,6 @@ export class SiteHeaderComponent implements OnDestroy {
     const url = this.router.url;
     const match = NAV.slice().reverse().find(n => url.startsWith(n.id));
     this.activeRoute.set(match?.id ?? '/');
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.clockInterval);
   }
 
   private onScrollElement(el: HTMLElement): void {

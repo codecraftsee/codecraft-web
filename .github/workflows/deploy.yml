@@ -31,8 +31,12 @@ jobs:
       - name: Build
         run: npm run build -- --base-href /
 
-      - name: Copy index.html to 404.html for SPA routing
-        run: cp dist/codecraft-web/browser/index.html dist/codecraft-web/browser/404.html
+      - name: Verify prerendered pages contain content and SEO tags
+        run: node scripts/verify-prerender.mjs
+
+      # Unknown URLs get the client-rendered shell (not the prerendered home page)
+      - name: Use client-rendered shell as 404.html for SPA routing
+        run: cp dist/codecraft-web/browser/index.csr.html dist/codecraft-web/browser/404.html
 
       - uses: actions/configure-pages@v5
 

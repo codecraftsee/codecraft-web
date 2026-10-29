@@ -54,6 +54,7 @@ describe('TeamComponent', () => {
   it('renders ID number, initials, and file name for each card', () => {
     const [first] = cards();
     expect(first.querySelector('.cc-id__num')?.textContent?.trim()).toBe('ID·001');
+    expect(el.textContent).not.toMatch(/CLEARANCE|CLEARED/);
     expect(first.querySelector('.cc-id__foot')?.textContent).toContain('SIG · MP');
     expect(first.querySelector('.cc-id__foot')?.textContent).toContain('FILE · miodrag_pavkovic.id');
   });
