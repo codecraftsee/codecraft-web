@@ -5,14 +5,35 @@
   <title>CodeCraft Solutions</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CodeCraft Solutions is a Novi Sad-based engineering studio that designs, builds and maintains web and mobile software: custom web apps, AngularJS migration and performance engineering.">
+  <meta property="og:image" content="https://www.codecraftsolutions.rs/og-image.png">
   <link rel="icon" type="image/svg+xml" href="codecraft.svg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CodeCraft Solutions",
+      "url": "https://www.codecraftsolutions.rs/",
+      "logo": "https://www.codecraftsolutions.rs/codecraft.svg",
+      "email": "hello@codecraftsolutions.rs",
+      "foundingDate": "2020-04-13",
+      "description": "Engineering studio that designs, builds and maintains web and mobile software.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Novi Sad",
+        "addressCountry": "RS"
+      },
+      "areaServed": ["EU", "North America"]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
   <!-- Apply stored theme before first paint to prevent flash of unstyled content -->
   <script>
     (function () {
-      var stored = localStorage.getItem('cc-theme');
+      var stored = null;
+      try { stored = localStorage.getItem('cc-theme'); } catch (e) {}
       var theme = stored === 'dark' || stored === 'light' || stored === 'sable'
         ? stored
         : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';

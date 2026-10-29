@@ -65,7 +65,32 @@ describe('ServicesComponent', () => {
     const chips = Array.from(el.querySelectorAll('.cc-detail-tags .cc-chip')).map(c =>
       c.textContent?.trim(),
     );
-    expect(chips).toEqual(expect.arrayContaining(SERVICES[2].tags));
+    expect(chips).toEqual(SERVICES[2].tags);
+  });
+
+  it('shows how clients engage for the selected service', () => {
+    const cellValue = (label: string): string | undefined =>
+      Array.from(el.querySelectorAll('.cc-detail-meta .cc-meta-cell'))
+        .find(c => c.querySelector('.cc-meta-cell__label')?.textContent?.trim() === label)
+        ?.querySelector('.cc-meta-cell__value')?.textContent?.trim();
+
+    expect(cellValue('DEPTH')).toBeUndefined();
+    expect(cellValue('ENGAGEMENT')).toBe('Fixed scope or dedicated team');
+
+    rows()[3].click();
+    fixture.detectChanges();
+    expect(cellValue('ENGAGEMENT')).toBe('Flexible, from 1 week');
+  });
+
+  it('lists the deliverables of the selected service', () => {
+    const deliverables = (): (string | undefined)[] =>
+      Array.from(el.querySelectorAll('.cc-spec__row .cc-spec__k')).map(k => k.textContent?.trim());
+
+    expect(deliverables()).toEqual(SERVICES[0].deliverables.map(d => d.name));
+
+    rows()[4].click();
+    fixture.detectChanges();
+    expect(deliverables()).toEqual(SERVICES[4].deliverables.map(d => d.name));
   });
 
   it('exposes the index as an accessible tab list', () => {

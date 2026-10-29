@@ -61,8 +61,8 @@ import { SERVICES, Service } from '../../shared/data/services.data';
                   <span class="cc-meta-cell__value cc-mono">ACTIVE</span>
                 </div>
                 <div class="cc-meta-cell">
-                  <span class="cc-mono cc-meta-cell__label">DEPTH</span>
-                  <span class="cc-meta-cell__value cc-mono">L3 – L5</span>
+                  <span class="cc-mono cc-meta-cell__label">ENGAGEMENT</span>
+                  <span class="cc-meta-cell__value cc-mono">{{ current().engagement }}</span>
                 </div>
               </div>
             </div>
@@ -73,10 +73,9 @@ import { SERVICES, Service } from '../../shared/data/services.data';
               <div class="cc-spec">
                 <div class="cc-mono cc-spec__head">DELIVERABLES</div>
                 <ul class="cc-spec__rows" aria-label="Deliverables">
-                  <li class="cc-spec__row"><span class="cc-mono cc-spec__k">Audit Report</span><span class="cc-spec__leader"></span><span class="cc-spec__v">PDF</span></li>
-                  <li class="cc-spec__row"><span class="cc-mono cc-spec__k">Tech Spec</span><span class="cc-spec__leader"></span><span class="cc-spec__v">Docs</span></li>
-                  <li class="cc-spec__row"><span class="cc-mono cc-spec__k">Source Code</span><span class="cc-spec__leader"></span><span class="cc-spec__v">Repo</span></li>
-                  <li class="cc-spec__row"><span class="cc-mono cc-spec__k">Runbook</span><span class="cc-spec__leader"></span><span class="cc-spec__v">MD</span></li>
+                  @for (d of current().deliverables; track d.name) {
+                    <li class="cc-spec__row"><span class="cc-mono cc-spec__k">{{ d.name }}</span><span class="cc-spec__leader"></span><span class="cc-spec__v">{{ d.kind }}</span></li>
+                  }
                 </ul>
               </div>
               <div class="cc-spec">
@@ -85,10 +84,6 @@ import { SERVICES, Service } from '../../shared/data/services.data';
                   @for (t of current().tags; track t) {
                     <span class="cc-chip">{{ t }}</span>
                   }
-                  <span class="cc-chip">TypeScript</span>
-                  <span class="cc-chip">Node</span>
-                  <span class="cc-chip">Postgres</span>
-                  <span class="cc-chip">Docker</span>
                 </div>
               </div>
             </div>

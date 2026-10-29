@@ -28,7 +28,6 @@ interface TeamMember {
           <span class="cc-mono cc-section__num">§01</span>
           <h1 class="cc-h2">PERSONNEL ROSTER</h1>
           <span class="cc-section__rule"></span>
-          <span class="cc-mono cc-section__count">CLEARED</span>
         </div>
 
         <div class="cc-roster" role="list">
@@ -36,7 +35,6 @@ interface TeamMember {
             <article class="cc-id" role="listitem">
               <header class="cc-id__head">
                 <span class="cc-mono cc-id__num">ID·{{ pad(i + 1) }}</span>
-                <span class="cc-mono cc-id__cls">L{{ i + 3 }} CLEARANCE</span>
               </header>
               <div class="cc-id__body">
                 <div class="cc-id__photo">
@@ -143,7 +141,6 @@ interface TeamMember {
       font-size: 10px; letter-spacing: 0.16em;
     }
     .cc-id__num { color: var(--cc-accent); }
-    .cc-id__cls { color: var(--cc-ink-mute); }
     .cc-id__body { display: grid; grid-template-columns: 132px 1fr; gap: 18px; padding: 18px; }
     .cc-id__photo {
       position: relative; width: 132px; height: 156px;
