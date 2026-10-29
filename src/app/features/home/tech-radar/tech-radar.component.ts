@@ -3,8 +3,11 @@ import {
   Component,
   computed,
   effect,
+  inject,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface CcTech {
   id: string;
@@ -201,9 +204,12 @@ export class TechRadarComponent {
       : `${this.pad(this.active() + 1)} / ${this.pad(this.techs.length)}`;
   });
 
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   constructor() {
     effect((onCleanup) => {
-      if (this.paused() || this.selClient() !== null) return;
+      // Auto-cycle only in the browser; a timer would keep prerendering from settling.
+      if (!this.isBrowser || this.paused() || this.selClient() !== null) return;
       const id = setInterval(
         () => this.active.update(a => (a + 1) % this.techs.length),
         TechRadarComponent.CYCLE_MS,

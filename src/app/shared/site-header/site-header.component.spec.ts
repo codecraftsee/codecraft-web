@@ -29,6 +29,12 @@ describe('SiteHeaderComponent', () => {
 
   afterEach(() => fixture.destroy());
 
+  it('shows a clock placeholder before the first render, so prerendered HTML hydrates cleanly', () => {
+    const fresh = TestBed.createComponent(SiteHeaderComponent);
+    expect(fresh.componentInstance.utcTime()).toBe('--:--:--');
+    fresh.destroy();
+  });
+
   it('should create', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
@@ -67,6 +73,33 @@ describe('SiteHeaderComponent', () => {
   it('cycles the theme when the toggle is clicked', () => {
     el.querySelector<HTMLButtonElement>('button.cc-theme-btn')?.click();
     expect(cycleTheme).toHaveBeenCalledOnce();
+  });
+
+  describe('UTC clock', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date('2026-10-28T09:15:30Z'));
+    });
+    afterEach(() => vi.useRealTimers());
+
+    it('shows the time after the first render and ticks every second', () => {
+      const header = TestBed.createComponent(SiteHeaderComponent);
+      header.detectChanges();
+      expect(header.componentInstance.utcTime()).toBe('09:15:30');
+
+      vi.advanceTimersByTime(1000);
+      expect(header.componentInstance.utcTime()).toBe('09:15:31');
+      header.destroy();
+    });
+
+    it('stops the clock when destroyed', () => {
+      const header = TestBed.createComponent(SiteHeaderComponent);
+      header.detectChanges();
+      expect(vi.getTimerCount()).toBe(1);
+
+      header.destroy();
+      expect(vi.getTimerCount()).toBe(0);
+    });
   });
 
   it('has main navigation aria-label', () => {
